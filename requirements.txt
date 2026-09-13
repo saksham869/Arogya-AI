@@ -1,0 +1,13 @@
+scikit-learn
+skl2onnx
+onnx
+onnxruntime
+shap
+pandas
+numpy
+fastapi
+uvicorn
+pydantic
+pyyaml
+pytest
+httpx

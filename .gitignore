@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+data/raw/
+*.onnx
+.env
+results/
+.DS_Store
