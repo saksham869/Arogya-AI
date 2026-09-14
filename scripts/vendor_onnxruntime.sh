@@ -12,8 +12,10 @@
 # cover it during a demo.
 #
 # The wasm binary is ~10MB, so it's fetched by this script rather than
-# committed to git (same treatment as models/lr.joblib and the exported
-# *.onnx files -- a large, exactly-reproducible build artifact).
+# committed to git. Unlike models/lr.joblib and the exported *.onnx files
+# (small, so committed directly for deployability -- see .gitignore),
+# this one is large enough that keeping it out of `main` is worth the
+# extra step; CI fetches it fresh before publishing to gh-pages.
 set -e
 cd "$(dirname "$0")/.."
 mkdir -p web/js/vendor
