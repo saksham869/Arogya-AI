@@ -1,0 +1,527 @@
+{
+  "(vertigo) Paroymsal  Positional Vertigo": {
+    "en": "A condition that causes brief, repeated episodes of spinning dizziness triggered by changes in head position. It commonly involves nausea, unsteadiness, and a sensation that the room is spinning.",
+    "hi": "एक स्थिति जिसमें सिर की स्थिति बदलने पर बार-बार, थोड़ी देर के लिए चक्कर आते हैं। इसमें आमतौर पर मिचली, डगमगाहट और कमरे के घूमने जैसा एहसास होता है।",
+    "when_to_see_en": "See a doctor if episodes are frequent, severe, or come with hearing loss or weakness.",
+    "when_to_see_hi": "यदि चक्कर बार-बार, गंभीर हों या सुनने में कमी या कमजोरी के साथ हों, तो डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "unsteadiness",
+      "nausea",
+      "loss_of_balance",
+      "headache",
+      "spinning_movements"
+    ]
+  },
+  "AIDS": {
+    "en": "A condition caused by HIV that weakens the body's immune system over time. It commonly involves unexplained weight loss, prolonged fever, and repeated infections.",
+    "hi": "एचआईवी के कारण होने वाली एक स्थिति जो समय के साथ शरीर की प्रतिरोधक क्षमता को कमजोर करती है। इसमें आमतौर पर अस्पष्ट वजन घटना, लंबे समय तक बुखार और बार-बार संक्रमण होता है।",
+    "when_to_see_en": "See a doctor promptly for testing and care if you have risk factors or these symptoms.",
+    "when_to_see_hi": "यदि आपमें जोखिम कारक या ये लक्षण हों, तो तुरंत जांच और देखभाल के लिए डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "muscle_wasting",
+      "patches_in_throat",
+      "high_fever",
+      "extra_marital_contacts"
+    ]
+  },
+  "Acne": {
+    "en": "A common skin condition where hair follicles become clogged with oil and dead skin cells. It commonly involves pimples, blackheads, and oily skin, mainly on the face and back.",
+    "hi": "एक सामान्य त्वचा समस्या जिसमें रोमछिद्र तेल और मृत त्वचा कोशिकाओं से बंद हो जाते हैं। इसमें आमतौर पर चेहरे और पीठ पर दाने, ब्लैकहेड्स और तैलीय त्वचा होती है।",
+    "when_to_see_en": "See a doctor if acne is severe, painful, or leaving scars.",
+    "when_to_see_hi": "यदि मुंहासे गंभीर, दर्दनाक हों या निशान छोड़ रहे हों, तो डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "blackheads",
+      "skin_rash",
+      "scurring",
+      "pus_filled_pimples"
+    ]
+  },
+  "Alcoholic hepatitis": {
+    "en": "Inflammation of the liver caused by heavy alcohol use over time. It commonly involves yellowing of the skin and eyes, abdominal pain, and loss of appetite.",
+    "hi": "लंबे समय तक अधिक शराब पीने के कारण होने वाली लीवर की सूजन। इसमें आमतौर पर त्वचा और आंखों का पीलापन, पेट दर्द और भूख न लगना शामिल है।",
+    "when_to_see_en": "See a doctor promptly -- this can become serious without treatment.",
+    "when_to_see_hi": "तुरंत डॉक्टर से मिलें -- इलाज के बिना यह गंभीर हो सकता है।",
+    "common_symptoms": [
+      "abdominal_pain",
+      "distention_of_abdomen",
+      "vomiting",
+      "swelling_of_stomach",
+      "history_of_alcohol_consumption"
+    ]
+  },
+  "Allergy": {
+    "en": "An overreaction of the immune system to a substance that is normally harmless. It commonly involves sneezing, itching, watery eyes, and skin rashes.",
+    "hi": "किसी सामान्य रूप से हानिरहित चीज़ के प्रति शरीर की प्रतिरोधक प्रणाली की अत्यधिक प्रतिक्रिया। इसमें आमतौर पर छींक आना, खुजली, आंखों से पानी आना और त्वचा पर चकत्ते शामिल हैं।",
+    "when_to_see_en": "See a doctor if symptoms are severe or you have any difficulty breathing.",
+    "when_to_see_hi": "यदि लक्षण गंभीर हों या सांस लेने में कोई कठिनाई हो, तो डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "chills",
+      "watering_from_eyes",
+      "shivering",
+      "continuous_sneezing"
+    ]
+  },
+  "Arthritis": {
+    "en": "Inflammation of one or more joints, causing pain and stiffness. It commonly involves joint pain, swelling, and reduced movement, often worse in the morning.",
+    "hi": "एक या अधिक जोड़ों में सूजन, जिससे दर्द और जकड़न होती है। इसमें आमतौर पर जोड़ों में दर्द, सूजन और गति में कमी होती है, जो अक्सर सुबह के समय अधिक होती है।",
+    "when_to_see_en": "See a doctor if joint pain persists, worsens, or limits daily activities.",
+    "when_to_see_hi": "यदि जोड़ों का दर्द बना रहे, बढ़े या रोज़मर्रा के काम में बाधा डाले, तो डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "stiff_neck",
+      "movement_stiffness",
+      "swelling_joints",
+      "muscle_weakness",
+      "painful_walking"
+    ]
+  },
+  "Bronchial Asthma": {
+    "en": "A condition in which the airways narrow and swell, making breathing difficult. It commonly involves wheezing, breathlessness, chest tightness, and coughing.",
+    "hi": "एक स्थिति जिसमें सांस की नलियां सिकुड़ जाती हैं और सूज जाती हैं, जिससे सांस लेना मुश्किल हो जाता है। इसमें आमतौर पर घरघराहट, सांस फूलना, सीने में जकड़न और खांसी होती है।",
+    "when_to_see_en": "Seek care the same day if breathlessness is significant; seek emergency care if it is severe.",
+    "when_to_see_hi": "अगर सांस फूलना अधिक है तो उसी दिन डॉक्टर को दिखाएं; गंभीर होने पर तुरंत आपातकालीन देखभाल लें।",
+    "common_symptoms": [
+      "mucoid_sputum",
+      "fatigue",
+      "breathlessness",
+      "high_fever",
+      "cough"
+    ]
+  },
+  "Cervical spondylosis": {
+    "en": "Age-related wear affecting the disks and joints in the neck. It commonly involves neck pain and stiffness, sometimes with headache or arm numbness.",
+    "hi": "उम्र बढ़ने के कारण गर्दन की डिस्क और जोड़ों में होने वाली टूट-फूट। इसमें आमतौर पर गर्दन में दर्द और जकड़न होती है, कभी-कभी सिरदर्द या बांह में सुन्नपन के साथ।",
+    "when_to_see_en": "See a doctor if pain persists, or if there is numbness, weakness, or tingling in the arms.",
+    "when_to_see_hi": "यदि दर्द बना रहे, या बांहों में सुन्नपन, कमजोरी या झनझनाहट हो, तो डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "dizziness",
+      "neck_pain",
+      "loss_of_balance",
+      "back_pain",
+      "weakness_in_limbs"
+    ]
+  },
+  "Chicken pox": {
+    "en": "A contagious viral infection that causes an itchy, blister-like rash. It commonly involves fever, tiredness, and red spots that turn into fluid-filled blisters.",
+    "hi": "एक संक्रामक वायरल बीमारी जिससे खुजली वाले, छाले जैसे दाने होते हैं। इसमें आमतौर पर बुखार, थकान और लाल धब्बे होते हैं जो बाद में तरल से भरे छालों में बदल जाते हैं।",
+    "when_to_see_en": "See a doctor if fever is high, the rash spreads to the eyes, or the person is a young infant, pregnant, or has a weak immune system.",
+    "when_to_see_hi": "यदि बुखार तेज़ हो, दाने आंखों तक फैलें, या व्यक्ति छोटा शिशु, गर्भवती हो या कमजोर प्रतिरोधक क्षमता वाला हो, तो डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "red_spots_over_body",
+      "malaise",
+      "lethargy",
+      "fatigue",
+      "high_fever"
+    ]
+  },
+  "Chronic cholestasis": {
+    "en": "A long-term condition where bile flow from the liver is reduced or blocked. It commonly involves itching, yellowing of the skin and eyes, and dark urine.",
+    "hi": "एक दीर्घकालिक स्थिति जिसमें लीवर से पित्त का प्रवाह कम हो जाता है या रुक जाता है। इसमें आमतौर पर खुजली, त्वचा और आंखों का पीलापन, और गहरे रंग का पेशाब होता है।",
+    "when_to_see_en": "See a doctor for evaluation -- ongoing yellowing of the skin or eyes needs medical attention.",
+    "when_to_see_hi": "जांच के लिए डॉक्टर से मिलें -- त्वचा या आंखों का लगातार पीलापन चिकित्सकीय ध्यान चाहता है।",
+    "common_symptoms": [
+      "abdominal_pain",
+      "itching",
+      "yellowing_of_eyes",
+      "vomiting",
+      "nausea"
+    ]
+  },
+  "Common Cold": {
+    "en": "A mild viral infection of the nose and throat. It commonly involves a runny nose, sneezing, sore throat, and mild cough.",
+    "hi": "नाक और गले का एक हल्का वायरल संक्रमण। इसमें आमतौर पर नाक बहना, छींक आना, गले में खराश और हल्की खांसी होती है।",
+    "when_to_see_en": "See a doctor if symptoms last more than 10 days or are unusually severe.",
+    "when_to_see_hi": "यदि लक्षण 10 दिनों से अधिक रहें या असामान्य रूप से गंभीर हों, तो डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "sinus_pressure",
+      "throat_irritation",
+      "muscle_pain",
+      "runny_nose",
+      "redness_of_eyes"
+    ]
+  },
+  "Dengue": {
+    "en": "A mosquito-borne viral infection common in tropical areas. It commonly involves high fever, severe headache, joint and muscle pain, and skin rash.",
+    "hi": "उष्णकटिबंधीय क्षेत्रों में आम, मच्छर से फैलने वाला वायरल संक्रमण। इसमें आमतौर पर तेज़ बुखार, गंभीर सिरदर्द, जोड़ों और मांसपेशियों में दर्द, और त्वचा पर चकत्ते होते हैं।",
+    "when_to_see_en": "See a doctor the same day -- dengue needs monitoring, and warning signs like bleeding need emergency care.",
+    "when_to_see_hi": "उसी दिन डॉक्टर से मिलें -- डेंगू में निगरानी ज़रूरी है, और खून बहने जैसे चेतावनी संकेतों पर तुरंत आपातकालीन देखभाल लें।",
+    "common_symptoms": [
+      "nausea",
+      "loss_of_appetite",
+      "back_pain",
+      "pain_behind_the_eyes",
+      "headache"
+    ]
+  },
+  "Diabetes": {
+    "en": "A long-term condition where the body cannot properly regulate blood sugar levels. It commonly involves excessive thirst, frequent urination, fatigue, and increased hunger.",
+    "hi": "एक दीर्घकालिक स्थिति जिसमें शरीर रक्त शर्करा के स्तर को ठीक से नियंत्रित नहीं कर पाता। इसमें आमतौर पर अधिक प्यास लगना, बार-बार पेशाब आना, थकान और अधिक भूख लगना शामिल है।",
+    "when_to_see_en": "See a doctor for testing and ongoing care -- diabetes needs long-term management.",
+    "when_to_see_hi": "जांच और निरंतर देखभाल के लिए डॉक्टर से मिलें -- मधुमेह के लिए दीर्घकालिक प्रबंधन ज़रूरी है।",
+    "common_symptoms": [
+      "polyuria",
+      "increased_appetite",
+      "fatigue",
+      "irregular_sugar_level",
+      "blurred_and_distorted_vision"
+    ]
+  },
+  "Dimorphic hemmorhoids(piles)": {
+    "en": "Swollen veins in the lower rectum or anus, both internal and external. It commonly involves pain, itching, and bleeding during bowel movements.",
+    "hi": "मलाशय या गुदा के निचले हिस्से में सूजी हुई नसें, आंतरिक और बाह्य दोनों। इसमें आमतौर पर मल त्याग के दौरान दर्द, खुजली और खून आना शामिल है।",
+    "when_to_see_en": "See a doctor if bleeding continues, pain is severe, or symptoms do not improve.",
+    "when_to_see_hi": "यदि खून बहना जारी रहे, दर्द गंभीर हो या लक्षण ठीक न हों, तो डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "pain_during_bowel_movements",
+      "pain_in_anal_region",
+      "constipation",
+      "irritation_in_anus",
+      "bloody_stool"
+    ]
+  },
+  "Drug Reaction": {
+    "en": "An unwanted reaction of the body to a medication. It commonly involves skin rash, itching, and sometimes swelling or fever.",
+    "hi": "किसी दवा के प्रति शरीर की अवांछित प्रतिक्रिया। इसमें आमतौर पर त्वचा पर चकत्ते, खुजली, और कभी-कभी सूजन या बुखार शामिल है।",
+    "when_to_see_en": "See a doctor promptly, and seek emergency care if there is swelling of the face or throat or difficulty breathing.",
+    "when_to_see_hi": "तुरंत डॉक्टर से मिलें, और यदि चेहरे या गले में सूजन या सांस लेने में कठिनाई हो तो आपातकालीन देखभाल लें।",
+    "common_symptoms": [
+      "burning_micturition",
+      "stomach_pain",
+      "skin_rash",
+      "spotting_urination",
+      "itching"
+    ]
+  },
+  "Fungal infection": {
+    "en": "An infection of the skin caused by fungi that thrive in warm, moist areas. It commonly involves itching, skin rash, and red patches, often in skin folds.",
+    "hi": "गर्म और नम जगहों पर पनपने वाले फफूंद के कारण होने वाला त्वचा संक्रमण। इसमें आमतौर पर खुजली, त्वचा पर चकत्ते और लाल धब्बे होते हैं, अक्सर त्वचा की सिलवटों में।",
+    "when_to_see_en": "See a doctor if the rash spreads, does not improve, or keeps coming back.",
+    "when_to_see_hi": "यदि चकत्ते फैलें, ठीक न हों या बार-बार लौटें, तो डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "itching",
+      "dischromic_patches",
+      "skin_rash",
+      "nodal_skin_eruptions"
+    ]
+  },
+  "GERD": {
+    "en": "A digestive condition where stomach acid regularly flows back into the food pipe. It commonly involves heartburn, acid reflux, and chest discomfort after eating.",
+    "hi": "एक पाचन संबंधी स्थिति जिसमें पेट का एसिड बार-बार भोजन नली में वापस आता है। इसमें आमतौर पर सीने में जलन, एसिड रिफ्लक्स और खाने के बाद सीने में बेचैनी होती है।",
+    "when_to_see_en": "See a doctor if symptoms are frequent or you have difficulty swallowing.",
+    "when_to_see_hi": "यदि लक्षण बार-बार हों या निगलने में कठिनाई हो, तो डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "chest_pain",
+      "stomach_pain",
+      "acidity",
+      "ulcers_on_tongue",
+      "cough"
+    ]
+  },
+  "Gastroenteritis": {
+    "en": "Inflammation of the stomach and intestines, usually from infection. It commonly involves diarrhoea, vomiting, stomach pain, and dehydration.",
+    "hi": "पेट और आंतों की सूजन, आमतौर पर संक्रमण के कारण। इसमें आमतौर पर दस्त, उल्टी, पेट दर्द और शरीर में पानी की कमी होती है।",
+    "when_to_see_en": "See a doctor if signs of dehydration appear, or symptoms are severe or do not improve in a couple of days.",
+    "when_to_see_hi": "यदि पानी की कमी के लक्षण दिखें, या लक्षण गंभीर हों या कुछ दिनों में ठीक न हों, तो डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "vomiting",
+      "diarrhoea",
+      "dehydration",
+      "sunken_eyes"
+    ]
+  },
+  "Heart attack": {
+    "en": "A sudden blockage of blood flow to part of the heart muscle. It commonly involves chest pain, breathlessness, sweating, and pain spreading to the arm or jaw.",
+    "hi": "हृदय की मांसपेशी के किसी हिस्से में रक्त प्रवाह का अचानक रुक जाना। इसमें आमतौर पर सीने में दर्द, सांस फूलना, पसीना आना और बांह या जबड़े तक फैलता दर्द होता है।",
+    "when_to_see_en": "This is a medical emergency -- go to the nearest hospital immediately.",
+    "when_to_see_hi": "यह एक चिकित्सा आपातकाल है -- तुरंत नजदीकी अस्पताल जाएं।",
+    "common_symptoms": [
+      "chest_pain",
+      "vomiting",
+      "breathlessness",
+      "sweating"
+    ]
+  },
+  "Hepatitis B": {
+    "en": "A liver infection caused by the hepatitis B virus, spread through blood and body fluids. It commonly involves fatigue, yellowing of the skin and eyes, and abdominal pain.",
+    "hi": "हेपेटाइटिस बी वायरस के कारण होने वाला लीवर संक्रमण, जो रक्त और शारीरिक तरल पदार्थों से फैलता है। इसमें आमतौर पर थकान, त्वचा और आंखों का पीलापन, और पेट दर्द होता है।",
+    "when_to_see_en": "See a doctor promptly for testing and care.",
+    "when_to_see_hi": "जांच और देखभाल के लिए तुरंत डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "yellowing_of_eyes",
+      "receiving_unsterile_injections",
+      "receiving_blood_transfusion",
+      "malaise",
+      "abdominal_pain"
+    ]
+  },
+  "Hepatitis C": {
+    "en": "A liver infection caused by the hepatitis C virus, spread mainly through contact with infected blood. It commonly involves fatigue, loss of appetite, and yellowing of the skin and eyes.",
+    "hi": "हेपेटाइटिस सी वायरस के कारण होने वाला लीवर संक्रमण, जो मुख्य रूप से संक्रमित रक्त के संपर्क से फैलता है। इसमें आमतौर पर थकान, भूख न लगना, और त्वचा व आंखों का पीलापन होता है।",
+    "when_to_see_en": "See a doctor promptly for testing and care.",
+    "when_to_see_hi": "जांच और देखभाल के लिए तुरंत डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "yellowish_skin",
+      "yellowing_of_eyes",
+      "nausea",
+      "family_history",
+      "loss_of_appetite"
+    ]
+  },
+  "Hepatitis D": {
+    "en": "A liver infection that only occurs in people already infected with hepatitis B. It commonly involves fatigue, abdominal pain, and yellowing of the skin and eyes.",
+    "hi": "एक लीवर संक्रमण जो केवल उन लोगों में होता है जिन्हें पहले से हेपेटाइटिस बी हो। इसमें आमतौर पर थकान, पेट दर्द, और त्वचा व आंखों का पीलापन होता है।",
+    "when_to_see_en": "See a doctor promptly for testing and care.",
+    "when_to_see_hi": "जांच और देखभाल के लिए तुरंत डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "abdominal_pain",
+      "dark_urine",
+      "yellowing_of_eyes",
+      "vomiting",
+      "nausea"
+    ]
+  },
+  "Hepatitis E": {
+    "en": "A liver infection usually spread through contaminated water. It commonly involves fatigue, nausea, abdominal pain, and yellowing of the skin and eyes.",
+    "hi": "आमतौर पर दूषित पानी से फैलने वाला लीवर संक्रमण। इसमें आमतौर पर थकान, मिचली, पेट दर्द, और त्वचा व आंखों का पीलापन होता है।",
+    "when_to_see_en": "See a doctor promptly for testing and care, especially if pregnant.",
+    "when_to_see_hi": "जांच और देखभाल के लिए तुरंत डॉक्टर से मिलें, खासकर गर्भावस्था में।",
+    "common_symptoms": [
+      "abdominal_pain",
+      "coma",
+      "yellowing_of_eyes",
+      "stomach_bleeding",
+      "loss_of_appetite"
+    ]
+  },
+  "Hypertension": {
+    "en": "A long-term condition where the force of blood against artery walls is consistently too high. It commonly involves no obvious symptoms, though some people notice headaches or dizziness.",
+    "hi": "एक दीर्घकालिक स्थिति जिसमें धमनियों की दीवारों पर रक्त का दबाव लगातार अधिक रहता है। इसमें आमतौर पर कोई स्पष्ट लक्षण नहीं होते, हालांकि कुछ लोगों को सिरदर्द या चक्कर महसूस हो सकते हैं।",
+    "when_to_see_en": "See a doctor for regular blood pressure checks and management.",
+    "when_to_see_hi": "नियमित रक्तचाप जांच और प्रबंधन के लिए डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "dizziness",
+      "lack_of_concentration",
+      "loss_of_balance",
+      "headache",
+      "chest_pain"
+    ]
+  },
+  "Hyperthyroidism": {
+    "en": "A condition where the thyroid gland produces too much thyroid hormone. It commonly involves weight loss, fast heartbeat, sweating, and irritability.",
+    "hi": "एक स्थिति जिसमें थायरॉयड ग्रंथि बहुत अधिक थायरॉयड हार्मोन बनाती है। इसमें आमतौर पर वजन घटना, तेज़ दिल की धड़कन, पसीना आना और चिड़चिड़ापन होता है।",
+    "when_to_see_en": "See a doctor for testing if these symptoms persist.",
+    "when_to_see_hi": "यदि ये लक्षण बने रहें, तो जांच के लिए डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "muscle_weakness",
+      "abnormal_menstruation",
+      "irritability",
+      "sweating",
+      "restlessness"
+    ]
+  },
+  "Hypoglycemia": {
+    "en": "A condition where blood sugar levels drop too low, often in people with diabetes. It commonly involves shakiness, sweating, confusion, and rapid heartbeat.",
+    "hi": "एक स्थिति जिसमें रक्त शर्करा का स्तर बहुत कम हो जाता है, अक्सर मधुमेह वाले लोगों में। इसमें आमतौर पर कंपकंपी, पसीना आना, भ्रम और तेज़ दिल की धड़कन होती है।",
+    "when_to_see_en": "Treat right away with sugar or juice, and see a doctor if it keeps happening or the person becomes confused or unconscious.",
+    "when_to_see_hi": "तुरंत चीनी या जूस से इलाज करें, और अगर यह बार-बार हो या व्यक्ति भ्रमित या बेहोश हो जाए तो डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "irritability",
+      "palpitations",
+      "slurred_speech",
+      "excessive_hunger",
+      "blurred_and_distorted_vision"
+    ]
+  },
+  "Hypothyroidism": {
+    "en": "A condition where the thyroid gland does not produce enough thyroid hormone. It commonly involves fatigue, weight gain, cold intolerance, and dry skin.",
+    "hi": "एक स्थिति जिसमें थायरॉयड ग्रंथि पर्याप्त थायरॉयड हार्मोन नहीं बनाती। इसमें आमतौर पर थकान, वजन बढ़ना, ठंड सहन न कर पाना और रूखी त्वचा होती है।",
+    "when_to_see_en": "See a doctor for testing if these symptoms persist.",
+    "when_to_see_hi": "यदि ये लक्षण बने रहें, तो जांच के लिए डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "depression",
+      "enlarged_thyroid",
+      "irritability",
+      "abnormal_menstruation",
+      "swollen_extremeties"
+    ]
+  },
+  "Impetigo": {
+    "en": "A common, contagious skin infection, mostly in children. It commonly involves red sores that quickly rupture, ooze, and form a yellow crust.",
+    "hi": "एक सामान्य, संक्रामक त्वचा संक्रमण, ज्यादातर बच्चों में। इसमें आमतौर पर लाल घाव होते हैं जो जल्दी फूट जाते हैं, रिसते हैं और पीली पपड़ी बनाते हैं।",
+    "when_to_see_en": "See a doctor for treatment, since it is contagious and needs care to stop it spreading.",
+    "when_to_see_hi": "इलाज के लिए डॉक्टर से मिलें, क्योंकि यह संक्रामक है और इसे फैलने से रोकने के लिए देखभाल ज़रूरी है।",
+    "common_symptoms": [
+      "blister",
+      "skin_rash",
+      "yellow_crust_ooze",
+      "high_fever",
+      "red_sore_around_nose"
+    ]
+  },
+  "Jaundice": {
+    "en": "A condition where the skin and eyes turn yellow due to a buildup of bilirubin, often from a liver problem. It commonly involves yellowing of the skin and eyes, dark urine, and fatigue.",
+    "hi": "एक स्थिति जिसमें त्वचा और आंखें बिलीरुबिन जमा होने के कारण पीली पड़ जाती हैं, अक्सर लीवर की समस्या से। इसमें आमतौर पर त्वचा और आंखों का पीलापन, गहरे रंग का पेशाब और थकान होती है।",
+    "when_to_see_en": "See a doctor promptly to find the underlying cause.",
+    "when_to_see_hi": "मूल कारण जानने के लिए तुरंत डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "abdominal_pain",
+      "dark_urine",
+      "weight_loss",
+      "vomiting",
+      "itching"
+    ]
+  },
+  "Malaria": {
+    "en": "A mosquito-borne disease caused by a parasite. It commonly involves high fever with chills, sweating, headache, and muscle pain that can come in cycles.",
+    "hi": "एक परजीवी के कारण होने वाली, मच्छर से फैलने वाली बीमारी। इसमें आमतौर पर ठंड के साथ तेज़ बुखार, पसीना, सिरदर्द और मांसपेशियों में दर्द होता है जो चक्रों में आ सकता है।",
+    "when_to_see_en": "See a doctor the same day for testing and treatment.",
+    "when_to_see_hi": "जांच और इलाज के लिए उसी दिन डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "muscle_pain",
+      "headache",
+      "nausea",
+      "diarrhoea",
+      "sweating"
+    ]
+  },
+  "Migraine": {
+    "en": "A neurological condition causing intense, often one-sided headaches. It commonly involves throbbing head pain, nausea, and sensitivity to light and sound.",
+    "hi": "एक तंत्रिका संबंधी स्थिति जिसमें तेज़, अक्सर एकतरफा सिरदर्द होता है। इसमें आमतौर पर धड़कता हुआ सिरदर्द, मिचली और रोशनी व आवाज़ के प्रति संवेदनशीलता होती है।",
+    "when_to_see_en": "See a doctor if headaches are frequent or severe, or come on suddenly and are the worst ever felt.",
+    "when_to_see_hi": "यदि सिरदर्द बार-बार या गंभीर हो, या अचानक सबसे तेज़ सिरदर्द महसूस हो, तो डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "stiff_neck",
+      "visual_disturbances",
+      "acidity",
+      "irritability",
+      "excessive_hunger"
+    ]
+  },
+  "Osteoarthristis": {
+    "en": "A joint condition caused by wear of the cartilage that cushions bones. It commonly involves joint pain, stiffness, and reduced movement, especially after activity.",
+    "hi": "हड्डियों को सुरक्षा देने वाले कार्टिलेज के घिसने के कारण होने वाली जोड़ों की समस्या। इसमें आमतौर पर जोड़ों में दर्द, जकड़न और गति में कमी होती है, खासकर काम करने के बाद।",
+    "when_to_see_en": "See a doctor if joint pain persists or limits daily activities.",
+    "when_to_see_hi": "यदि जोड़ों का दर्द बना रहे या रोज़मर्रा के काम में बाधा डाले, तो डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "swelling_joints",
+      "knee_pain",
+      "hip_joint_pain",
+      "neck_pain",
+      "painful_walking"
+    ]
+  },
+  "Paralysis (brain hemorrhage)": {
+    "en": "Sudden bleeding in the brain that can damage the areas controlling movement. It commonly involves sudden weakness or paralysis on one side of the body, and difficulty speaking.",
+    "hi": "मस्तिष्क में अचानक रक्तस्राव जो गति को नियंत्रित करने वाले हिस्सों को नुकसान पहुंचा सकता है। इसमें आमतौर पर शरीर के एक तरफ अचानक कमजोरी या लकवा, और बोलने में कठिनाई होती है।",
+    "when_to_see_en": "This is a medical emergency -- go to the nearest hospital immediately.",
+    "when_to_see_hi": "यह एक चिकित्सा आपातकाल है -- तुरंत नजदीकी अस्पताल जाएं।",
+    "common_symptoms": [
+      "altered_sensorium",
+      "headache",
+      "weakness_of_one_body_side",
+      "vomiting"
+    ]
+  },
+  "Peptic ulcer diseae": {
+    "en": "An open sore that develops on the lining of the stomach or upper small intestine. It commonly involves burning stomach pain, indigestion, and sometimes nausea.",
+    "hi": "पेट या ऊपरी छोटी आंत की परत पर बनने वाला एक खुला घाव। इसमें आमतौर पर पेट में जलन वाला दर्द, अपच और कभी-कभी मिचली होती है।",
+    "when_to_see_en": "See a doctor if pain persists, and seek emergency care for severe pain, vomiting blood, or black stools.",
+    "when_to_see_hi": "यदि दर्द बना रहे तो डॉक्टर से मिलें, और गंभीर दर्द, खून की उल्टी या काले मल होने पर तुरंत आपातकालीन देखभाल लें।",
+    "common_symptoms": [
+      "abdominal_pain",
+      "loss_of_appetite",
+      "indigestion",
+      "passage_of_gases",
+      "vomiting"
+    ]
+  },
+  "Pneumonia": {
+    "en": "An infection that inflames the air sacs in one or both lungs. It commonly involves cough with phlegm, fever, chills, and breathlessness.",
+    "hi": "एक संक्रमण जो एक या दोनों फेफड़ों की वायु थैलियों में सूजन पैदा करता है। इसमें आमतौर पर बलगम वाली खांसी, बुखार, ठंड लगना और सांस फूलना होता है।",
+    "when_to_see_en": "See a doctor the same day, and seek emergency care if breathing is severely difficult.",
+    "when_to_see_hi": "उसी दिन डॉक्टर से मिलें, और सांस लेने में गंभीर कठिनाई होने पर तुरंत आपातकालीन देखभाल लें।",
+    "common_symptoms": [
+      "chest_pain",
+      "fast_heart_rate",
+      "rusty_sputum",
+      "high_fever",
+      "sweating"
+    ]
+  },
+  "Psoriasis": {
+    "en": "A long-term skin condition that speeds up skin cell turnover. It commonly involves red, scaly patches, itching, and silvery-white scales on the skin.",
+    "hi": "एक दीर्घकालिक त्वचा समस्या जो त्वचा कोशिकाओं के बदलने की गति को तेज़ कर देती है। इसमें आमतौर पर लाल, परतदार धब्बे, खुजली और त्वचा पर चांदी जैसी सफेद पपड़ी होती है।",
+    "when_to_see_en": "See a doctor if patches are widespread, painful, or affecting daily life.",
+    "when_to_see_hi": "यदि धब्बे व्यापक, दर्दनाक हों या रोज़मर्रा के जीवन को प्रभावित करें, तो डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "silver_like_dusting",
+      "inflammatory_nails",
+      "skin_peeling",
+      "skin_rash",
+      "small_dents_in_nails"
+    ]
+  },
+  "Tuberculosis": {
+    "en": "A serious bacterial infection that mainly affects the lungs. It commonly involves a persistent cough, fever, night sweats, and unexplained weight loss.",
+    "hi": "एक गंभीर बैक्टीरियल संक्रमण जो मुख्य रूप से फेफड़ों को प्रभावित करता है। इसमें आमतौर पर लगातार खांसी, बुखार, रात में पसीना आना और अस्पष्ट वजन घटना होता है।",
+    "when_to_see_en": "See a doctor promptly -- TB needs testing and a full course of treatment.",
+    "when_to_see_hi": "तुरंत डॉक्टर से मिलें -- टीबी के लिए जांच और पूरा इलाज ज़रूरी है।",
+    "common_symptoms": [
+      "swelled_lymph_nodes",
+      "yellowing_of_eyes",
+      "phlegm",
+      "chest_pain",
+      "loss_of_appetite"
+    ]
+  },
+  "Typhoid": {
+    "en": "A bacterial infection spread through contaminated food or water. It commonly involves sustained high fever, weakness, stomach pain, and headache.",
+    "hi": "दूषित भोजन या पानी से फैलने वाला बैक्टीरियल संक्रमण। इसमें आमतौर पर लगातार तेज़ बुखार, कमज़ोरी, पेट दर्द और सिरदर्द होता है।",
+    "when_to_see_en": "See a doctor the same day for testing and treatment.",
+    "when_to_see_hi": "जांच और इलाज के लिए उसी दिन डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "high_fever",
+      "chills",
+      "fatigue",
+      "diarrhoea",
+      "constipation"
+    ]
+  },
+  "Urinary tract infection": {
+    "en": "An infection in any part of the urinary system, most often the bladder. It commonly involves burning during urination, frequent urge to urinate, and lower abdominal discomfort.",
+    "hi": "मूत्र प्रणाली के किसी भी हिस्से में संक्रमण, सबसे अधिक मूत्राशय में। इसमें आमतौर पर पेशाब करते समय जलन, बार-बार पेशाब की इच्छा और पेट के निचले हिस्से में बेचैनी होती है।",
+    "when_to_see_en": "See a doctor promptly, especially if there is fever or back pain, which can mean the infection has spread.",
+    "when_to_see_hi": "तुरंत डॉक्टर से मिलें, खासकर अगर बुखार या पीठ दर्द हो, जो संक्रमण फैलने का संकेत हो सकता है।",
+    "common_symptoms": [
+      "burning_micturition",
+      "foul_smell_of_urine",
+      "continuous_feel_of_urine",
+      "bladder_discomfort"
+    ]
+  },
+  "Varicose veins": {
+    "en": "Swollen, twisted veins usually appearing in the legs due to weakened valves. It commonly involves visible bulging veins, aching legs, and swelling after standing.",
+    "hi": "कमजोर वाल्व के कारण आमतौर पर पैरों में दिखाई देने वाली सूजी और मुड़ी हुई नसें। इसमें आमतौर पर उभरी हुई नसें, पैरों में दर्द और खड़े रहने के बाद सूजन होती है।",
+    "when_to_see_en": "See a doctor if veins are painful, or the skin over them changes color or breaks down.",
+    "when_to_see_hi": "यदि नसें दर्दनाक हों, या उनके ऊपर की त्वचा का रंग बदले या टूटे, तो डॉक्टर से मिलें।",
+    "common_symptoms": [
+      "swollen_legs",
+      "fatigue",
+      "bruising",
+      "swollen_blood_vessels",
+      "obesity"
+    ]
+  },
+  "hepatitis A": {
+    "en": "A liver infection caused by the hepatitis A virus, usually spread through contaminated food or water. It commonly involves fatigue, nausea, abdominal pain, and yellowing of the skin and eyes.",
+    "hi": "हेपेटाइटिस ए वायरस के कारण होने वाला लीवर संक्रमण, जो आमतौर पर दूषित भोजन या पानी से फैलता है। इसमें आमतौर पर थकान, मिचली, पेट दर्द, और त्वचा व आंखों का पीलापन होता है।",
+    "when_to_see_en": "See a doctor for evaluation and rest -- most people recover fully with care.",
+    "when_to_see_hi": "जांच और आराम के लिए डॉक्टर से मिलें -- देखभाल से अधिकांश लोग पूरी तरह ठीक हो जाते हैं।",
+    "common_symptoms": [
+      "yellowing_of_eyes",
+      "muscle_pain",
+      "mild_fever",
+      "abdominal_pain",
+      "dark_urine"
+    ]
+  }
+}

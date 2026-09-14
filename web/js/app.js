@@ -5,6 +5,7 @@
 import { predict } from './infer.js';
 import { renderResult } from './render.js';
 import { STRINGS } from './strings.js';
+import { openSheet } from './sheet.js';
 
 let symptomsList = [];
 const selectedSymptoms = new Set();
@@ -35,20 +36,12 @@ async function loadPHC() {
   phcList = await res.json();
 }
 
-// Generic bottom sheet (F12 symptom info now; F20 condition info reuses it)
-const sheetOverlay = document.getElementById('sheet-overlay');
-const sheetBody = document.getElementById('sheet-body');
-function openSheet(html) {
-  sheetBody.innerHTML = html;
-  sheetOverlay.hidden = false;
+let conditionInfo = {};
+async function loadConditionInfo() {
+  const res = await fetch('./data/condition_info.json');
+  conditionInfo = await res.json();
 }
-function closeSheet() {
-  sheetOverlay.hidden = true;
-}
-document.getElementById('sheet-close').addEventListener('click', closeSheet);
-sheetOverlay.addEventListener('click', (e) => {
-  if (e.target === sheetOverlay) closeSheet();
-});
+
 
 const searchInput = document.getElementById('symptom-search');
 const dropdown = document.getElementById('symptom-dropdown');
@@ -318,6 +311,7 @@ loadSeverity();
 loadCooccurrence();
 loadSymptomDescriptions();
 loadPHC();
+loadConditionInfo();
 applyStrings(currentLang);
 updateOnlineStatus();
 
@@ -368,5 +362,5 @@ document.getElementById('assess-btn').addEventListener('click', async () => {
     ageYears,
     sex,
   };
-  renderResult(result, currentLang, resetForm, phcList, formSnapshot, ashaMode);
+  renderResult(result, currentLang, resetForm, phcList, formSnapshot, ashaMode, conditionInfo);
 });

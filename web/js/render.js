@@ -1,4 +1,5 @@
 import { STRINGS } from './strings.js';
+import { openSheet } from './sheet.js';
 
 function tierClass(tier) {
   if (tier === 'EMERGENCY') return 'emergency';
@@ -37,13 +38,30 @@ function whyNotOther(topClass, otherClass, allShap) {
   return null;
 }
 
-function renderDifferentialEntry(entry, lang, result) {
+// F20: 2-sentence description + when_to_see + common symptoms, in the
+// current language, from condition_info.json.
+function showConditionInfo(disease, lang, conditionInfo) {
+  const info = conditionInfo[disease];
+  if (!info) return;
+  const desc = lang === 'hi' ? info.hi : info.en;
+  const whenToSee = lang === 'hi' ? info.when_to_see_hi : info.when_to_see_en;
+  const symptoms = (info.common_symptoms || []).join(', ');
+  openSheet(`
+    <h3>${disease}</h3>
+    <p>${desc}</p>
+    <p><strong>${whenToSee}</strong></p>
+    ${symptoms ? `<p class="sheet-common-symptoms">${symptoms}</p>` : ''}
+  `);
+}
+
+function renderDifferentialEntry(entry, lang, result, conditionInfo) {
   const t = STRINGS[lang];
   const row = document.createElement('div');
   row.className = 'diff-entry';
 
   const top = document.createElement('div');
-  top.className = 'diff-top';
+  top.className = 'diff-top diff-top-tappable';
+  top.addEventListener('click', () => showConditionInfo(entry.disease, lang, conditionInfo));
   const name = document.createElement('span');
   name.className = 'diff-name';
   name.textContent = entry.disease;
@@ -253,7 +271,7 @@ const ASHA_TIER_LABELS = {
   ROUTINE: 'घर पर देखभाल करें',
 };
 
-export function renderResult(result, lang, onStartOver, phcList = [], formSnapshot = null, ashaMode = false) {
+export function renderResult(result, lang, onStartOver, phcList = [], formSnapshot = null, ashaMode = false, conditionInfo = {}) {
   const t = STRINGS[lang];
   const container = document.getElementById('results');
   container.innerHTML = '';
@@ -305,7 +323,7 @@ export function renderResult(result, lang, onStartOver, phcList = [], formSnapsh
       // F19: ASHA mode collapses the differential to just the top entry.
       const shown = ashaMode ? result.differential.slice(0, 1) : result.differential;
       shown.forEach((entry, i) => {
-        container.appendChild(renderDifferentialEntry({ ...entry, isTop: i === 0 }, lang, result));
+        container.appendChild(renderDifferentialEntry({ ...entry, isTop: i === 0 }, lang, result, conditionInfo));
       });
     }
   }

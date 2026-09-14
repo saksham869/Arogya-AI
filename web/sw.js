@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v6'; // v6: 6-B8 changes app.js/render.js/index.html content
+const CACHE_VERSION = 'v7'; // v7: 6-B9 adds condition_info.json + sheet.js
 // (from here on, bump on any precached file's content change, not just when
 // the PRECACHE list itself changes -- a cache-first SW otherwise keeps
 // serving stale JS/HTML to anyone who already installed an older version)
@@ -18,7 +18,7 @@ const CACHE_NAME = `arogya-${CACHE_VERSION}`;
 const PRECACHE = [
   './',
   './index.html',
-  './js/infer.js', './js/render.js', './js/app.js', './js/strings.js',
+  './js/infer.js', './js/render.js', './js/app.js', './js/strings.js', './js/sheet.js',
   './js/vendor/ort.min.js', './js/vendor/ort-wasm-simd.wasm',
   './models/arogya.onnx',
   './data/attributions.json',
@@ -28,8 +28,8 @@ const PRECACHE = [
   './data/cooccurrence.json',            // Tier B, 6-B3
   './data/symptom_descriptions.json',    // Tier B, 6-B5
   './data/phc_ghaziabad.json',           // Tier B, 6-B6
+  './data/condition_info.json',          // Tier B, 6-B9
   // Add when built:
-  // './data/condition_info.json',       // Tier B, 6-B9
   // './data/followups.json',            // Tier C, 6-C2
 ];
 
