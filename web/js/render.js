@@ -89,7 +89,85 @@ function renderDifferentialEntry(entry, lang, result) {
   return row;
 }
 
-export function renderResult(result, lang, onStartOver) {
+function haversineKm(lat1, lng1, lat2, lng2) {
+  const R = 6371;
+  const toRad = (d) => (d * Math.PI) / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a = Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+function renderPHCEntry(phc, lang, distanceKm) {
+  const row = document.createElement('div');
+  row.className = 'phc-entry';
+  const info = document.createElement('div');
+  info.className = 'phc-info';
+  const name = document.createElement('div');
+  name.className = 'phc-name';
+  name.textContent = phc.name;
+  info.appendChild(name);
+  if (distanceKm != null) {
+    const dist = document.createElement('div');
+    dist.className = 'phc-distance';
+    dist.textContent = `${distanceKm.toFixed(1)} km`;
+    info.appendChild(dist);
+  } else {
+    const addr = document.createElement('div');
+    addr.className = 'phc-distance';
+    addr.textContent = phc.address;
+    info.appendChild(addr);
+  }
+  const callLink = document.createElement('a');
+  callLink.className = 'phc-call-btn';
+  callLink.href = `tel:${phc.phone}`;
+  callLink.textContent = STRINGS[lang].call;
+  row.appendChild(info);
+  row.appendChild(callLink);
+  return row;
+}
+
+// F17: top 3 nearest by Haversine distance on geolocation success, else all
+// 10 as a plain list (no distances) -- called only for tier === EMERGENCY,
+// whichever path (red flag or model+severity map) produced it.
+function renderNearestPHC(container, lang, phcList) {
+  if (!phcList || phcList.length === 0) return;
+  const section = document.createElement('div');
+  section.className = 'phc-section';
+  const label = document.createElement('div');
+  label.className = 'phc-section-label';
+  label.textContent = STRINGS[lang].nearestCentres;
+  section.appendChild(label);
+  const list = document.createElement('div');
+  list.className = 'phc-list';
+  section.appendChild(list);
+  container.appendChild(section);
+
+  function showAllPlain() {
+    list.innerHTML = '';
+    phcList.forEach(phc => list.appendChild(renderPHCEntry(phc, lang, null)));
+  }
+
+  if (!navigator.geolocation) {
+    showAllPlain();
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      const { latitude, longitude } = pos.coords;
+      const top3 = phcList
+        .map(phc => ({ phc, distanceKm: haversineKm(latitude, longitude, phc.lat, phc.lng) }))
+        .sort((a, b) => a.distanceKm - b.distanceKm)
+        .slice(0, 3);
+      list.innerHTML = '';
+      top3.forEach(({ phc, distanceKm }) => list.appendChild(renderPHCEntry(phc, lang, distanceKm)));
+    },
+    () => showAllPlain()
+  );
+}
+
+export function renderResult(result, lang, onStartOver, phcList = []) {
   const t = STRINGS[lang];
   const container = document.getElementById('results');
   container.innerHTML = '';
@@ -140,6 +218,10 @@ export function renderResult(result, lang, onStartOver) {
         container.appendChild(renderDifferentialEntry({ ...entry, isTop: i === 0 }, lang, result));
       });
     }
+  }
+
+  if (result.tier === 'EMERGENCY') {
+    renderNearestPHC(container, lang, phcList);
   }
 
   const startOverBtn = document.createElement('button');

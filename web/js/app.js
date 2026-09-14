@@ -29,6 +29,12 @@ async function loadSymptomDescriptions() {
   symptomDescriptions = await res.json();
 }
 
+let phcList = [];
+async function loadPHC() {
+  const res = await fetch('./data/phc_ghaziabad.json');
+  phcList = await res.json();
+}
+
 // Generic bottom sheet (F12 symptom info now; F20 condition info reuses it)
 const sheetOverlay = document.getElementById('sheet-overlay');
 const sheetBody = document.getElementById('sheet-body');
@@ -297,6 +303,7 @@ loadSymptoms();
 loadSeverity();
 loadCooccurrence();
 loadSymptomDescriptions();
+loadPHC();
 applyStrings(currentLang);
 updateOnlineStatus();
 
@@ -340,5 +347,5 @@ document.getElementById('assess-btn').addEventListener('click', async () => {
   }
 
   console.log('ASSESS result:', result);
-  renderResult(result, currentLang, resetForm);
+  renderResult(result, currentLang, resetForm, phcList);
 });
