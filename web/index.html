@@ -130,6 +130,21 @@
     display: flex; align-items: center; justify-content: center;
   }
 
+  .ghost-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 10px; }
+  .ghost-chips:empty { margin-top: 0; }
+  .ghost-chips-label { font-size: 0.82rem; color: var(--muted); }
+  .ghost-chip {
+    border: 1px dashed var(--line);
+    background: transparent;
+    color: var(--muted);
+    border-radius: 999px;
+    padding: 6px 12px;
+    min-height: 36px;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  .ghost-chip:hover { border-color: var(--accent); color: var(--accent); }
+
   details.card summary {
     font-weight: 600; cursor: pointer; list-style: none;
     display: flex; align-items: center; justify-content: space-between;
@@ -241,6 +256,7 @@
       <div class="dropdown" id="symptom-dropdown" hidden></div>
     </div>
     <div class="chips" id="selected-chips"></div>
+    <div class="ghost-chips" id="ghost-chips"></div>
   </section>
 
   <details class="card" id="vitals-section" open>

@@ -10,15 +10,22 @@ let symptomsList = [];
 const selectedSymptoms = new Set();
 let currentLang = 'en';
 let severityMap = {};
+let cooccurrence = {};
 
 async function loadSeverity() {
   const res = await fetch('./data/severity.json');
   severityMap = await res.json();
 }
 
+async function loadCooccurrence() {
+  const res = await fetch('./data/cooccurrence.json');
+  cooccurrence = await res.json();
+}
+
 const searchInput = document.getElementById('symptom-search');
 const dropdown = document.getElementById('symptom-dropdown');
 const chipsContainer = document.getElementById('selected-chips');
+const ghostChipsContainer = document.getElementById('ghost-chips');
 
 async function loadSymptoms() {
   const res = await fetch('./data/symptoms.json');
@@ -72,6 +79,39 @@ function renderChips() {
     chip.appendChild(label);
     chip.appendChild(removeBtn);
     chipsContainer.appendChild(chip);
+  });
+  renderGhostChips();
+}
+
+// F8: after 2+ symptoms, suggest up to 3 frequently co-occurring symptoms
+// (precomputed per-symptom top-3 in cooccurrence.json, Phase 2 step 2.5).
+function renderGhostChips() {
+  ghostChipsContainer.innerHTML = '';
+  if (selectedSymptoms.size < 2) return;
+
+  const candidates = [];
+  selectedSymptoms.forEach(symptomId => {
+    (cooccurrence[symptomId] || []).forEach(candidate => {
+      if (!selectedSymptoms.has(candidate) && !candidates.includes(candidate)) {
+        candidates.push(candidate);
+      }
+    });
+  });
+  const top3 = candidates.slice(0, 3);
+  if (top3.length === 0) return;
+
+  const label = document.createElement('span');
+  label.className = 'ghost-chips-label';
+  label.textContent = STRINGS[currentLang].alsoCommon;
+  ghostChipsContainer.appendChild(label);
+
+  top3.forEach(symptomId => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'ghost-chip';
+    btn.textContent = symptomId;
+    btn.addEventListener('click', () => addSymptom(symptomId));
+    ghostChipsContainer.appendChild(btn);
   });
 }
 
@@ -128,6 +168,7 @@ document.getElementById('lang-toggle').addEventListener('click', (e) => {
   });
   document.documentElement.lang = currentLang;
   applyStrings(currentLang);
+  renderGhostChips();
 });
 
 // Risk factor toggle chips
@@ -207,6 +248,7 @@ window.addEventListener('offline', updateOnlineStatus);
 
 loadSymptoms();
 loadSeverity();
+loadCooccurrence();
 applyStrings(currentLang);
 updateOnlineStatus();
 

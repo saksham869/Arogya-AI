@@ -36,6 +36,7 @@ export const STRINGS = {
     possibleCauses: 'Possible causes',
     whyRankedLower: '▸ Why ranked lower?',
     startOver: 'Start over',
+    alsoCommon: 'Also common:',
   },
   hi: {
     appTitle: 'ArogyaAI',
@@ -74,5 +75,6 @@ export const STRINGS = {
     possibleCauses: 'संभावित कारण',
     whyRankedLower: '▸ कम रैंक क्यों?',
     startOver: 'फिर से शुरू करें',
+    alsoCommon: 'यह भी सामान्य है:',
   },
 };
