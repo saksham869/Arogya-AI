@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v7'; // v7: 6-B9 adds condition_info.json + sheet.js
+const CACHE_VERSION = 'v8'; // v8: 6-C1 changes app.js/index.html content
 // (from here on, bump on any precached file's content change, not just when
 // the PRECACHE list itself changes -- a cache-first SW otherwise keeps
 // serving stale JS/HTML to anyone who already installed an older version)

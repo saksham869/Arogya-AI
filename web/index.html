@@ -20,6 +20,14 @@
     --ok: #1f8a4c;
   }
   * { box-sizing: border-box; }
+  /* Any author rule that sets `display` on an element beats the UA
+     stylesheet's [hidden]{display:none}, regardless of selector
+     specificity (author origin outranks user-agent origin outright, not
+     just by specificity) -- hit this twice already (.sheet-overlay in
+     6-B5, <main>/#history-view here) with elements that both use the
+     hidden attribute and declare their own unconditional display. One
+     blanket !important rule instead of patching each selector as found. */
+  [hidden] { display: none !important; }
   html, body {
     margin: 0;
     padding: 0;
@@ -56,6 +64,41 @@
     color: var(--accent-ink); padding: 8px 10px; min-height: 40px; font-size: 0.85rem; cursor: pointer;
   }
   .asha-toggle[aria-pressed="true"] { background: rgba(255,255,255,0.25); font-weight: 700; }
+
+  .tab-nav {
+    display: flex; max-width: 640px; margin: 12px auto 0; padding: 0 16px; gap: 8px;
+  }
+  .tab-btn {
+    flex: 1; min-height: 44px; border: 1px solid var(--line); background: #fff;
+    color: var(--muted); border-radius: 8px; font-size: 0.95rem; cursor: pointer;
+  }
+  .tab-btn[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+
+  #history-view {
+    max-width: 640px; margin: 16px auto 0; padding: 0 16px 24px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .history-notice { color: var(--muted); font-size: 0.82rem; }
+  .history-list { display: flex; flex-direction: column; gap: 10px; }
+  .history-entry {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 6px;
+  }
+  .history-entry-top { display: flex; justify-content: space-between; align-items: center; }
+  .history-date { color: var(--muted); font-size: 0.82rem; }
+  .history-tier-badge {
+    font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; color: #fff;
+  }
+  .history-tier-badge.emergency { background: var(--danger); }
+  .history-tier-badge.urgent { background: var(--warn); }
+  .history-tier-badge.routine { background: var(--ok); }
+  .history-top-disease { font-weight: 600; }
+  .history-symptoms { color: var(--muted); font-size: 0.85rem; }
+  .history-empty { color: var(--muted); font-size: 0.9rem; }
+  .clear-history-btn {
+    min-height: 44px; border: 1px solid var(--line); background: #fff;
+    color: var(--danger); border-radius: 8px; font-size: 0.95rem; cursor: pointer;
+  }
 
   /* F19: ASHA worker mode -- larger everything for low-literacy / low-vision
      field use, applied on top of whatever language is selected. */
@@ -324,6 +367,11 @@
   </div>
 </header>
 
+<nav class="tab-nav" id="tab-nav">
+  <button type="button" class="tab-btn" data-tab="assess" aria-pressed="true" id="tab-assess-btn">Assess</button>
+  <button type="button" class="tab-btn" data-tab="history" aria-pressed="false" id="tab-history-btn">History</button>
+</nav>
+
 <main>
 
   <section class="card">
@@ -389,6 +437,12 @@
   <div id="results"></div>
 
 </main>
+
+<div id="history-view" hidden>
+  <div class="history-notice" id="history-notice">Stored on this device only. Never sent anywhere.</div>
+  <div class="history-list" id="history-list"></div>
+  <button type="button" class="clear-history-btn" id="clear-history-btn">Clear all history</button>
+</div>
 
 <div class="sheet-overlay" id="sheet-overlay" hidden>
   <div class="sheet" id="sheet">

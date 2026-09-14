@@ -203,6 +203,10 @@ function applyStrings(lang) {
   document.querySelectorAll('#risk-factor-toggles button[data-factor]').forEach(btn => {
     btn.textContent = t.riskFactorLabels[btn.dataset.factor];
   });
+  document.getElementById('tab-assess-btn').textContent = t.tabAssess;
+  document.getElementById('tab-history-btn').textContent = t.tabHistory;
+  document.getElementById('history-notice').textContent = t.historyNotice;
+  document.getElementById('clear-history-btn').textContent = t.clearHistory;
 }
 
 document.getElementById('lang-toggle').addEventListener('click', (e) => {
@@ -215,6 +219,7 @@ document.getElementById('lang-toggle').addEventListener('click', (e) => {
   document.documentElement.lang = currentLang;
   applyStrings(currentLang);
   renderGhostChips();
+  if (!document.getElementById('history-view').hidden) renderHistory();
 });
 
 // Risk factor toggle chips
@@ -340,6 +345,125 @@ function resetForm() {
   });
 }
 
+// --- Assessment history (F14) ---
+const HISTORY_KEY = 'arogya_history';
+const MAX_HISTORY = 5;
+
+function loadHistory() {
+  try {
+    return JSON.parse(localStorage.getItem(HISTORY_KEY)) || [];
+  } catch {
+    return [];
+  }
+}
+
+function saveHistoryEntry(result, snapshot) {
+  const history = loadHistory();
+  history.unshift({
+    timestamp: new Date().toISOString(),
+    profile: null, // no family-profile system yet (F7, 6-C3) -- wired in then
+    symptoms: snapshot.symptoms,
+    vitals: snapshot.vitals,
+    riskFactors: snapshot.riskFactors,
+    ageYears: snapshot.ageYears,
+    sex: snapshot.sex,
+    tier: result.tier,
+    topDisease: result.tierSource === 'model' ? result.topClass : null,
+  });
+  localStorage.setItem(HISTORY_KEY, JSON.stringify(history.slice(0, MAX_HISTORY)));
+}
+
+function tierBadgeClass(tier) {
+  if (tier === 'EMERGENCY') return 'emergency';
+  if (tier === 'URGENT') return 'urgent';
+  return 'routine';
+}
+
+function renderHistory() {
+  const list = document.getElementById('history-list');
+  list.innerHTML = '';
+  const history = loadHistory();
+  if (history.length === 0) {
+    const empty = document.createElement('p');
+    empty.className = 'history-empty';
+    empty.textContent = STRINGS[currentLang].historyEmpty;
+    list.appendChild(empty);
+    return;
+  }
+  history.forEach(entry => {
+    const row = document.createElement('div');
+    row.className = 'history-entry';
+    row.addEventListener('click', () => reopenHistoryEntry(entry));
+
+    const top = document.createElement('div');
+    top.className = 'history-entry-top';
+    const date = document.createElement('span');
+    date.className = 'history-date';
+    date.textContent = new Date(entry.timestamp).toLocaleString(currentLang === 'hi' ? 'hi-IN' : 'en-IN');
+    const badge = document.createElement('span');
+    badge.className = `history-tier-badge ${tierBadgeClass(entry.tier)}`;
+    badge.textContent = entry.tier;
+    top.appendChild(date);
+    top.appendChild(badge);
+    row.appendChild(top);
+
+    if (entry.topDisease) {
+      const disease = document.createElement('div');
+      disease.className = 'history-top-disease';
+      disease.textContent = entry.topDisease;
+      row.appendChild(disease);
+    }
+
+    const symptoms = document.createElement('div');
+    symptoms.className = 'history-symptoms';
+    symptoms.textContent = entry.symptoms.join(', ');
+    row.appendChild(symptoms);
+
+    list.appendChild(row);
+  });
+}
+
+function reopenHistoryEntry(entry) {
+  resetForm();
+  entry.symptoms.forEach(s => selectedSymptoms.add(s));
+  renderChips();
+  document.getElementById('age-input').value = entry.ageYears;
+  document.getElementById('sex-select').value = entry.sex;
+  if (entry.vitals.temp_c != null) document.getElementById('vital-temp').value = entry.vitals.temp_c;
+  if (entry.vitals.pulse_bpm != null) document.getElementById('vital-pulse').value = entry.vitals.pulse_bpm;
+  if (entry.vitals.breathing_rpm != null) document.getElementById('vital-breathing').value = entry.vitals.breathing_rpm;
+  Object.entries(entry.riskFactors || {}).forEach(([factor, on]) => {
+    if (!on) return;
+    riskFactors[factor] = true;
+    const btn = document.querySelector(`#risk-factor-toggles button[data-factor="${factor}"]`);
+    if (btn) btn.setAttribute('aria-pressed', 'true');
+  });
+  switchTab('assess');
+}
+
+document.getElementById('clear-history-btn').addEventListener('click', () => {
+  if (confirm(STRINGS[currentLang].confirmClearHistory)) {
+    localStorage.removeItem(HISTORY_KEY);
+    renderHistory();
+  }
+});
+
+function switchTab(tab) {
+  const main = document.querySelector('main');
+  const historyView = document.getElementById('history-view');
+  const isHistory = tab === 'history';
+  main.hidden = isHistory;
+  historyView.hidden = !isHistory;
+  document.getElementById('tab-assess-btn').setAttribute('aria-pressed', String(!isHistory));
+  document.getElementById('tab-history-btn').setAttribute('aria-pressed', String(isHistory));
+  if (isHistory) renderHistory();
+}
+
+document.getElementById('tab-nav').addEventListener('click', (e) => {
+  const btn = e.target.closest('button[data-tab]');
+  if (btn) switchTab(btn.dataset.tab);
+});
+
 document.getElementById('assess-btn').addEventListener('click', async () => {
   const ageYears = parseFloat(document.getElementById('age-input').value);
   const sex = document.getElementById('sex-select').value;
@@ -362,5 +486,6 @@ document.getElementById('assess-btn').addEventListener('click', async () => {
     ageYears,
     sex,
   };
+  saveHistoryEntry(result, formSnapshot);
   renderResult(result, currentLang, resetForm, phcList, formSnapshot, ashaMode, conditionInfo);
 });
