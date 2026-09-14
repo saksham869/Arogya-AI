@@ -1,0 +1,23 @@
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+      # web/js/vendor/ (the onnxruntime-web runtime, ~10MB) is gitignored on
+      # main to keep the source repo lean -- fetched here instead so the
+      # published gh-pages branch actually has everything infer.js needs.
+      # Without this, offline inference silently breaks on the deployed site
+      # the same way it would if these files were simply missing from git.
+      - name: Vendor onnxruntime-web
+        run: ./scripts/vendor_onnxruntime.sh
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: web
+          branch: gh-pages
