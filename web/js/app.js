@@ -347,5 +347,12 @@ document.getElementById('assess-btn').addEventListener('click', async () => {
   }
 
   console.log('ASSESS result:', result);
-  renderResult(result, currentLang, resetForm, phcList);
+  const formSnapshot = {
+    symptoms: Array.from(selectedSymptoms),
+    vitals,
+    riskFactors: { ...riskFactors },
+    ageYears,
+    sex,
+  };
+  renderResult(result, currentLang, resetForm, phcList, formSnapshot);
 });

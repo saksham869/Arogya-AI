@@ -167,7 +167,85 @@ function renderNearestPHC(container, lang, phcList) {
   );
 }
 
-export function renderResult(result, lang, onStartOver, phcList = []) {
+// F13's thresholds, used here ahead of that feature's own UI (6-C4) so the
+// print card doesn't ship an incomplete field; 6-C4 reuses this helper.
+export function confidenceBand(probability, lang) {
+  const t = STRINGS[lang];
+  if (probability > 0.6) return t.confidenceLikely;
+  if (probability >= 0.3) return t.confidencePossible;
+  return t.confidenceUncertain;
+}
+
+function buildPrintCard(result, lang, phcList, formSnapshot) {
+  const t = STRINGS[lang];
+  const card = document.createElement('div');
+  card.className = 'print-card';
+
+  const title = document.createElement('h2');
+  title.textContent = 'ArogyaAI';
+  card.appendChild(title);
+
+  const rows = [
+    [t.printDateTime, new Date().toLocaleString(lang === 'hi' ? 'hi-IN' : 'en-IN')],
+    [t.printSymptoms, formSnapshot.symptoms.length ? formSnapshot.symptoms.join(', ') : t.none],
+    [t.printAgeSex, `${formSnapshot.ageYears} / ${formSnapshot.sex}`],
+  ];
+  const vitalsEntered = Object.entries(formSnapshot.vitals).filter(([, v]) => v != null);
+  if (vitalsEntered.length > 0) {
+    rows.push([t.printVitals, vitalsEntered.map(([k, v]) => `${k}: ${v}`).join(', ')]);
+  }
+  const rfEntered = Object.entries(formSnapshot.riskFactors).filter(([, v]) => v);
+  if (rfEntered.length > 0) {
+    rows.push([t.printRiskFactors, rfEntered.map(([k]) => t.riskFactorLabels[k] || k).join(', ')]);
+  }
+  rows.push([t.printTier, t.tierBanner[result.tier] || result.tier]);
+
+  rows.forEach(([label, value]) => {
+    const row = document.createElement('p');
+    row.innerHTML = `<strong>${label}:</strong> `;
+    row.appendChild(document.createTextNode(value));
+    card.appendChild(row);
+  });
+
+  if (result.tierSource === 'red_flag') {
+    const p = document.createElement('p');
+    p.textContent = `${result.rationale} ${result.action}`;
+    card.appendChild(p);
+  } else {
+    const sentence = explanationSentence(result, lang);
+    if (sentence) {
+      const p = document.createElement('p');
+      p.textContent = sentence;
+      card.appendChild(p);
+    }
+    if (result.differential.length > 0) {
+      const diffLabel = document.createElement('p');
+      diffLabel.innerHTML = `<strong>${t.printDifferential}:</strong>`;
+      card.appendChild(diffLabel);
+      const list = document.createElement('ul');
+      result.differential.forEach(entry => {
+        const li = document.createElement('li');
+        li.textContent = `${entry.disease} — ${confidenceBand(entry.probability, lang)}`;
+        list.appendChild(li);
+      });
+      card.appendChild(list);
+    }
+  }
+
+  const disclaimer = document.createElement('p');
+  disclaimer.className = 'print-disclaimer';
+  disclaimer.textContent = `⚠ ${t.disclaimer}`;
+  card.appendChild(disclaimer);
+
+  const footer = document.createElement('p');
+  footer.className = 'print-footer';
+  footer.textContent = t.printFooter;
+  card.appendChild(footer);
+
+  return card;
+}
+
+export function renderResult(result, lang, onStartOver, phcList = [], formSnapshot = null) {
   const t = STRINGS[lang];
   const container = document.getElementById('results');
   container.innerHTML = '';
@@ -222,6 +300,21 @@ export function renderResult(result, lang, onStartOver, phcList = []) {
 
   if (result.tier === 'EMERGENCY') {
     renderNearestPHC(container, lang, phcList);
+  }
+
+  // F18: printable card. A previous card (e.g. from a prior language) is
+  // removed first since this whole container was just cleared anyway --
+  // only relevant if some future caller reuses the container without
+  // clearing it first.
+  document.querySelectorAll('.print-card').forEach(el => el.remove());
+  if (formSnapshot) {
+    const printBtn = document.createElement('button');
+    printBtn.type = 'button';
+    printBtn.className = 'save-for-doctor-btn';
+    printBtn.textContent = t.saveForDoctor;
+    printBtn.addEventListener('click', () => window.print());
+    container.appendChild(printBtn);
+    document.body.appendChild(buildPrintCard(result, lang, phcList, formSnapshot));
   }
 
   const startOverBtn = document.createElement('button');

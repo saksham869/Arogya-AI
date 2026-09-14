@@ -261,9 +261,21 @@
     text-decoration: none; font-size: 0.9rem; white-space: nowrap;
   }
 
-  .start-over-btn {
+  .start-over-btn, .save-for-doctor-btn {
     min-height: 44px; border: 1px solid var(--line); background: #fff;
     color: var(--ink); border-radius: 8px; font-size: 0.95rem; cursor: pointer;
+  }
+
+  .print-card { display: none; }
+  @media print {
+    /* print-card is appended directly to body (see render.js), so hiding
+       every other direct child -- rather than visibility:hidden on
+       everything -- keeps it from leaving blank pages of hidden-but-
+       still-laid-out content after the card. */
+    body > *:not(.print-card) { display: none !important; }
+    .print-card { display: block; padding: 24px; color: #000; background: #fff; }
+    .print-disclaimer { font-weight: 600; }
+    .print-footer { color: #555; font-size: 0.85rem; }
   }
 
   footer.disclaimer {
