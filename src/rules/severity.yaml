@@ -1,0 +1,51 @@
+# ArogyaAI severity map: disease -> baseline triage tier
+# Default is ROUTINE; diseases with serious potential complications are URGENT;
+# acute life-threatening presentations are EMERGENCY.
+# Keys are copied VERBATIM from data_manifest.json's class_counts, including
+# upstream dataset typos/casing/parenthetical suffixes -- do not "clean" these
+# spellings, the engine's lookup is an exact string match. See task.md Phase 4
+# alignment note: task.md's own severity.yaml example uses cleaned spellings
+# for 5 of these (Peptic ulcer disease/Hepatitis A/Dimorphic hemorrhoids/
+# Osteoarthritis/Paroymsal Positional Vertigo) that don't match the real data.
+
+Fungal infection: ROUTINE
+Allergy: ROUTINE
+GERD: ROUTINE
+Chronic cholestasis: URGENT
+Drug Reaction: URGENT
+Peptic ulcer diseae: URGENT
+AIDS: URGENT
+Diabetes: URGENT
+Gastroenteritis: ROUTINE
+Bronchial Asthma: URGENT
+Hypertension: URGENT
+Migraine: ROUTINE
+Cervical spondylosis: ROUTINE
+Paralysis (brain hemorrhage): EMERGENCY
+Jaundice: URGENT
+Malaria: URGENT
+Chicken pox: ROUTINE
+Dengue: URGENT
+Typhoid: URGENT
+hepatitis A: URGENT
+Hepatitis B: URGENT
+Hepatitis C: URGENT
+Hepatitis D: URGENT
+Hepatitis E: URGENT
+Alcoholic hepatitis: URGENT
+Tuberculosis: URGENT
+Common Cold: ROUTINE
+Pneumonia: URGENT
+Dimorphic hemmorhoids(piles): ROUTINE
+Heart attack: EMERGENCY
+Varicose veins: ROUTINE
+Hypothyroidism: ROUTINE
+Hyperthyroidism: ROUTINE
+Hypoglycemia: URGENT
+Osteoarthristis: ROUTINE
+Arthritis: ROUTINE
+(vertigo) Paroymsal  Positional Vertigo: ROUTINE
+Acne: ROUTINE
+Urinary tract infection: URGENT
+Psoriasis: ROUTINE
+Impetigo: ROUTINE
