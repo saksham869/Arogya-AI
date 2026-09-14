@@ -2,6 +2,7 @@
 __pycache__/
 data/raw/
 *.onnx
+*.onnx.gz
 .env
 results/
 .DS_Store
