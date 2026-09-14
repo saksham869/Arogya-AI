@@ -65,9 +65,20 @@ function renderDifferentialEntry(entry, lang, result, conditionInfo) {
   const name = document.createElement('span');
   name.className = 'diff-name';
   name.textContent = entry.disease;
-  const pct = document.createElement('span');
+  // F13: band label by default; tapping reveals the exact percentage
+  // without also triggering `top`'s own tap-for-condition-info handler.
+  const pct = document.createElement('button');
+  pct.type = 'button';
   pct.className = 'diff-pct';
-  pct.textContent = `${Math.round(entry.probability * 100)}%`;
+  const pctValue = `${Math.round(entry.probability * 100)}%`;
+  const bandLabel = confidenceBand(entry.probability, lang);
+  pct.textContent = bandLabel;
+  let showingPct = false;
+  pct.addEventListener('click', (e) => {
+    e.stopPropagation();
+    showingPct = !showingPct;
+    pct.textContent = showingPct ? pctValue : bandLabel;
+  });
   top.appendChild(name);
   top.appendChild(pct);
 
