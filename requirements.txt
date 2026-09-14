@@ -11,3 +11,4 @@ pydantic
 pyyaml
 pytest
 httpx
+statsmodels

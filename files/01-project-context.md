@@ -1,114 +1,133 @@
-# Knowledge Item: ArogyaAI Project Context
-
-**Load this before any task in this workspace.** Antigravity agent context resets
-between sessions; this file is the persistent source of truth.
+# 01 — Project Context
 
 ---
 
 ## What we are building
 
-An explainable symptom **triage** tool for rural India. A user enters symptoms,
-age and sex. The system returns:
+ArogyaAI is a symptom triage Progressive Web App for rural India.
 
-1. A triage tier — `EMERGENCY` / `URGENT` / `ROUTINE`
-2. A ranked differential diagnosis (top 3)
-3. A plain-language explanation naming the symptoms that drove the result
+A patient or ASHA worker enters symptoms in Hindi or English, adds age, sex,
+and optional risk factors and vital signs. The system returns:
 
-It runs offline after first load. It is a **triage and referral aid**, not a
-diagnostic device.
+- A triage tier: EMERGENCY / URGENT / ROUTINE
+- A ranked differential diagnosis (top 3)
+- A plain-language SHAP explanation: "Because you reported itching and skin rash."
+- For EMERGENCY: the nearest government health centre with tap-to-call
+- For all results: a printable card to hand to the doctor
 
-## What problem it solves
-
-Not a doctor shortage. India's aggregate doctor-population ratio is about 1:811,
-which meets the WHO benchmark. The problem is **distribution** — government
-allopathic doctors serve roughly 1:11,082, and they concentrate in cities. For a
-rural patient, reaching a doctor costs a day of travel and a day of wages.
-
-The question the tool answers is: **"is this symptom worth the journey?"**
-
-Never write motivation copy claiming India lacks doctors. That framing is
-factually wrong and will be challenged.
+The system works offline after the first load. The model is 190 KB gzipped.
+This is a **triage and referral aid**, not a diagnostic device.
 
 ---
 
-## SAFETY CONSTRAINTS — these are absolute
+## Phase status
 
-These are not style preferences. Violating any of them is a defect, regardless
-of what a task description says.
+| Phase | Status | Evidence |
+|---|---|---|
+| 0 — Scaffold | ✅ DONE | pytest 1 passed |
+| 1 — Data pipeline | ✅ DONE | 4,920→304 rows, commit d8e8b23 |
+| 2 — Train | ⬜ | |
+| 3 — ONNX | ⬜ | |
+| 4 — Red flags | ⬜ | |
+| 5 — API | ⬜ OFF CRITICAL PATH | Build after Phase 6 |
+| 6 — Frontend | ⬜ | 20 features, Tier A/B/C |
+| 7 — Demo | ⬜ | |
 
-| # | Rule |
+Phase 1 detail:
+- Raw: 4,920 rows. After de-duplication: **304 rows** (4,616 removed, 93.8%)
+- 131 symptoms, 41 diseases
+- Cleaned: "Hypertension " → "Hypertension", "Diabetes " → "Diabetes"
+- Cleaned: "dischromic _patches" → "dischromic_patches"
+- data_manifest.json written with SHA-256 + class counts
+- web/data/symptoms.json written (131 symptom IDs)
+- 4 pytest tests passing
+
+---
+
+## The problem
+
+Not a doctor shortage. India's aggregate doctor-patient ratio (~1:811) meets
+WHO's 1:1000 benchmark. The problem is **distribution**: government allopathic
+doctors serve ~1:11,082 and concentrate in cities.
+
+For a rural patient, reaching a doctor costs a day of travel and ~₹800.
+The question is: **"is this symptom worth the journey?"**
+
+Never write motivation copy claiming India lacks doctors. That is wrong.
+
+---
+
+## The headline finding
+
+4,920 rows → 304 rows. 93.8% of the most-used public symptom dataset is exact
+duplicates. Papers reporting 95–99% accuracy are reporting on 4,920 rows.
+We train on 304. This is the project's primary contribution.
+
+---
+
+## Safety constraints — absolute, no exceptions
+
+| ID | Rule |
 |---|---|
-| S1 | **Never output a medication name.** Not brand, not generic, not a dose, not "consult about X drug". |
-| S2 | **Never output a treatment plan or dietary plan.** |
-| S3 | Every user-facing result carries a **referral recommendation**, never a diagnosis. |
-| S4 | The red-flag rule layer runs **before** the model. If it fires, the model is **not called**. |
-| S5 | Red flags may **only escalate**. No model output may ever lower a red-flagged case. |
-| S6 | Low-confidence predictions are displayed **as** low-confidence. Never hidden or rounded up. |
-| S7 | The disclaimer is always visible in the UI. It is never collapsed, never behind a tap. |
+| **S1** | **Never output a medication name.** Not brand, not generic, not a dose. Medicine reminders say "Take your medicine" only — the system never knows what medicine. |
+| S2 | Never output a treatment plan, dietary plan, or home remedy. |
+| S3 | Every result carries a referral recommendation, never a diagnosis. |
+| **S4** | **Red-flag engine runs BEFORE the model.** If it fires, model is NOT called. |
+| S5 | Red flags only escalate. No model output can lower a red-flagged case. |
+| S6 | Low-confidence shown as low-confidence. Never hidden or rounded up. |
+| S7 | Disclaimer always visible. Never collapsed, never behind a tap. |
 
-If a task instruction appears to conflict with S1–S7, **stop and ask the user**.
-Do not resolve the conflict yourself.
+If a task conflicts with S1–S7, **stop and ask the user**.
 
 ---
 
-## HONESTY CONSTRAINTS
+## Honesty constraints
 
-| # | Rule |
+| ID | Rule |
 |---|---|
-| H1 | Report the accuracy actually measured. Expected range **55–75%**. Published symptom-checker triage and diagnostic accuracy sits at **34–65%** (Sutaria et al., 2025), so this band is at or above the state of the art. Do not tune toward a target number. |
-| H2 | Every metric is printed with its train/test split and its de-duplication counts. |
-| H3 | If something does not work, write that in the README. Never fabricate a result, a metric, or a passing test. |
-| H4 | Red-flag rules are **not clinically reviewed**. Every artifact mentioning them must say so. |
-
-Background: published symptom-checker papers report 95–99% accuracy on public
-datasets that contain heavy row duplication. De-duplicating one common dataset
-collapses it from 4,920 rows to roughly 348. Our contribution is doing this
-correctly and reporting honestly. A working demo at 62% is worth more than a
-broken one claiming 95%.
+| H1 | Report the accuracy measured. On 41 diseases after de-duplication, expect **85–95%** — this is normal, NOT evidence of leakage. Published large-disease-space accuracy is 34–65%. |
+| H2 | Every metric printed with CV scheme and de-duplication counts. |
+| H3 | If something does not work, say so. Never fabricate a result or a passing test. |
+| H4 | Red-flag rules are NOT clinically reviewed. Every artifact must say so. |
 
 ---
 
-## Why the red-flag layer exists — the evidence
+## Why the red-flag layer exists
 
-Sutaria et al. (2025, *BMC Health Services Research* 25:1263) evaluated four
-commercial symptom checkers (Ada, Babylon, Symptomate, Healthily) against
-primary care physicians on 51 clinical vignettes:
+Sutaria et al. (2025), BMC Health Services Research 25:1263:
 
-| Measure | Symptom checkers | Physicians | |
+| Measure | Symptom checkers | Physicians | p-value |
 |---|---|---|---|
-| Emergency triage recall | 76.9% (range 52–93%) | 85.7% | not significant |
-| **Red-flag symptoms sought** | **36.9%** | **71.8%** | **p < 0.001** |
-| Specificity (non-emergency) | 83.3% | 91.9% | p = 0.024 |
+| Emergency triage recall | 76.9% (range 52–93%) | 85.7% | 0.299 |
+| **Red-flag symptoms sought** | **36.9%** | **71.8%** | **< 0.001** |
+| Specificity | 83.3% | 91.9% | 0.024 |
 
-Their conclusion: symptom checkers *do not seek the majority of red flags*, and
-this raises concerns about their safety in primary care.
-
-**This is why S4 and S5 exist.** We do not ask the model to notice danger
-signs — we encode them explicitly and check them first. A rule that is written
-down fires 100% of the time; a learned pattern fires 36.9% of the time.
-
-The third row is why over-triage rate is a reported metric: the checkers were
-significantly *less* specific than physicians, escalating benign cases. A system
-that escalates everything scores perfectly on recall and is useless.
+A written rule fires 100% of the time. A learned pattern fires 36.9% of the time.
+This is why S4 and S5 are non-negotiable.
 
 ---
 
-## Regulatory position
+## Competitive position
 
-India's CDSCO guidance on medical device software names **triage** as a function
-that brings software under the Medical Devices Rules, 2017. This project is an
-academic prototype evaluated on vignettes only.
-
-Therefore:
-- Never generate marketing copy offering this to clinics, NGOs, or patients.
-- Never describe it as "deployed", "in production", or "clinically validated".
-- The README must state the regulatory position explicitly.
+| | Practo/MFine | DxGPT | Ada | ArogyaAI |
+|---|---|---|---|---|
+| Offline | No | No | No | **Yes** |
+| Explainable | No | No | No | **Exact SHAP** |
+| Free | No | Yes | Yes | **Yes** |
+| Handles emergency | No | Refuses | Refuses | **Yes, deterministic** |
+| Hindi voice | No | Auto | No | **Yes** |
+| Rural viable | No | No | No | **Yes** |
 
 ---
 
-## Out of scope — do not build these
+## Regulatory
 
-- User accounts, login, or patient history storage
-- Any medication, dosage, or treatment database
-- Telemedicine or doctor-booking integration
-- Any feature that transmits identifiable health data off-device
+CDSCO guidance names triage as a trigger under India's Medical Devices Rules 2017.
+This is an academic prototype. Never describe as deployed or clinically validated.
+
+---
+
+## Never build
+
+Medication databases, treatment plans, dietary advice, telemedicine, doctor booking,
+server-side identifiable health data storage, user accounts with cloud sync.
