@@ -177,6 +177,33 @@
   #results:empty { display: none; }
   #results { display: flex; flex-direction: column; gap: 12px; }
 
+  .banner { border-radius: 12px; padding: 16px; color: #fff; }
+  .banner-emergency { background: var(--danger); }
+  .banner-urgent { background: var(--warn); }
+  .banner-routine { background: var(--ok); }
+  .banner-title { font-size: 1.2rem; font-weight: 800; }
+  .banner-text { margin: 8px 0 0; }
+  .banner-action { font-weight: 600; }
+
+  .safety-rule-notice { color: var(--muted); font-size: 0.85rem; margin: 0; }
+  .explanation-sentence { font-weight: 600; margin: 0; }
+  .possible-causes-label { font-weight: 600; color: var(--muted); font-size: 0.9rem; }
+
+  .diff-entry { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+  .diff-top { display: flex; justify-content: space-between; font-weight: 600; margin-bottom: 6px; }
+  .diff-bar-track { background: var(--bg); border-radius: 999px; height: 8px; overflow: hidden; }
+  .diff-bar { background: var(--accent); height: 100%; }
+  .why-ranked-lower {
+    margin-top: 8px; min-height: 36px; border: none; background: none;
+    color: var(--accent); font-size: 0.85rem; cursor: pointer; padding: 0;
+  }
+  .why-ranked-lower-detail { margin-top: 6px; font-size: 0.85rem; color: var(--muted); }
+
+  .start-over-btn {
+    min-height: 44px; border: 1px solid var(--line); background: #fff;
+    color: var(--ink); border-radius: 8px; font-size: 0.95rem; cursor: pointer;
+  }
+
   footer.disclaimer {
     max-width: 640px;
     margin: 4px auto 0;
@@ -200,14 +227,14 @@
       <button type="button" data-lang="en" aria-pressed="true">EN</button>
       <button type="button" data-lang="hi" aria-pressed="false">हिं</button>
     </div>
-    <div class="status-dot" id="status-dot"><span class="dot"></span><span class="status-text">Online</span></div>
+    <div class="status-dot" id="status-dot"><span class="dot"></span><span class="status-text" id="status-text">Online</span></div>
   </div>
 </header>
 
 <main>
 
   <section class="card">
-    <label for="symptom-search">What are you feeling?</label>
+    <label for="symptom-search" id="symptom-search-label">What are you feeling?</label>
     <div class="search-row">
       <input type="text" id="symptom-search" placeholder="Search symptoms..." autocomplete="off">
       <button type="button" class="mic-btn" id="mic-btn" title="Voice input" hidden>🎤</button>
@@ -217,25 +244,25 @@
   </section>
 
   <details class="card" id="vitals-section">
-    <summary>Vitals (optional)</summary>
+    <summary id="vitals-summary">Vitals (optional)</summary>
     <div class="vitals-grid">
       <div class="field">
-        <label for="vital-temp">Temperature (°C)</label>
+        <label for="vital-temp" id="vital-temp-label">Temperature (°C)</label>
         <input type="number" id="vital-temp" min="30" max="45" step="0.1" placeholder="e.g. 37.0">
       </div>
       <div class="field">
-        <label for="vital-pulse">Pulse (bpm)</label>
+        <label for="vital-pulse" id="vital-pulse-label">Pulse (bpm)</label>
         <input type="number" id="vital-pulse" min="20" max="250" step="1" placeholder="e.g. 80">
       </div>
       <div class="field">
-        <label for="vital-breathing">Breathing rate (per min)</label>
+        <label for="vital-breathing" id="vital-breathing-label">Breathing rate (per min)</label>
         <input type="number" id="vital-breathing" min="5" max="80" step="1" placeholder="e.g. 16">
       </div>
     </div>
   </details>
 
   <details class="card" id="risk-factors-section">
-    <summary>Risk factors (optional)</summary>
+    <summary id="risk-factors-summary">Risk factors (optional)</summary>
     <div class="toggle-row" id="risk-factor-toggles">
       <button type="button" class="toggle-chip" data-factor="diabetes" aria-pressed="false">Diabetes</button>
       <button type="button" class="toggle-chip" data-factor="hypertension" aria-pressed="false">Hypertension</button>
@@ -249,15 +276,15 @@
   <section class="card">
     <div class="age-sex-row">
       <div class="field">
-        <label for="age-input">Age</label>
+        <label for="age-input" id="age-label">Age</label>
         <input type="number" id="age-input" min="0" max="120" step="0.1" value="30">
       </div>
       <div class="field">
-        <label for="sex-select">Sex</label>
+        <label for="sex-select" id="sex-label">Sex</label>
         <select id="sex-select">
-          <option value="M">Male</option>
-          <option value="F">Female</option>
-          <option value="O">Other</option>
+          <option value="M" id="sex-option-m">Male</option>
+          <option value="F" id="sex-option-f">Female</option>
+          <option value="O" id="sex-option-o">Other</option>
         </select>
       </div>
     </div>
@@ -269,7 +296,7 @@
 
 </main>
 
-<footer class="disclaimer">
+<footer class="disclaimer" id="disclaimer-text">
   ⚠ This is not a diagnosis. This is not a medical device. It does not replace a doctor.
 </footer>
 

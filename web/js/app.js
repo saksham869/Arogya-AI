@@ -1,7 +1,10 @@
 // Phase 6-A1: page shell wiring (symptom search/chips, collapsible sections,
 // language toggle state, online/offline indicator).
 // Phase 6-A3: ASSESS wired to real inference (below).
+// Phase 6-A4: result rendering + full bilingual strings (below).
 import { predict } from './infer.js';
+import { renderResult } from './render.js';
+import { STRINGS } from './strings.js';
 
 let symptomsList = [];
 const selectedSymptoms = new Set();
@@ -92,7 +95,30 @@ document.addEventListener('click', (e) => {
   if (!e.target.closest('.search-row')) dropdown.hidden = true;
 });
 
-// Language toggle (visual state now; full bilingual strings land in 6-A4)
+// Applies STRINGS[lang] to every static label in the page shell.
+function applyStrings(lang) {
+  const t = STRINGS[lang];
+  document.getElementById('symptom-search-label').textContent = t.whatAreYouFeeling;
+  searchInput.placeholder = t.searchPlaceholder;
+  document.getElementById('vitals-summary').textContent = t.vitalsLabel;
+  document.getElementById('vital-temp-label').textContent = t.temperatureLabel;
+  document.getElementById('vital-pulse-label').textContent = t.pulseLabel;
+  document.getElementById('vital-breathing-label').textContent = t.breathingLabel;
+  document.getElementById('risk-factors-summary').textContent = t.riskFactorsLabel;
+  document.getElementById('age-label').textContent = t.ageLabel;
+  document.getElementById('sex-label').textContent = t.sexLabel;
+  document.getElementById('sex-option-m').textContent = t.male;
+  document.getElementById('sex-option-f').textContent = t.female;
+  document.getElementById('sex-option-o').textContent = t.other;
+  document.getElementById('assess-btn').textContent = t.assess;
+  document.getElementById('disclaimer-text').textContent = `⚠ ${t.disclaimer}`;
+  document.getElementById('status-text').textContent =
+    navigator.onLine ? t.online : t.offline;
+  document.querySelectorAll('#risk-factor-toggles button[data-factor]').forEach(btn => {
+    btn.textContent = t.riskFactorLabels[btn.dataset.factor];
+  });
+}
+
 document.getElementById('lang-toggle').addEventListener('click', (e) => {
   const btn = e.target.closest('button[data-lang]');
   if (!btn) return;
@@ -101,6 +127,7 @@ document.getElementById('lang-toggle').addEventListener('click', (e) => {
     b.setAttribute('aria-pressed', String(b === btn));
   });
   document.documentElement.lang = currentLang;
+  applyStrings(currentLang);
 });
 
 // Risk factor toggle chips
@@ -172,13 +199,15 @@ const statusDot = document.getElementById('status-dot');
 function updateOnlineStatus() {
   const online = navigator.onLine;
   statusDot.classList.toggle('offline', !online);
-  statusDot.querySelector('.status-text').textContent = online ? 'Online' : 'Offline';
+  statusDot.querySelector('.status-text').textContent =
+    online ? STRINGS[currentLang].online : STRINGS[currentLang].offline;
 }
 window.addEventListener('online', updateOnlineStatus);
 window.addEventListener('offline', updateOnlineStatus);
 
 loadSymptoms();
 loadSeverity();
+applyStrings(currentLang);
 updateOnlineStatus();
 
 function readVitals() {
@@ -190,6 +219,19 @@ function readVitals() {
     pulse_bpm: pulse === '' ? null : parseFloat(pulse),
     breathing_rpm: breathing === '' ? null : parseFloat(breathing),
   };
+}
+
+function resetForm() {
+  selectedSymptoms.clear();
+  renderChips();
+  searchInput.value = '';
+  document.getElementById('vital-temp').value = '';
+  document.getElementById('vital-pulse').value = '';
+  document.getElementById('vital-breathing').value = '';
+  document.querySelectorAll('#risk-factor-toggles button[data-factor]').forEach(btn => {
+    btn.setAttribute('aria-pressed', 'false');
+    riskFactors[btn.dataset.factor] = false;
+  });
 }
 
 document.getElementById('assess-btn').addEventListener('click', async () => {
@@ -207,4 +249,5 @@ document.getElementById('assess-btn').addEventListener('click', async () => {
   }
 
   console.log('ASSESS result:', result);
+  renderResult(result, currentLang, resetForm);
 });
