@@ -339,7 +339,72 @@ function renderFollowups(container, lang, result, followups) {
   container.appendChild(section);
 }
 
-export function renderResult(result, lang, onStartOver, phcList = [], formSnapshot = null, ashaMode = false, conditionInfo = {}, followups = {}, profileName = null) {
+// F15: nameless medicine reminder prompt, ROUTINE results only. The actual
+// scheduling (Notification permission, setTimeout chain, localStorage
+// persistence) lives in app.js -- this just collects time + repeat and
+// hands them to onSetReminder. Hidden entirely if Notification isn't
+// supported, per spec.
+function renderReminderPrompt(container, lang, onSetReminder) {
+  if (!('Notification' in window)) return;
+  const t = STRINGS[lang];
+
+  const section = document.createElement('div');
+  section.className = 'reminder-section';
+  const askBtn = document.createElement('button');
+  askBtn.type = 'button';
+  askBtn.className = 'reminder-ask-btn';
+  askBtn.textContent = t.setReminderPrompt;
+  section.appendChild(askBtn);
+
+  askBtn.addEventListener('click', () => {
+    section.innerHTML = '';
+    const form = document.createElement('div');
+    form.className = 'reminder-form';
+
+    const timeLabel = document.createElement('label');
+    timeLabel.textContent = t.reminderTime;
+    const timeInput = document.createElement('input');
+    timeInput.type = 'time';
+    timeInput.className = 'reminder-time-input';
+
+    const repeatLabel = document.createElement('label');
+    repeatLabel.textContent = t.reminderRepeat;
+    const repeatSelect = document.createElement('select');
+    repeatSelect.className = 'reminder-repeat-select';
+    [['once', t.repeatOnce], ['daily', t.repeatDaily], ['twice', t.repeatTwice], ['thrice', t.repeatThrice]]
+      .forEach(([value, label]) => {
+        const opt = document.createElement('option');
+        opt.value = value;
+        opt.textContent = label;
+        repeatSelect.appendChild(opt);
+      });
+
+    const saveBtn = document.createElement('button');
+    saveBtn.type = 'button';
+    saveBtn.className = 'reminder-save-btn';
+    saveBtn.textContent = t.setReminderBtn;
+    saveBtn.addEventListener('click', () => {
+      if (!timeInput.value) return;
+      onSetReminder(timeInput.value, repeatSelect.value);
+      section.innerHTML = '';
+      const confirmMsg = document.createElement('p');
+      confirmMsg.className = 'reminder-confirm';
+      confirmMsg.textContent = t.reminderSet;
+      section.appendChild(confirmMsg);
+    });
+
+    form.appendChild(timeLabel);
+    form.appendChild(timeInput);
+    form.appendChild(repeatLabel);
+    form.appendChild(repeatSelect);
+    form.appendChild(saveBtn);
+    section.appendChild(form);
+  });
+
+  container.appendChild(section);
+}
+
+export function renderResult(result, lang, onStartOver, phcList = [], formSnapshot = null, ashaMode = false, conditionInfo = {}, followups = {}, profileName = null, onSetReminder = null) {
   const t = STRINGS[lang];
   const container = document.getElementById('results');
   container.innerHTML = '';
@@ -403,6 +468,10 @@ export function renderResult(result, lang, onStartOver, phcList = [], formSnapsh
     }
 
     renderFollowups(container, lang, result, followups);
+
+    if (result.tier === 'ROUTINE' && onSetReminder) {
+      renderReminderPrompt(container, lang, onSetReminder);
+    }
   }
 
   if (result.tier === 'EMERGENCY') {

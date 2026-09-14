@@ -435,6 +435,85 @@ function sheetBody() {
 document.getElementById('profile-btn').addEventListener('click', renderProfileSheet);
 updateProfileButtonLabel();
 
+// --- Medicine reminders (F15) -- never names a drug (S1); the system has
+// no medication data to name in the first place, so this is structural,
+// not just a copy choice. ---
+const REMINDER_KEY = 'arogya_reminder';
+// A constant gap works for all of these since they divide 24h evenly
+// (24/1, 24/2, 24/3) -- repeatedly adding it lands back on the original
+// chosen time every 24h regardless of repeat frequency.
+const REPEAT_GAP_HOURS = { daily: 24, twice: 12, thrice: 8 };
+let reminderTimers = [];
+
+function fireReminderNotification() {
+  const body = 'Take your medicine.'; // S1: never names a drug -- fixed, generic text only
+  console.log('REMINDER_FIRED:', body);
+  if (Notification.permission === 'granted') {
+    new Notification('ArogyaAI', { body });
+  }
+}
+
+function nextOccurrence(hh, mm, fromDate) {
+  const next = new Date(fromDate);
+  next.setHours(hh, mm, 0, 0);
+  if (next <= fromDate) next.setDate(next.getDate() + 1);
+  return next;
+}
+// Exposed for direct testing, same reasoning as matchTranscriptToSymptoms:
+// waiting a real setTimeout out is testing the JS runtime, not this logic.
+window.__fireReminderNotification = fireReminderNotification;
+window.__nextOccurrence = nextOccurrence;
+
+function clearScheduledReminders() {
+  reminderTimers.forEach(clearTimeout);
+  reminderTimers = [];
+}
+
+// setTimeout, chained -- not setInterval -- so each next fire time is
+// recomputed against the wall clock (handles repeat's uneven within-day
+// gaps in REPEAT_INTERVALS_HOURS, and doesn't drift like nested intervals).
+function scheduleFromNow(time, repeat) {
+  clearScheduledReminders();
+  const [hh, mm] = time.split(':').map(Number);
+  let fireAt = nextOccurrence(hh, mm, new Date());
+  const gapHours = REPEAT_GAP_HOURS[repeat]; // undefined for 'once'
+
+  function scheduleNext() {
+    const delay = fireAt.getTime() - Date.now();
+    const timer = setTimeout(() => {
+      fireReminderNotification();
+      if (!gapHours) return;
+      fireAt = new Date(fireAt.getTime() + gapHours * 3600 * 1000);
+      scheduleNext();
+    }, Math.max(0, delay));
+    reminderTimers.push(timer);
+  }
+  scheduleNext();
+}
+
+function setReminder(time, repeat) {
+  localStorage.setItem(REMINDER_KEY, JSON.stringify({ time, repeat }));
+  if (Notification.permission === 'granted') {
+    scheduleFromNow(time, repeat);
+  } else if (Notification.permission !== 'denied') {
+    Notification.requestPermission().then(perm => {
+      if (perm === 'granted') scheduleFromNow(time, repeat);
+    });
+  }
+}
+
+// Re-schedule on load if a reminder was already set in a previous session.
+if ('Notification' in window) {
+  try {
+    const stored = JSON.parse(localStorage.getItem(REMINDER_KEY));
+    if (stored && Notification.permission === 'granted') {
+      scheduleFromNow(stored.time, stored.repeat);
+    }
+  } catch {
+    // ignore malformed/missing stored reminder
+  }
+}
+
 // Online/offline indicator
 const statusDot = document.getElementById('status-dot');
 function updateOnlineStatus() {
@@ -633,5 +712,5 @@ document.getElementById('assess-btn').addEventListener('click', async () => {
   };
   saveHistoryEntry(result, formSnapshot);
   const activeProfile = getActiveProfile();
-  renderResult(result, currentLang, resetForm, phcList, formSnapshot, ashaMode, conditionInfo, followups, activeProfile ? activeProfile.name : null);
+  renderResult(result, currentLang, resetForm, phcList, formSnapshot, ashaMode, conditionInfo, followups, activeProfile ? activeProfile.name : null, setReminder);
 });

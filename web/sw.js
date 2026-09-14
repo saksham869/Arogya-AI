@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v11'; // v11: 6-C4 changes render.js/index.html content
+const CACHE_VERSION = 'v12'; // v12: 6-C5 changes app.js/render.js/index.html/strings.js content
 // (from here on, bump on any precached file's content change, not just when
 // the PRECACHE list itself changes -- a cache-first SW otherwise keeps
 // serving stale JS/HTML to anyone who already installed an older version)
