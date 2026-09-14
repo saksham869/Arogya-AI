@@ -288,6 +288,20 @@ if (SpeechRecognitionCtor) {
   micBtn.hidden = true;
 }
 
+// --- ASHA worker mode (F19) ---
+const ashaToggle = document.getElementById('asha-toggle');
+let ashaMode = localStorage.getItem('ashaMode') === 'true';
+function applyAshaMode() {
+  document.body.classList.toggle('asha-mode', ashaMode);
+  ashaToggle.setAttribute('aria-pressed', String(ashaMode));
+}
+applyAshaMode();
+ashaToggle.addEventListener('click', () => {
+  ashaMode = !ashaMode;
+  localStorage.setItem('ashaMode', String(ashaMode));
+  applyAshaMode();
+});
+
 // Online/offline indicator
 const statusDot = document.getElementById('status-dot');
 function updateOnlineStatus() {
@@ -354,5 +368,5 @@ document.getElementById('assess-btn').addEventListener('click', async () => {
     ageYears,
     sex,
   };
-  renderResult(result, currentLang, resetForm, phcList, formSnapshot);
+  renderResult(result, currentLang, resetForm, phcList, formSnapshot, ashaMode);
 });

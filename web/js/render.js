@@ -245,7 +245,15 @@ function buildPrintCard(result, lang, phcList, formSnapshot) {
   return card;
 }
 
-export function renderResult(result, lang, onStartOver, phcList = [], formSnapshot = null) {
+// F19: simplified Hindi tier labels, shown regardless of the language
+// toggle whenever ASHA mode is on.
+const ASHA_TIER_LABELS = {
+  EMERGENCY: 'तुरंत अस्पताल जाएं',
+  URGENT: 'आज डॉक्टर को दिखाएं',
+  ROUTINE: 'घर पर देखभाल करें',
+};
+
+export function renderResult(result, lang, onStartOver, phcList = [], formSnapshot = null, ashaMode = false) {
   const t = STRINGS[lang];
   const container = document.getElementById('results');
   container.innerHTML = '';
@@ -255,7 +263,9 @@ export function renderResult(result, lang, onStartOver, phcList = [], formSnapsh
 
   const bannerTitle = document.createElement('div');
   bannerTitle.className = 'banner-title';
-  bannerTitle.textContent = t.tierBanner[result.tier] || result.tier;
+  bannerTitle.textContent = ashaMode
+    ? (ASHA_TIER_LABELS[result.tier] || result.tier)
+    : (t.tierBanner[result.tier] || result.tier);
   banner.appendChild(bannerTitle);
 
   if (result.tierSource === 'red_flag') {
@@ -292,7 +302,9 @@ export function renderResult(result, lang, onStartOver, phcList = [], formSnapsh
       causesLabel.textContent = t.possibleCauses;
       container.appendChild(causesLabel);
 
-      result.differential.forEach((entry, i) => {
+      // F19: ASHA mode collapses the differential to just the top entry.
+      const shown = ashaMode ? result.differential.slice(0, 1) : result.differential;
+      shown.forEach((entry, i) => {
         container.appendChild(renderDifferentialEntry({ ...entry, isTop: i === 0 }, lang, result));
       });
     }

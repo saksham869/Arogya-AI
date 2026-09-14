@@ -51,6 +51,21 @@
   .status-dot .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--ok); }
   .status-dot.offline .dot { background: #999; }
 
+  .asha-toggle {
+    border: 1px solid rgba(255,255,255,0.6); border-radius: 8px; background: transparent;
+    color: var(--accent-ink); padding: 8px 10px; min-height: 40px; font-size: 0.85rem; cursor: pointer;
+  }
+  .asha-toggle[aria-pressed="true"] { background: rgba(255,255,255,0.25); font-weight: 700; }
+
+  /* F19: ASHA worker mode -- larger everything for low-literacy / low-vision
+     field use, applied on top of whatever language is selected. */
+  body.asha-mode { font-size: 18px; }
+  body.asha-mode button, body.asha-mode input, body.asha-mode select {
+    min-height: 56px; font-size: 1.05rem;
+  }
+  body.asha-mode .assess-btn { min-height: 64px; font-size: 1.3rem; }
+  body.asha-mode .banner-title { font-size: 1.5rem; }
+
   main {
     max-width: 640px;
     margin: 16px auto 0;
@@ -301,6 +316,7 @@
       <button type="button" data-lang="en" aria-pressed="true">EN</button>
       <button type="button" data-lang="hi" aria-pressed="false">हिं</button>
     </div>
+    <button type="button" class="asha-toggle" id="asha-toggle" aria-pressed="false">ASHA</button>
     <div class="status-dot" id="status-dot"><span class="dot"></span><span class="status-text" id="status-text">Online</span></div>
   </div>
 </header>
