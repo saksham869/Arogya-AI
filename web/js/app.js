@@ -1,10 +1,17 @@
 // Phase 6-A1: page shell wiring (symptom search/chips, collapsible sections,
-// language toggle state, online/offline indicator). The ASSESS button is
-// wired to real inference in 6-A3.
+// language toggle state, online/offline indicator).
+// Phase 6-A3: ASSESS wired to real inference (below).
+import { predict } from './infer.js';
 
 let symptomsList = [];
 const selectedSymptoms = new Set();
 let currentLang = 'en';
+let severityMap = {};
+
+async function loadSeverity() {
+  const res = await fetch('./data/severity.json');
+  severityMap = await res.json();
+}
 
 const searchInput = document.getElementById('symptom-search');
 const dropdown = document.getElementById('symptom-dropdown');
@@ -171,9 +178,33 @@ window.addEventListener('online', updateOnlineStatus);
 window.addEventListener('offline', updateOnlineStatus);
 
 loadSymptoms();
+loadSeverity();
 updateOnlineStatus();
 
-// ASSESS button: stub until 6-A3 wires in real inference.
-document.getElementById('assess-btn').addEventListener('click', () => {
-  console.log('ASSESS clicked. Selected symptoms:', Array.from(selectedSymptoms));
+function readVitals() {
+  const temp = document.getElementById('vital-temp').value;
+  const pulse = document.getElementById('vital-pulse').value;
+  const breathing = document.getElementById('vital-breathing').value;
+  return {
+    temp_c: temp === '' ? null : parseFloat(temp),
+    pulse_bpm: pulse === '' ? null : parseFloat(pulse),
+    breathing_rpm: breathing === '' ? null : parseFloat(breathing),
+  };
+}
+
+document.getElementById('assess-btn').addEventListener('click', async () => {
+  const ageYears = parseFloat(document.getElementById('age-input').value);
+  const sex = document.getElementById('sex-select').value;
+  const vitals = readVitals();
+
+  const result = await predict(Array.from(selectedSymptoms), ageYears, sex, riskFactors, vitals);
+
+  // Apply severity map when the model (not a red flag) produced the result --
+  // tier = max(red_flag_tier, severity_tier), and red-flag results already
+  // returned their own tier directly from predict().
+  if (result.tierSource === 'model') {
+    result.tier = severityMap[result.topClass] || 'ROUTINE';
+  }
+
+  console.log('ASSESS result:', result);
 });
