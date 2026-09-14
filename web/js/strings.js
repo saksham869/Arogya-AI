@@ -81,6 +81,16 @@ export const STRINGS = {
     reminderSet: 'Reminder set.',
     trendNotice: (symptom, count, total) =>
       `You have reported ${symptom} in ${count} of your last ${total} checks. If this persists, please see a doctor.`,
+    howDoesThisDecide: 'How does this decide?',
+    notClinicallyReviewedHeader: '⚠ NOT CLINICALLY REVIEWED. Not for use with real patients.',
+    ruleConditionsLabel: 'Conditions',
+    ruleAnd: 'AND',
+    ruleOr: 'OR',
+    ageUnder: (n) => `age ≤ ${n} months`,
+    ageOver: (n) => `age ≥ ${n} years`,
+    riskFactorRequired: (n) => `risk factor: ${n}`,
+    tempAbove: (n) => `temperature > ${n}°C`,
+    pulseAbove: (n) => `pulse > ${n} bpm`,
   },
   hi: {
     appTitle: 'ArogyaAI',
@@ -164,5 +174,15 @@ export const STRINGS = {
     reminderSet: 'याद दिलाना सेट हो गया।',
     trendNotice: (symptom, count, total) =>
       `आपने ${symptom} अपनी पिछली ${total} जांचों में से ${count} में बताया है। यदि यह जारी रहे, तो डॉक्टर से मिलें।`,
+    howDoesThisDecide: 'यह कैसे तय होता है?',
+    notClinicallyReviewedHeader: '⚠ चिकित्सकीय समीक्षा नहीं हुई। वास्तविक रोगियों पर उपयोग के लिए नहीं।',
+    ruleConditionsLabel: 'शर्तें',
+    ruleAnd: 'और',
+    ruleOr: 'या',
+    ageUnder: (n) => `उम्र ≤ ${n} महीने`,
+    ageOver: (n) => `उम्र ≥ ${n} वर्ष`,
+    riskFactorRequired: (n) => `जोखिम कारक: ${n}`,
+    tempAbove: (n) => `तापमान > ${n}°C`,
+    pulseAbove: (n) => `नाड़ी > ${n} bpm`,
   },
 };

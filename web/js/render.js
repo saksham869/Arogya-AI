@@ -404,7 +404,7 @@ function renderReminderPrompt(container, lang, onSetReminder) {
   container.appendChild(section);
 }
 
-export function renderResult(result, lang, onStartOver, phcList = [], formSnapshot = null, ashaMode = false, conditionInfo = {}, followups = {}, profileName = null, onSetReminder = null, trendNotices = []) {
+export function renderResult(result, lang, onStartOver, phcList = [], formSnapshot = null, ashaMode = false, conditionInfo = {}, followups = {}, profileName = null, onSetReminder = null, trendNotices = [], onShowRuleViewer = null) {
   const t = STRINGS[lang];
   const container = document.getElementById('results');
   container.innerHTML = '';
@@ -486,6 +486,16 @@ export function renderResult(result, lang, onStartOver, phcList = [], formSnapsh
     notice.textContent = t.trendNotice(symptom, count, total);
     container.appendChild(notice);
   });
+
+  // F11: rule-set viewer link, every result regardless of tier/source.
+  if (onShowRuleViewer) {
+    const ruleLink = document.createElement('button');
+    ruleLink.type = 'button';
+    ruleLink.className = 'how-does-this-decide-link';
+    ruleLink.textContent = t.howDoesThisDecide;
+    ruleLink.addEventListener('click', onShowRuleViewer);
+    container.appendChild(ruleLink);
+  }
 
   // F18: printable card. A previous card (e.g. from a prior language) is
   // removed first since this whole container was just cleared anyway --

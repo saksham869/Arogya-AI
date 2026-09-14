@@ -48,6 +48,40 @@ async function loadFollowups() {
   followups = await res.json();
 }
 
+let redFlagRules = [];
+async function loadRedFlagRules() {
+  const res = await fetch('./data/red_flags.json');
+  redFlagRules = await res.json();
+}
+
+// F11: plain-language rendering of a rule's structured conditions.
+function describeRule(rule, lang) {
+  const t = STRINGS[lang];
+  const parts = [];
+  if (rule.all_of && rule.all_of.length) parts.push(rule.all_of.join(` ${t.ruleAnd} `));
+  if (rule.any_of && rule.any_of.length) parts.push(`(${rule.any_of.join(` ${t.ruleOr} `)})`);
+  if (rule.age_max_months != null) parts.push(t.ageUnder(rule.age_max_months));
+  if (rule.age_min_years != null) parts.push(t.ageOver(rule.age_min_years));
+  if (rule.risk_factor_required) parts.push(t.riskFactorRequired(rule.risk_factor_required));
+  if (rule.vital_temp_above != null) parts.push(t.tempAbove(rule.vital_temp_above));
+  if (rule.vital_pulse_above != null) parts.push(t.pulseAbove(rule.vital_pulse_above));
+  return parts.join(` ${t.ruleAnd} `);
+}
+
+function openRuleSetViewer() {
+  const t = STRINGS[currentLang];
+  let html = `<h3>${t.notClinicallyReviewedHeader}</h3>`;
+  redFlagRules.forEach(rule => {
+    const rationale = currentLang === 'hi' ? rule.rationale_hi : rule.rationale_en;
+    html += `<div class="rule-card">
+      <div class="rule-id">${rule.id}</div>
+      <div class="rule-conditions"><strong>${t.ruleConditionsLabel}:</strong> ${describeRule(rule, currentLang)}</div>
+      <div class="rule-rationale">${rationale}</div>
+    </div>`;
+  });
+  openSheet(html);
+}
+
 
 const searchInput = document.getElementById('symptom-search');
 const dropdown = document.getElementById('symptom-dropdown');
@@ -532,6 +566,7 @@ loadSymptomDescriptions();
 loadPHC();
 loadConditionInfo();
 loadFollowups();
+loadRedFlagRules();
 applyStrings(currentLang);
 updateOnlineStatus();
 
@@ -730,5 +765,5 @@ document.getElementById('assess-btn').addEventListener('click', async () => {
   saveHistoryEntry(result, formSnapshot);
   const trendNotices = computeTrendNotices();
   const activeProfile = getActiveProfile();
-  renderResult(result, currentLang, resetForm, phcList, formSnapshot, ashaMode, conditionInfo, followups, activeProfile ? activeProfile.name : null, setReminder, trendNotices);
+  renderResult(result, currentLang, resetForm, phcList, formSnapshot, ashaMode, conditionInfo, followups, activeProfile ? activeProfile.name : null, setReminder, trendNotices, openRuleSetViewer);
 });
