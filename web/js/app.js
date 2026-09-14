@@ -107,6 +107,59 @@ document.getElementById('risk-factor-toggles').addEventListener('click', (e) => 
   riskFactors[factor] = !isOn;
 });
 
+// --- Voice input (F4) ---
+const micBtn = document.getElementById('mic-btn');
+const SpeechRecognitionCtor = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+// Exposed standalone so the matching logic can be verified directly
+// (headless test environments have no real microphone/STT backend to
+// drive an end-to-end recognition result through).
+function matchTranscriptToSymptoms(transcript) {
+  const words = transcript.toLowerCase().replace(/[^a-z0-9\s]/g, ' ');
+  const matches = [];
+  for (const symptomId of symptomsList) {
+    const readable = symptomId.replace(/_/g, ' ').toLowerCase();
+    if (words.includes(readable)) matches.push(symptomId);
+  }
+  return matches;
+}
+window.matchTranscriptToSymptoms = matchTranscriptToSymptoms;
+
+if (SpeechRecognitionCtor) {
+  micBtn.hidden = false;
+  let listening = false;
+
+  micBtn.addEventListener('click', () => {
+    if (listening) return;
+    const recognizer = new SpeechRecognitionCtor();
+    recognizer.lang = currentLang === 'hi' ? 'hi-IN' : 'en-IN';
+    recognizer.interimResults = false;
+    recognizer.maxAlternatives = 1;
+
+    listening = true;
+    micBtn.textContent = '🔴';
+    micBtn.setAttribute('aria-label', 'Listening...');
+
+    recognizer.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      const matches = matchTranscriptToSymptoms(transcript);
+      matches.forEach(addSymptom);
+      console.log(`Voice transcript: "${transcript}" -> matched symptoms:`, matches);
+    };
+    recognizer.onerror = (event) => {
+      console.log('Speech recognition error:', event.error);
+    };
+    recognizer.onend = () => {
+      listening = false;
+      micBtn.textContent = '🎤';
+      micBtn.setAttribute('aria-label', 'Voice input');
+    };
+    recognizer.start();
+  });
+} else {
+  micBtn.hidden = true;
+}
+
 // Online/offline indicator
 const statusDot = document.getElementById('status-dot');
 function updateOnlineStatus() {
