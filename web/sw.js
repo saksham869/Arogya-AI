@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v2'; // v2: 6-B3 adds cooccurrence.json
+const CACHE_VERSION = 'v3'; // v3: 6-B5 adds symptom_descriptions.json
 const CACHE_NAME = `arogya-${CACHE_VERSION}`;
 
 // AD-10's list plus two additions, both disclosed:
@@ -23,8 +23,8 @@ const PRECACHE = [
   './data/red_flags.json',
   './data/severity.json',
   './data/cooccurrence.json',            // Tier B, 6-B3
+  './data/symptom_descriptions.json',    // Tier B, 6-B5
   // Add when built:
-  // './data/symptom_descriptions.json', // Tier B, 6-B5
   // './data/phc_ghaziabad.json',        // Tier B, 6-B6
   // './data/condition_info.json',       // Tier B, 6-B9
   // './data/followups.json',            // Tier C, 6-C2

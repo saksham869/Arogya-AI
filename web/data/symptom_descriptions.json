@@ -1,0 +1,526 @@
+{
+  "abdominal_pain": {
+    "en": "Pain or discomfort felt anywhere in the belly area.",
+    "hi": "पेट के किसी भी हिस्से में दर्द या बेचैनी।"
+  },
+  "abnormal_menstruation": {
+    "en": "Menstrual periods that are irregular, unusually heavy, light, or painful.",
+    "hi": "मासिक धर्म जो अनियमित, असामान्य रूप से अधिक, कम या दर्दनाक हो।"
+  },
+  "acidity": {
+    "en": "A burning feeling in the chest or throat caused by stomach acid rising up.",
+    "hi": "पेट के एसिड के ऊपर आने से सीने या गले में जलन महसूस होना।"
+  },
+  "acute_liver_failure": {
+    "en": "A sudden, serious loss of liver function.",
+    "hi": "लीवर के काम करने की क्षमता का अचानक, गंभीर रूप से कम हो जाना।"
+  },
+  "altered_sensorium": {
+    "en": "Confusion, reduced alertness, or not being fully aware of surroundings.",
+    "hi": "भ्रम, सतर्कता में कमी, या आसपास के बारे में पूरी तरह से जागरूक न होना।"
+  },
+  "anxiety": {
+    "en": "A persistent feeling of worry, nervousness, or unease.",
+    "hi": "चिंता, घबराहट या बेचैनी का लगातार बना रहना।"
+  },
+  "back_pain": {
+    "en": "Pain felt anywhere along the back, from the neck to the lower spine.",
+    "hi": "गर्दन से लेकर पीठ के निचले हिस्से तक कहीं भी महसूस होने वाला दर्द।"
+  },
+  "belly_pain": {
+    "en": "Pain or discomfort in the stomach or abdominal area.",
+    "hi": "पेट के हिस्से में दर्द या बेचैनी।"
+  },
+  "blackheads": {
+    "en": "Small dark bumps on the skin caused by clogged pores.",
+    "hi": "बंद रोमछिद्रों के कारण त्वचा पर छोटे काले दाने।"
+  },
+  "bladder_discomfort": {
+    "en": "Pain or an uneasy feeling in the bladder area.",
+    "hi": "मूत्राशय के क्षेत्र में दर्द या असहजता।"
+  },
+  "blister": {
+    "en": "A small pocket of fluid that forms under the skin, often from friction or burns.",
+    "hi": "त्वचा के नीचे बनने वाला तरल पदार्थ से भरा छोटा उभार, जो अक्सर घर्षण या जलने से होता है।"
+  },
+  "blood_in_sputum": {
+    "en": "Coughing up mucus that contains blood.",
+    "hi": "खांसी के साथ खून मिला बलगम आना।"
+  },
+  "bloody_stool": {
+    "en": "Passing stool that contains blood.",
+    "hi": "मल में खून आना।"
+  },
+  "blurred_and_distorted_vision": {
+    "en": "Vision that is unclear, hazy, or not showing things in their true shape.",
+    "hi": "धुंधली या साफ न दिखने वाली दृष्टि।"
+  },
+  "breathlessness": {
+    "en": "Difficulty breathing or a feeling of not getting enough air.",
+    "hi": "सांस लेने में कठिनाई या पर्याप्त हवा न मिलने का एहसास।"
+  },
+  "brittle_nails": {
+    "en": "Nails that crack, split, or break easily.",
+    "hi": "नाखून जो आसानी से टूटते या चटकते हैं।"
+  },
+  "bruising": {
+    "en": "Skin discoloration, usually purple or blue, caused by bleeding under the skin.",
+    "hi": "त्वचा के नीचे खून जमा होने से होने वाला रंग परिवर्तन (आमतौर पर नीला या बैंगनी)।"
+  },
+  "burning_micturition": {
+    "en": "A burning or painful sensation while urinating.",
+    "hi": "पेशाब करते समय जलन या दर्द होना।"
+  },
+  "chest_pain": {
+    "en": "Pain or discomfort felt anywhere in the chest.",
+    "hi": "सीने में कहीं भी महसूस होने वाला दर्द या बेचैनी।"
+  },
+  "chills": {
+    "en": "A feeling of coldness with shivering, often with fever.",
+    "hi": "ठंड लगने के साथ कंपकंपी होना, अक्सर बुखार के साथ।"
+  },
+  "cold_hands_and_feets": {
+    "en": "Hands and feet that feel unusually cold to the touch.",
+    "hi": "हाथ और पैर जो छूने पर असामान्य रूप से ठंडे लगें।"
+  },
+  "coma": {
+    "en": "A deep, prolonged state of unconsciousness.",
+    "hi": "बेहोशी की गहरी और लंबी अवस्था।"
+  },
+  "congestion": {
+    "en": "A blocked or stuffy feeling in the nose or chest.",
+    "hi": "नाक या सीने में जकड़न या भरा हुआ महसूस होना।"
+  },
+  "constipation": {
+    "en": "Difficulty passing stool, or passing it less often than usual.",
+    "hi": "मल त्यागने में कठिनाई, या सामान्य से कम बार मल आना।"
+  },
+  "continuous_feel_of_urine": {
+    "en": "A constant urge or sensation of needing to urinate.",
+    "hi": "पेशाब करने की लगातार इच्छा या अनुभूति।"
+  },
+  "continuous_sneezing": {
+    "en": "Repeated sneezing that keeps happening.",
+    "hi": "बार-बार छींक आना।"
+  },
+  "cough": {
+    "en": "A reflex that clears the throat or airways, often repeated.",
+    "hi": "गले या सांस की नली को साफ करने वाली प्रतिक्रिया, जो अक्सर बार-बार होती है।"
+  },
+  "cramps": {
+    "en": "Sudden, tight, painful muscle contractions.",
+    "hi": "मांसपेशियों में अचानक, कसाव वाला दर्दनाक संकुचन।"
+  },
+  "dark_urine": {
+    "en": "Urine that is darker in color than usual, often brown or amber.",
+    "hi": "पेशाब जो सामान्य से गहरे रंग का हो, अक्सर भूरा या अंबर रंग का।"
+  },
+  "dehydration": {
+    "en": "A lack of enough water in the body.",
+    "hi": "शरीर में पानी की कमी।"
+  },
+  "depression": {
+    "en": "A persistent feeling of sadness or loss of interest in daily activities.",
+    "hi": "उदासी या रोज़मर्रा के कामों में रुचि खोने का लगातार एहसास।"
+  },
+  "diarrhoea": {
+    "en": "Loose, watery stools happening more often than usual.",
+    "hi": "सामान्य से अधिक बार पतला, पानी जैसा मल आना।"
+  },
+  "dischromic_patches": {
+    "en": "Patches of skin that are a different color than the surrounding skin.",
+    "hi": "त्वचा के धब्बे जो आसपास की त्वचा से अलग रंग के हों।"
+  },
+  "distention_of_abdomen": {
+    "en": "The belly appearing swollen or stretched out more than normal.",
+    "hi": "पेट का सामान्य से अधिक फूला हुआ या फैला हुआ दिखना।"
+  },
+  "dizziness": {
+    "en": "A feeling of being lightheaded, unsteady, or about to faint.",
+    "hi": "हल्कापन, असंतुलन या बेहोश होने जैसा महसूस होना।"
+  },
+  "drying_and_tingling_lips": {
+    "en": "Lips that feel dry and have a prickling or numb sensation.",
+    "hi": "होंठ जो सूखे महसूस हों और उनमें झनझनाहट हो।"
+  },
+  "enlarged_thyroid": {
+    "en": "A swelling in the neck caused by an enlarged thyroid gland.",
+    "hi": "थायरॉयड ग्रंथि बढ़ने के कारण गर्दन में सूजन।"
+  },
+  "excessive_hunger": {
+    "en": "Feeling hungry much more often or intensely than usual.",
+    "hi": "सामान्य से कहीं अधिक बार या तीव्रता से भूख लगना।"
+  },
+  "extra_marital_contacts": {
+    "en": "Sexual contact outside of marriage, relevant to some infection-risk questions.",
+    "hi": "विवाह के बाहर यौन संबंध, जो कुछ संक्रमण जोखिम आकलन के लिए प्रासंगिक है।"
+  },
+  "family_history": {
+    "en": "A close relative has had a similar or related medical condition.",
+    "hi": "किसी करीबी रिश्तेदार को इसी तरह की या संबंधित बीमारी रही हो।"
+  },
+  "fast_heart_rate": {
+    "en": "The heart beating faster than normal.",
+    "hi": "दिल का सामान्य से तेज़ धड़कना।"
+  },
+  "fatigue": {
+    "en": "A persistent feeling of tiredness or low energy.",
+    "hi": "थकान या ऊर्जा की कमी का लगातार एहसास।"
+  },
+  "fluid_overload": {
+    "en": "Too much fluid building up in the body, often causing swelling.",
+    "hi": "शरीर में अधिक तरल पदार्थ जमा होना, जिससे अक्सर सूजन होती है।"
+  },
+  "foul_smell_of_urine": {
+    "en": "Urine that has an unusually strong or bad odor.",
+    "hi": "पेशाब से असामान्य रूप से तेज़ या बदबूदार गंध आना।"
+  },
+  "headache": {
+    "en": "Pain felt in the head or upper neck.",
+    "hi": "सिर या गर्दन के ऊपरी हिस्से में महसूस होने वाला दर्द।"
+  },
+  "high_fever": {
+    "en": "A body temperature that is significantly higher than normal.",
+    "hi": "शरीर का तापमान सामान्य से काफी अधिक होना।"
+  },
+  "hip_joint_pain": {
+    "en": "Pain felt in the hip joint.",
+    "hi": "कूल्हे के जोड़ में दर्द।"
+  },
+  "history_of_alcohol_consumption": {
+    "en": "A past pattern of drinking alcohol.",
+    "hi": "शराब पीने का पिछला इतिहास।"
+  },
+  "increased_appetite": {
+    "en": "Wanting to eat more than usual.",
+    "hi": "सामान्य से अधिक खाने की इच्छा होना।"
+  },
+  "indigestion": {
+    "en": "Discomfort in the stomach after eating, such as bloating or fullness.",
+    "hi": "खाने के बाद पेट में बेचैनी, जैसे पेट फूलना या भारीपन।"
+  },
+  "inflammatory_nails": {
+    "en": "Nails that are swollen, red, or sore around the edges.",
+    "hi": "नाखूनों के किनारों पर सूजन, लालिमा या दर्द।"
+  },
+  "internal_itching": {
+    "en": "An itching sensation felt inside the body rather than on the skin surface.",
+    "hi": "त्वचा की सतह के बजाय शरीर के अंदर महसूस होने वाली खुजली।"
+  },
+  "irregular_sugar_level": {
+    "en": "Blood sugar levels that swing higher or lower than normal.",
+    "hi": "रक्त शर्करा का स्तर सामान्य से ऊपर या नीचे उतार-चढ़ाव करना।"
+  },
+  "irritability": {
+    "en": "Becoming easily annoyed or short-tempered.",
+    "hi": "आसानी से चिढ़ जाना या गुस्सा आना।"
+  },
+  "irritation_in_anus": {
+    "en": "Itching or discomfort around the anus.",
+    "hi": "गुदा के आसपास खुजली या बेचैनी।"
+  },
+  "itching": {
+    "en": "An uncomfortable sensation on the skin that makes you want to scratch.",
+    "hi": "त्वचा पर एक असहज अनुभूति जो खुजलाने का मन करे।"
+  },
+  "joint_pain": {
+    "en": "Pain felt in one or more joints of the body.",
+    "hi": "शरीर के एक या अधिक जोड़ों में दर्द।"
+  },
+  "knee_pain": {
+    "en": "Pain felt in the knee.",
+    "hi": "घुटने में दर्द।"
+  },
+  "lack_of_concentration": {
+    "en": "Difficulty focusing or paying attention.",
+    "hi": "ध्यान केंद्रित करने में कठिनाई।"
+  },
+  "lethargy": {
+    "en": "A lack of energy and enthusiasm, feeling sluggish.",
+    "hi": "ऊर्जा और उत्साह की कमी, सुस्ती महसूस होना।"
+  },
+  "loss_of_appetite": {
+    "en": "A reduced desire to eat.",
+    "hi": "खाने की इच्छा में कमी।"
+  },
+  "loss_of_balance": {
+    "en": "Difficulty staying steady on your feet.",
+    "hi": "पैरों पर संतुलन बनाए रखने में कठिनाई।"
+  },
+  "loss_of_smell": {
+    "en": "A reduced or absent sense of smell.",
+    "hi": "सूंघने की क्षमता में कमी या न होना।"
+  },
+  "malaise": {
+    "en": "A general feeling of being unwell, without a specific symptom.",
+    "hi": "बिना किसी खास लक्षण के, सामान्य रूप से अस्वस्थ महसूस करना।"
+  },
+  "mild_fever": {
+    "en": "A body temperature that is only slightly higher than normal.",
+    "hi": "शरीर का तापमान सामान्य से थोड़ा ही अधिक होना।"
+  },
+  "mood_swings": {
+    "en": "Sudden, noticeable changes in emotional state.",
+    "hi": "भावनात्मक स्थिति में अचानक, स्पष्ट बदलाव।"
+  },
+  "movement_stiffness": {
+    "en": "Reduced ease of movement, with joints or muscles feeling tight.",
+    "hi": "गति में कठिनाई, जोड़ों या मांसपेशियों में जकड़न महसूस होना।"
+  },
+  "mucoid_sputum": {
+    "en": "Coughed-up mucus that is thick and sticky.",
+    "hi": "खांसी के साथ निकलने वाला गाढ़ा और चिपचिपा बलगम।"
+  },
+  "muscle_pain": {
+    "en": "Pain felt in one or more muscles.",
+    "hi": "एक या अधिक मांसपेशियों में दर्द।"
+  },
+  "muscle_wasting": {
+    "en": "Muscles becoming visibly smaller or weaker over time.",
+    "hi": "समय के साथ मांसपेशियों का स्पष्ट रूप से छोटा या कमज़ोर होना।"
+  },
+  "muscle_weakness": {
+    "en": "Reduced strength in one or more muscles.",
+    "hi": "एक या अधिक मांसपेशियों में ताकत की कमी।"
+  },
+  "nausea": {
+    "en": "A queasy feeling in the stomach with an urge to vomit.",
+    "hi": "पेट में मिचली और उल्टी होने जैसा एहसास।"
+  },
+  "neck_pain": {
+    "en": "Pain felt in the neck.",
+    "hi": "गर्दन में दर्द।"
+  },
+  "nodal_skin_eruptions": {
+    "en": "Small, raised bumps or nodules appearing on the skin.",
+    "hi": "त्वचा पर छोटे, उभरे हुए दाने या गांठें।"
+  },
+  "obesity": {
+    "en": "Having an excess amount of body weight relative to height.",
+    "hi": "ऊंचाई के अनुपात में शरीर के वजन का अधिक होना।"
+  },
+  "pain_behind_the_eyes": {
+    "en": "Pain felt behind or around the eyes.",
+    "hi": "आंखों के पीछे या आसपास महसूस होने वाला दर्द।"
+  },
+  "pain_during_bowel_movements": {
+    "en": "Pain felt while passing stool.",
+    "hi": "मल त्यागते समय दर्द होना।"
+  },
+  "pain_in_anal_region": {
+    "en": "Pain felt around the anus.",
+    "hi": "गुदा के आसपास दर्द।"
+  },
+  "painful_walking": {
+    "en": "Discomfort or pain that makes walking difficult.",
+    "hi": "ऐसा दर्द जो चलना मुश्किल बना दे।"
+  },
+  "palpitations": {
+    "en": "A noticeable, often rapid or irregular, heartbeat.",
+    "hi": "दिल की धड़कन का स्पष्ट रूप से, अक्सर तेज़ या अनियमित महसूस होना।"
+  },
+  "passage_of_gases": {
+    "en": "Releasing gas from the digestive system more often than usual.",
+    "hi": "सामान्य से अधिक बार पेट से गैस निकलना।"
+  },
+  "patches_in_throat": {
+    "en": "Visible white or discolored patches inside the throat.",
+    "hi": "गले के अंदर दिखने वाले सफेद या बदरंग धब्बे।"
+  },
+  "phlegm": {
+    "en": "Thick mucus produced in the airways, often coughed up.",
+    "hi": "सांस की नली में बनने वाला गाढ़ा बलगम, जो अक्सर खांसी के साथ निकलता है।"
+  },
+  "polyuria": {
+    "en": "Passing an unusually large amount of urine.",
+    "hi": "असामान्य रूप से अधिक मात्रा में पेशाब आना।"
+  },
+  "prominent_veins_on_calf": {
+    "en": "Veins on the lower leg that appear swollen or stand out visibly.",
+    "hi": "पिंडली की नसें जो सूजी हुई या स्पष्ट रूप से उभरी हुई दिखें।"
+  },
+  "puffy_face_and_eyes": {
+    "en": "Visible swelling around the face and eyes.",
+    "hi": "चेहरे और आंखों के आसपास दिखाई देने वाली सूजन।"
+  },
+  "pus_filled_pimples": {
+    "en": "Pimples containing a whitish-yellow fluid.",
+    "hi": "सफेद-पीले तरल पदार्थ वाले दाने।"
+  },
+  "receiving_blood_transfusion": {
+    "en": "Having received donated blood through a transfusion.",
+    "hi": "रक्त चढ़ाने की प्रक्रिया से दान किया हुआ खून प्राप्त करना।"
+  },
+  "receiving_unsterile_injections": {
+    "en": "Having received an injection with equipment that wasn't properly sterilized.",
+    "hi": "ऐसे इंजेक्शन लगवाना जिसके उपकरण ठीक से स्टेरलाइज़ नहीं किए गए थे।"
+  },
+  "red_sore_around_nose": {
+    "en": "A red, sore-looking patch of skin around the nose.",
+    "hi": "नाक के आसपास लाल, घाव जैसा त्वचा का हिस्सा।"
+  },
+  "red_spots_over_body": {
+    "en": "Small red spots appearing on the skin across the body.",
+    "hi": "शरीर पर कई जगह दिखाई देने वाले छोटे लाल धब्बे।"
+  },
+  "redness_of_eyes": {
+    "en": "Eyes that appear red or bloodshot.",
+    "hi": "आंखें जो लाल या रक्तरंजित दिखें।"
+  },
+  "restlessness": {
+    "en": "An inability to stay still or relaxed.",
+    "hi": "शांत या स्थिर न रह पाना।"
+  },
+  "runny_nose": {
+    "en": "A nose that is producing excess mucus.",
+    "hi": "नाक से अधिक बलगम बहना।"
+  },
+  "rusty_sputum": {
+    "en": "Coughed-up mucus with a rust-colored or brownish tinge, often from old blood.",
+    "hi": "खांसी के साथ निकलने वाला बलगम जिसमें जंग जैसा या भूरा रंग हो, अक्सर पुराने खून के कारण।"
+  },
+  "scurring": {
+    "en": "Scarring or crusting left behind on the skin, often after a rash or lesion heals.",
+    "hi": "दाने या घाव ठीक होने के बाद त्वचा पर रह जाने वाला निशान या पपड़ी।"
+  },
+  "shivering": {
+    "en": "Uncontrollable trembling of the body, often from cold or fever.",
+    "hi": "शरीर का अनियंत्रित कांपना, अक्सर ठंड या बुखार के कारण।"
+  },
+  "silver_like_dusting": {
+    "en": "A fine, silvery, flaky coating on patches of skin.",
+    "hi": "त्वचा के हिस्सों पर चांदी जैसी, बारीक परतदार परत।"
+  },
+  "sinus_pressure": {
+    "en": "A feeling of pressure or fullness around the nose, forehead, and cheeks.",
+    "hi": "नाक, माथे और गालों के आसपास दबाव या भारीपन महसूस होना।"
+  },
+  "skin_peeling": {
+    "en": "The outer layer of skin coming off in flakes or sheets.",
+    "hi": "त्वचा की ऊपरी परत का परतों में उतरना।"
+  },
+  "skin_rash": {
+    "en": "Red, irritated patches or bumps on the skin.",
+    "hi": "त्वचा पर लाल, चिड़चिड़े धब्बे या उभार।"
+  },
+  "slurred_speech": {
+    "en": "Speech that sounds unclear, mumbled, or difficult to understand.",
+    "hi": "बोली जो अस्पष्ट या समझने में कठिन लगे।"
+  },
+  "small_dents_in_nails": {
+    "en": "Small pits or indentations on the surface of the nails.",
+    "hi": "नाखूनों की सतह पर छोटे गड्ढे या निशान।"
+  },
+  "spinning_movements": {
+    "en": "A sensation that you or your surroundings are spinning.",
+    "hi": "ऐसा महसूस होना कि आप या आपके आसपास की चीज़ें घूम रही हैं।"
+  },
+  "spotting_urination": {
+    "en": "Passing only a small amount of urine at a time, more often than usual.",
+    "hi": "एक बार में थोड़ी मात्रा में, सामान्य से अधिक बार पेशाब आना।"
+  },
+  "stiff_neck": {
+    "en": "Difficulty moving the neck, often with pain or tightness.",
+    "hi": "गर्दन हिलाने में कठिनाई, अक्सर दर्द या जकड़न के साथ।"
+  },
+  "stomach_bleeding": {
+    "en": "Bleeding occurring somewhere in the stomach or upper digestive tract.",
+    "hi": "पेट या ऊपरी पाचन तंत्र में कहीं खून बहना।"
+  },
+  "stomach_pain": {
+    "en": "Pain felt in the stomach area.",
+    "hi": "पेट के हिस्से में दर्द।"
+  },
+  "sunken_eyes": {
+    "en": "Eyes that appear to have sunk deeper into the face, often from dehydration.",
+    "hi": "आंखें जो चेहरे में धंसी हुई दिखें, अक्सर शरीर में पानी की कमी से।"
+  },
+  "sweating": {
+    "en": "Producing more sweat than usual.",
+    "hi": "सामान्य से अधिक पसीना आना।"
+  },
+  "swelled_lymph_nodes": {
+    "en": "Lymph nodes, small glands often in the neck, armpit, or groin, that are swollen.",
+    "hi": "लसीका ग्रंथियां (अक्सर गर्दन, बगल या जांघ में छोटी ग्रंथियां) जो सूजी हुई हों।"
+  },
+  "swelling_joints": {
+    "en": "Visible swelling around one or more joints.",
+    "hi": "एक या अधिक जोड़ों के आसपास दिखाई देने वाली सूजन।"
+  },
+  "swelling_of_stomach": {
+    "en": "The stomach area appearing swollen or larger than usual.",
+    "hi": "पेट का हिस्सा सूजा हुआ या सामान्य से बड़ा दिखना।"
+  },
+  "swollen_blood_vessels": {
+    "en": "Blood vessels that appear enlarged or bulging.",
+    "hi": "रक्त वाहिकाएं जो बढ़ी हुई या उभरी हुई दिखें।"
+  },
+  "swollen_extremeties": {
+    "en": "Swelling in the arms, hands, legs, or feet.",
+    "hi": "बाहों, हाथों या पैरों में सूजन।"
+  },
+  "swollen_legs": {
+    "en": "Visible swelling in one or both legs.",
+    "hi": "एक या दोनों पैरों में दिखाई देने वाली सूजन।"
+  },
+  "throat_irritation": {
+    "en": "A scratchy, sore, or uncomfortable feeling in the throat.",
+    "hi": "गले में खरखराहट, दर्द या बेचैनी महसूस होना।"
+  },
+  "toxic_look_(typhos)": {
+    "en": "A dull, unwell appearance sometimes seen in serious infections such as typhoid.",
+    "hi": "टाइफाइड जैसे गंभीर संक्रमण में कभी-कभी दिखने वाला बीमार, बेजान चेहरा।"
+  },
+  "ulcers_on_tongue": {
+    "en": "Small, painful sores on the tongue.",
+    "hi": "जीभ पर छोटे, दर्दनाक छाले।"
+  },
+  "unsteadiness": {
+    "en": "A feeling of being wobbly or unable to keep balance.",
+    "hi": "डगमगाने या संतुलन न बना पाने का एहसास।"
+  },
+  "visual_disturbances": {
+    "en": "Changes or problems with normal eyesight, such as flashes or spots.",
+    "hi": "सामान्य दृष्टि में बदलाव या समस्याएं, जैसे चमक या धब्बे दिखना।"
+  },
+  "vomiting": {
+    "en": "Forcefully bringing up the contents of the stomach through the mouth.",
+    "hi": "मुंह के रास्ते ज़बरदस्ती पेट की सामग्री बाहर आना।"
+  },
+  "watering_from_eyes": {
+    "en": "Eyes that produce more tears than usual.",
+    "hi": "आंखों से सामान्य से अधिक पानी आना।"
+  },
+  "weakness_in_limbs": {
+    "en": "Reduced strength in the arms or legs.",
+    "hi": "बाहों या पैरों में ताकत की कमी।"
+  },
+  "weakness_of_one_body_side": {
+    "en": "Reduced strength or movement on just one side of the body.",
+    "hi": "शरीर के केवल एक तरफ ताकत या हलचल में कमी।"
+  },
+  "weight_gain": {
+    "en": "An increase in body weight over time.",
+    "hi": "समय के साथ शरीर के वजन में वृद्धि।"
+  },
+  "weight_loss": {
+    "en": "A decrease in body weight over time.",
+    "hi": "समय के साथ शरीर के वजन में कमी।"
+  },
+  "yellow_crust_ooze": {
+    "en": "A yellowish, crusty fluid leaking from the skin, often from a healing sore.",
+    "hi": "त्वचा से रिसने वाला पीला, पपड़ीदार तरल पदार्थ, अक्सर ठीक होते घाव से।"
+  },
+  "yellow_urine": {
+    "en": "Urine that is a deeper yellow than usual.",
+    "hi": "पेशाब जो सामान्य से गहरा पीला हो।"
+  },
+  "yellowing_of_eyes": {
+    "en": "The whites of the eyes turning yellow, often a sign of jaundice.",
+    "hi": "आंखों का सफेद हिस्सा पीला पड़ना, अक्सर पीलिया का संकेत।"
+  },
+  "yellowish_skin": {
+    "en": "Skin that has taken on a yellowish tone, often a sign of jaundice.",
+    "hi": "त्वचा का पीलापन लिए होना, अक्सर पीलिया का संकेत।"
+  }
+}

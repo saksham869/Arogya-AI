@@ -83,9 +83,13 @@ function computeAllSHAP(featureVector) {
   return result;
 }
 
-export async function predict(selectedSymptoms, ageYears, sex, riskFactors = {}, vitals = {}) {
+export async function predict(selectedSymptoms, ageYears, sex, riskFactors = {}, vitals = {}, uncertainSymptoms = new Set()) {
   // 1. Red-flag check FIRST (S4) -- loads only the small rule data, not the
   // ONNX session, so an emergency result never waits on wasm compilation.
+  // Uncertain ("Not sure") symptoms still count here: S5 says red flags may
+  // only escalate, and a possibly-present danger sign is safer to still
+  // check for than to silently drop -- F12 only asks that they be excluded
+  // from the model's feature vector, not from the rule engine.
   await initRedFlagData();
   const rf = checkRedFlags(selectedSymptoms, ageYears, sex, riskFactors, vitals);
   if (rf.fired) {
@@ -97,8 +101,9 @@ export async function predict(selectedSymptoms, ageYears, sex, riskFactors = {},
   // Only now do we need the model.
   if (!session) session = await ort.InferenceSession.create('./models/arogya.onnx');
 
-  // 2. Build feature vector
-  const vec = buildFeatureVector(selectedSymptoms, ageYears, sex);
+  // 2. Build feature vector (F12: uncertain symptoms excluded here only)
+  const certainSymptoms = selectedSymptoms.filter(s => !uncertainSymptoms.has(s));
+  const vec = buildFeatureVector(certainSymptoms, ageYears, sex);
 
   // 3. Run ONNX
   const tensor = new ort.Tensor('float32', vec, [1, 139]);

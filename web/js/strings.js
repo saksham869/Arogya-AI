@@ -39,6 +39,7 @@ export const STRINGS = {
     alsoCommon: 'Also common:',
     rankedLowerBecause: (symptom) => `Ranked lower because the model found ${symptom} is not a strong signal for this condition.`,
     similarPatternTo: (topDisease) => `Similar symptom pattern to ${topDisease}.`,
+    notSure: 'Not sure',
   },
   hi: {
     appTitle: 'ArogyaAI',
@@ -80,5 +81,6 @@ export const STRINGS = {
     alsoCommon: 'यह भी सामान्य है:',
     rankedLowerBecause: (symptom) => `कम रैंक इसलिए क्योंकि मॉडल को ${symptom} इस स्थिति के लिए मजबूत संकेत नहीं लगा।`,
     similarPatternTo: (topDisease) => `${topDisease} जैसा ही लक्षण पैटर्न।`,
+    notSure: 'पक्का नहीं',
   },
 };

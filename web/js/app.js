@@ -8,9 +8,11 @@ import { STRINGS } from './strings.js';
 
 let symptomsList = [];
 const selectedSymptoms = new Set();
+const uncertainSymptoms = new Set(); // F12 "Not sure" -- excluded from the feature vector only
 let currentLang = 'en';
 let severityMap = {};
 let cooccurrence = {};
+let symptomDescriptions = {};
 
 async function loadSeverity() {
   const res = await fetch('./data/severity.json');
@@ -21,6 +23,26 @@ async function loadCooccurrence() {
   const res = await fetch('./data/cooccurrence.json');
   cooccurrence = await res.json();
 }
+
+async function loadSymptomDescriptions() {
+  const res = await fetch('./data/symptom_descriptions.json');
+  symptomDescriptions = await res.json();
+}
+
+// Generic bottom sheet (F12 symptom info now; F20 condition info reuses it)
+const sheetOverlay = document.getElementById('sheet-overlay');
+const sheetBody = document.getElementById('sheet-body');
+function openSheet(html) {
+  sheetBody.innerHTML = html;
+  sheetOverlay.hidden = false;
+}
+function closeSheet() {
+  sheetOverlay.hidden = true;
+}
+document.getElementById('sheet-close').addEventListener('click', closeSheet);
+sheetOverlay.addEventListener('click', (e) => {
+  if (e.target === sheetOverlay) closeSheet();
+});
 
 const searchInput = document.getElementById('symptom-search');
 const dropdown = document.getElementById('symptom-dropdown');
@@ -42,18 +64,29 @@ function renderDropdown(matches) {
     dropdown.appendChild(div);
   } else {
     matches.slice(0, 8).forEach(symptomId => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.textContent = symptomId;
-      btn.addEventListener('click', () => addSymptom(symptomId));
-      dropdown.appendChild(btn);
+      const row = document.createElement('div');
+      row.className = 'match-row';
+      const nameBtn = document.createElement('button');
+      nameBtn.type = 'button';
+      nameBtn.className = 'match-name';
+      nameBtn.textContent = symptomId;
+      nameBtn.addEventListener('click', () => addSymptom(symptomId));
+      const notSureBtn = document.createElement('button');
+      notSureBtn.type = 'button';
+      notSureBtn.className = 'not-sure-btn';
+      notSureBtn.textContent = STRINGS[currentLang].notSure;
+      notSureBtn.addEventListener('click', () => addSymptom(symptomId, { uncertain: true }));
+      row.appendChild(nameBtn);
+      row.appendChild(notSureBtn);
+      dropdown.appendChild(row);
     });
   }
   dropdown.hidden = false;
 }
 
-function addSymptom(symptomId) {
+function addSymptom(symptomId, { uncertain = false } = {}) {
   selectedSymptoms.add(symptomId);
+  if (uncertain) uncertainSymptoms.add(symptomId);
   searchInput.value = '';
   dropdown.hidden = true;
   renderChips();
@@ -61,22 +94,36 @@ function addSymptom(symptomId) {
 
 function removeSymptom(symptomId) {
   selectedSymptoms.delete(symptomId);
+  uncertainSymptoms.delete(symptomId);
   renderChips();
+}
+
+function showSymptomInfo(symptomId) {
+  const d = symptomDescriptions[symptomId];
+  const text = d ? d[currentLang] : '';
+  openSheet(`<h3>${symptomId}</h3><p>${text}</p>`);
 }
 
 function renderChips() {
   chipsContainer.innerHTML = '';
   selectedSymptoms.forEach(symptomId => {
     const chip = document.createElement('span');
-    chip.className = 'chip';
+    chip.className = 'chip' + (uncertainSymptoms.has(symptomId) ? ' uncertain' : '');
     const label = document.createElement('span');
     label.textContent = symptomId;
+    const infoBtn = document.createElement('button');
+    infoBtn.type = 'button';
+    infoBtn.className = 'chip-info-btn';
+    infoBtn.textContent = 'ℹ';
+    infoBtn.setAttribute('aria-label', `About ${symptomId}`);
+    infoBtn.addEventListener('click', () => showSymptomInfo(symptomId));
     const removeBtn = document.createElement('button');
     removeBtn.type = 'button';
     removeBtn.textContent = '✕';
     removeBtn.setAttribute('aria-label', `Remove ${symptomId}`);
     removeBtn.addEventListener('click', () => removeSymptom(symptomId));
     chip.appendChild(label);
+    chip.appendChild(infoBtn);
     chip.appendChild(removeBtn);
     chipsContainer.appendChild(chip);
   });
@@ -249,6 +296,7 @@ window.addEventListener('offline', updateOnlineStatus);
 loadSymptoms();
 loadSeverity();
 loadCooccurrence();
+loadSymptomDescriptions();
 applyStrings(currentLang);
 updateOnlineStatus();
 
@@ -265,6 +313,7 @@ function readVitals() {
 
 function resetForm() {
   selectedSymptoms.clear();
+  uncertainSymptoms.clear();
   renderChips();
   searchInput.value = '';
   document.getElementById('vital-temp').value = '';
@@ -281,7 +330,7 @@ document.getElementById('assess-btn').addEventListener('click', async () => {
   const sex = document.getElementById('sex-select').value;
   const vitals = readVitals();
 
-  const result = await predict(Array.from(selectedSymptoms), ageYears, sex, riskFactors, vitals);
+  const result = await predict(Array.from(selectedSymptoms), ageYears, sex, riskFactors, vitals, uncertainSymptoms);
 
   // Apply severity map when the model (not a red flag) produced the result --
   // tier = max(red_flag_tier, severity_tier), and red-flag results already
