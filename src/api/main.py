@@ -94,6 +94,19 @@ def why_not_other(top_class: str, other_class: str, all_shap: dict) -> str | Non
     return None
 
 
+@app.get("/")
+def root():
+    # No functional purpose -- purely so visiting the bare domain shows
+    # something legible instead of FastAPI's default {"detail":"Not Found"},
+    # which reads as broken even though it isn't.
+    return {
+        "service": "ArogyaAI API",
+        "docs": "/docs",
+        "health": "/health",
+        "predict": "POST /predict",
+    }
+
+
 @app.get("/health", response_model=HealthResponse)
 def health():
     return HealthResponse(status="ok", n_diseases=len(_classes), model_version="lr-v1")
