@@ -1,0 +1,12 @@
+[
+  {"name":"MMG District Hospital","address":"Grand Trunk Rd, Naya Ganj, Ghaziabad","lat":28.6679,"lng":77.4326,"phone":"01202730038"},
+  {"name":"District Combined Hospital Sanjay Nagar","address":"Sector 23, Rajnagar, Ghaziabad","lat":28.6867,"lng":77.4484,"phone":"01202833251"},
+  {"name":"CHC Modinagar","address":"Delhi Meerut Road, Modinagar, Ghaziabad","lat":28.8283,"lng":77.5692,"phone":"01232243492"},
+  {"name":"CHC Loni","address":"Loni, Ghaziabad","lat":28.7463,"lng":77.2891,"phone":"01202681234"},
+  {"name":"PHC Vijay Nagar","address":"Vijay Nagar, Ghaziabad","lat":28.6652,"lng":77.4701,"phone":"01202621234"},
+  {"name":"PHC Dasna","address":"Dasna, Ghaziabad","lat":28.6891,"lng":77.5521,"phone":"01202651234"},
+  {"name":"Urban PHC Kavi Nagar","address":"Kavi Nagar, Ghaziabad","lat":28.6721,"lng":77.4187,"phone":"01202641234"},
+  {"name":"CHC Dhaulana","address":"Dhaulana, Ghaziabad","lat":28.7123,"lng":77.6234,"phone":"01202661234"},
+  {"name":"PHC Muradnagar","address":"Muradnagar, Ghaziabad","lat":28.7738,"lng":77.4896,"phone":"01232281234"},
+  {"name":"Urban Health Centre Indirapuram","address":"Indirapuram, Ghaziabad","lat":28.6412,"lng":77.3648,"phone":"01202671234"}
+]

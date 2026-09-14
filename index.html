@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ArogyaAI</title>
+<style>
+  :root {
+    --bg: #f4f6f5;
+    --card: #ffffff;
+    --ink: #1c2521;
+    --muted: #5b6b64;
+    --line: #d8e0dc;
+    --accent: #0f6e5c;
+    --accent-ink: #ffffff;
+    --chip: #e4f2ee;
+    --chip-ink: #0f6e5c;
+    --danger: #c0392b;
+    --warn: #b8860b;
+    --ok: #1f8a4c;
+  }
+  * { box-sizing: border-box; }
+  /* Any author rule that sets `display` on an element beats the UA
+     stylesheet's [hidden]{display:none}, regardless of selector
+     specificity (author origin outranks user-agent origin outright, not
+     just by specificity) -- hit this twice already (.sheet-overlay in
+     6-B5, <main>/#history-view here) with elements that both use the
+     hidden attribute and declare their own unconditional display. One
+     blanket !important rule instead of patching each selector as found. */
+  [hidden] { display: none !important; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, "Segoe UI", Roboto, "Noto Sans Devanagari", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  body { padding-bottom: 24px; }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 14px 16px;
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+  header h1 { font-size: 1.15rem; margin: 0; }
+  .header-right { display: flex; align-items: center; gap: 10px; }
+  .lang-toggle { display: flex; border: 1px solid rgba(255,255,255,0.6); border-radius: 8px; overflow: hidden; }
+  .lang-toggle button {
+    background: transparent; color: var(--accent-ink); border: none;
+    padding: 8px 12px; min-height: 40px; font-size: 0.95rem; cursor: pointer;
+  }
+  .lang-toggle button[aria-pressed="true"] { background: rgba(255,255,255,0.25); font-weight: 600; }
+  .status-dot { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; }
+  .status-dot .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--ok); }
+  .status-dot.offline .dot { background: #999; }
+
+  .asha-toggle, .profile-btn {
+    border: 1px solid rgba(255,255,255,0.6); border-radius: 8px; background: transparent;
+    color: var(--accent-ink); padding: 8px 10px; min-height: 40px; font-size: 0.85rem; cursor: pointer;
+  }
+  .asha-toggle[aria-pressed="true"] { background: rgba(255,255,255,0.25); font-weight: 700; }
+
+  .tab-nav {
+    display: flex; max-width: 640px; margin: 12px auto 0; padding: 0 16px; gap: 8px;
+  }
+  .tab-btn {
+    flex: 1; min-height: 44px; border: 1px solid var(--line); background: #fff;
+    color: var(--muted); border-radius: 8px; font-size: 0.95rem; cursor: pointer;
+  }
+  .tab-btn[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+
+  #history-view {
+    max-width: 640px; margin: 16px auto 0; padding: 0 16px 24px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .history-notice { color: var(--muted); font-size: 0.82rem; }
+  .history-list { display: flex; flex-direction: column; gap: 10px; }
+  .history-entry {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 6px;
+  }
+  .history-entry-top { display: flex; justify-content: space-between; align-items: center; }
+  .history-date { color: var(--muted); font-size: 0.82rem; }
+  .history-tier-badge {
+    font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; color: #fff;
+  }
+  .history-tier-badge.emergency { background: var(--danger); }
+  .history-tier-badge.urgent { background: var(--warn); }
+  .history-tier-badge.routine { background: var(--ok); }
+  .history-top-disease { font-weight: 600; }
+  .history-symptoms { color: var(--muted); font-size: 0.85rem; }
+  .history-empty { color: var(--muted); font-size: 0.9rem; }
+  .clear-history-btn {
+    min-height: 44px; border: 1px solid var(--line); background: #fff;
+    color: var(--danger); border-radius: 8px; font-size: 0.95rem; cursor: pointer;
+  }
+
+  /* F19: ASHA worker mode -- larger everything for low-literacy / low-vision
+     field use, applied on top of whatever language is selected. */
+  body.asha-mode { font-size: 18px; }
+  body.asha-mode button, body.asha-mode input, body.asha-mode select {
+    min-height: 56px; font-size: 1.05rem;
+  }
+  body.asha-mode .assess-btn { min-height: 64px; font-size: 1.3rem; }
+  body.asha-mode .banner-title { font-size: 1.5rem; }
+
+  main {
+    max-width: 640px;
+    margin: 16px auto 0;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  label { display: block; font-weight: 600; margin-bottom: 8px; }
+  .hint { color: var(--muted); font-size: 0.85rem; margin-top: 4px; }
+
+  .search-row { position: relative; }
+  input[type="text"], input[type="number"], select {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #fff;
+    color: var(--ink);
+  }
+  .mic-btn {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    min-width: 44px;
+    min-height: 44px;
+    border: none;
+    background: transparent;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  .dropdown {
+    position: absolute;
+    z-index: 5;
+    left: 0; right: 0;
+    top: calc(100% + 4px);
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    max-height: 220px;
+    overflow-y: auto;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  }
+  .dropdown button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 10px 12px;
+    min-height: 44px;
+    border: none;
+    background: none;
+    font-size: 0.95rem;
+    cursor: pointer;
+    color: var(--ink);
+  }
+  .dropdown button:hover, .dropdown button:focus { background: var(--chip); }
+  .dropdown .no-match { color: var(--muted); cursor: default; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; min-height: 0; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--chip); color: var(--chip-ink);
+    border-radius: 999px; padding: 6px 8px 6px 12px;
+    font-size: 0.9rem;
+  }
+  .chip button {
+    border: none; background: transparent; color: inherit;
+    cursor: pointer; font-size: 1rem; min-width: 28px; min-height: 28px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .ghost-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 10px; }
+  .ghost-chips:empty { margin-top: 0; }
+  .ghost-chips-label { font-size: 0.82rem; color: var(--muted); }
+  .ghost-chip {
+    border: 1px dashed var(--line);
+    background: transparent;
+    color: var(--muted);
+    border-radius: 999px;
+    padding: 6px 12px;
+    min-height: 36px;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  .ghost-chip:hover { border-color: var(--accent); color: var(--accent); }
+
+  .chip.uncertain { background: #ececec; color: var(--muted); border: 1px dashed var(--line); }
+  .chip-info-btn {
+    border: none; background: transparent; color: inherit; opacity: 0.75;
+    cursor: pointer; font-size: 0.9rem; min-width: 24px; min-height: 24px;
+  }
+
+  .dropdown .match-row { display: flex; align-items: center; }
+  .dropdown .match-row button.match-name { flex: 1; }
+  .dropdown .not-sure-btn {
+    padding: 10px 12px; min-height: 44px; border: none; background: none;
+    color: var(--muted); font-size: 0.8rem; cursor: pointer; white-space: nowrap;
+  }
+  .dropdown .not-sure-btn:hover { color: var(--accent); }
+
+  .sheet-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+    display: flex; align-items: flex-end; justify-content: center; z-index: 20;
+  }
+  .sheet-overlay[hidden] { display: none; }
+  .sheet {
+    background: #fff; width: 100%; max-width: 640px;
+    border-radius: 16px 16px 0 0; padding: 20px 16px 28px;
+    position: relative; max-height: 70vh; overflow-y: auto;
+  }
+  .sheet-close {
+    position: absolute; top: 10px; right: 10px; min-width: 36px; min-height: 36px;
+    border: none; background: var(--bg); border-radius: 50%; cursor: pointer; font-size: 1rem;
+  }
+  .sheet-body { padding-right: 24px; }
+  .sheet-body h3 { margin-top: 0; }
+  .profile-list-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 0; border-bottom: 1px solid var(--line); min-height: 44px;
+  }
+  .profile-list-item .profile-name-btn {
+    background: none; border: none; text-align: left; font-size: 1rem;
+    color: var(--ink); cursor: pointer; flex: 1; min-height: 44px;
+  }
+  .profile-list-item.active .profile-name-btn { font-weight: 700; color: var(--accent); }
+  .profile-delete-btn {
+    background: none; border: none; color: var(--danger); cursor: pointer;
+    min-width: 36px; min-height: 36px; font-size: 1rem;
+  }
+  .profile-form input, .profile-form select {
+    width: 100%; min-height: 44px; margin-bottom: 8px;
+    border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px;
+  }
+  .profile-add-btn, .profile-save-btn {
+    min-height: 44px; width: 100%; border-radius: 8px; border: 1px solid var(--line);
+    background: #fff; cursor: pointer; margin-top: 8px; font-size: 0.95rem;
+  }
+  .profile-save-btn { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .result-for-label { color: var(--muted); font-size: 0.85rem; margin: 0; }
+  .sheet-common-symptoms { color: var(--muted); font-size: 0.85rem; }
+
+  .diff-top-tappable { cursor: pointer; }
+
+  details.card summary {
+    font-weight: 600; cursor: pointer; list-style: none;
+    display: flex; align-items: center; justify-content: space-between;
+    min-height: 44px;
+  }
+  details.card summary::-webkit-details-marker { display: none; }
+  details.card summary::after { content: "▾"; color: var(--muted); }
+  details.card[open] summary::after { content: "▴"; }
+  .vitals-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 12px; }
+  .field label { font-weight: 500; font-size: 0.9rem; }
+
+  .toggle-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .toggle-chip {
+    min-height: 44px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--ink);
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  .toggle-chip[aria-pressed="true"] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 600;
+  }
+
+  .age-sex-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .assess-btn {
+    width: 100%;
+    min-height: 56px;
+    border: none;
+    border-radius: 12px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .assess-btn:active { opacity: 0.9; }
+
+  #results:empty { display: none; }
+  #results { display: flex; flex-direction: column; gap: 12px; }
+
+  .banner { border-radius: 12px; padding: 16px; color: #fff; }
+  .banner-emergency { background: var(--danger); }
+  .banner-urgent { background: var(--warn); }
+  .banner-routine { background: var(--ok); }
+  .banner-title { font-size: 1.2rem; font-weight: 800; }
+  .banner-text { margin: 8px 0 0; }
+  .banner-action { font-weight: 600; }
+
+  .safety-rule-notice { color: var(--muted); font-size: 0.85rem; margin: 0; }
+  .explanation-sentence { font-weight: 600; margin: 0; }
+  .possible-causes-label { font-weight: 600; color: var(--muted); font-size: 0.9rem; }
+
+  .diff-entry { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+  .diff-top { display: flex; justify-content: space-between; font-weight: 600; margin-bottom: 6px; }
+  .diff-pct {
+    border: none; background: none; color: inherit; font: inherit; font-weight: 600;
+    cursor: pointer; padding: 0; min-height: 24px;
+  }
+  .diff-bar-track { background: var(--bg); border-radius: 999px; height: 8px; overflow: hidden; }
+  .diff-bar { background: var(--accent); height: 100%; }
+  .why-ranked-lower {
+    margin-top: 8px; min-height: 36px; border: none; background: none;
+    color: var(--accent); font-size: 0.85rem; cursor: pointer; padding: 0;
+  }
+  .why-ranked-lower-detail { margin-top: 6px; font-size: 0.85rem; color: var(--muted); }
+
+  .followups-section {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 12px; display: flex; flex-direction: column; gap: 12px;
+  }
+  .followup-q-text { font-weight: 600; margin: 0 0 8px; }
+  .followup-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .followup-option {
+    min-height: 40px; padding: 6px 12px; border-radius: 999px;
+    border: 1px solid var(--line); background: #fff; color: var(--ink);
+    font-size: 0.88rem; cursor: pointer;
+  }
+  .followup-option[aria-pressed="true"] {
+    background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600;
+  }
+  .followups-refined { color: var(--accent); font-weight: 600; margin: 0; }
+
+  .reminder-section { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px; }
+  .reminder-ask-btn { width: 100%; min-height: 44px; border: none; background: none; color: var(--ink); font-size: 0.95rem; cursor: pointer; text-align: left; }
+  .reminder-form { display: flex; flex-direction: column; gap: 8px; }
+  .reminder-form label { font-size: 0.85rem; color: var(--muted); }
+  .reminder-time-input, .reminder-repeat-select { min-height: 44px; border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; font-size: 1rem; }
+  .reminder-save-btn { min-height: 44px; border-radius: 8px; border: none; background: var(--accent); color: var(--accent-ink); font-size: 0.95rem; cursor: pointer; margin-top: 4px; }
+  .reminder-confirm { color: var(--ok); font-weight: 600; margin: 0; }
+
+  .trend-notice {
+    background: #fff8e1; border: 1px solid var(--warn); color: #6b5200;
+    border-radius: 10px; padding: 10px 12px; font-size: 0.88rem; margin: 0;
+  }
+
+  .how-does-this-decide-link {
+    background: none; border: none; color: var(--accent); font-size: 0.85rem;
+    cursor: pointer; padding: 8px 0; min-height: 36px; text-align: left; text-decoration: underline;
+  }
+  .rule-card {
+    border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin-top: 10px;
+  }
+  .rule-id { font-weight: 700; color: var(--accent); font-size: 0.85rem; }
+  .rule-conditions { font-size: 0.85rem; margin: 4px 0; }
+  .rule-rationale { color: var(--muted); font-size: 0.88rem; }
+
+  .phc-section { margin-top: 4px; }
+  .phc-section-label { font-weight: 600; margin-bottom: 8px; }
+  .phc-list { display: flex; flex-direction: column; gap: 8px; }
+  .phc-entry {
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px;
+  }
+  .phc-name { font-weight: 600; }
+  .phc-distance { color: var(--muted); font-size: 0.85rem; }
+  .phc-call-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 40px; padding: 0 14px; border-radius: 8px;
+    background: var(--accent); color: var(--accent-ink);
+    text-decoration: none; font-size: 0.9rem; white-space: nowrap;
+  }
+
+  .start-over-btn, .save-for-doctor-btn {
+    min-height: 44px; border: 1px solid var(--line); background: #fff;
+    color: var(--ink); border-radius: 8px; font-size: 0.95rem; cursor: pointer;
+  }
+
+  .print-card { display: none; }
+  @media print {
+    /* print-card is appended directly to body (see render.js), so hiding
+       every other direct child -- rather than visibility:hidden on
+       everything -- keeps it from leaving blank pages of hidden-but-
+       still-laid-out content after the card. */
+    body > *:not(.print-card) { display: none !important; }
+    .print-card { display: block; padding: 24px; color: #000; background: #fff; }
+    .print-disclaimer { font-weight: 600; }
+    .print-footer { color: #555; font-size: 0.85rem; }
+  }
+
+  footer.disclaimer {
+    max-width: 640px;
+    margin: 4px auto 0;
+    padding: 12px 16px;
+    color: var(--muted);
+    font-size: 0.82rem;
+    border-top: 1px solid var(--line);
+  }
+
+  @media (min-width: 480px) {
+    .vitals-grid { grid-template-columns: 1fr 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>ArogyaAI</h1>
+  <div class="header-right">
+    <div class="lang-toggle" id="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="hi" aria-pressed="false">हिं</button>
+    </div>
+    <button type="button" class="profile-btn" id="profile-btn">👤 <span id="profile-btn-label">Default</span></button>
+    <button type="button" class="asha-toggle" id="asha-toggle" aria-pressed="false">ASHA</button>
+    <div class="status-dot" id="status-dot"><span class="dot"></span><span class="status-text" id="status-text">Online</span></div>
+  </div>
+</header>
+
+<nav class="tab-nav" id="tab-nav">
+  <button type="button" class="tab-btn" data-tab="assess" aria-pressed="true" id="tab-assess-btn">Assess</button>
+  <button type="button" class="tab-btn" data-tab="history" aria-pressed="false" id="tab-history-btn">History</button>
+</nav>
+
+<main>
+
+  <section class="card">
+    <label for="symptom-search" id="symptom-search-label">What are you feeling?</label>
+    <div class="search-row">
+      <input type="text" id="symptom-search" placeholder="Search symptoms..." autocomplete="off">
+      <button type="button" class="mic-btn" id="mic-btn" title="Voice input" hidden>🎤</button>
+      <div class="dropdown" id="symptom-dropdown" hidden></div>
+    </div>
+    <div class="chips" id="selected-chips"></div>
+    <div class="ghost-chips" id="ghost-chips"></div>
+  </section>
+
+  <details class="card" id="vitals-section" open>
+    <summary id="vitals-summary">Vitals (optional)</summary>
+    <div class="vitals-grid">
+      <div class="field">
+        <label for="vital-temp" id="vital-temp-label">Temperature (°C)</label>
+        <input type="number" id="vital-temp" min="30" max="45" step="0.1" placeholder="e.g. 37.0">
+      </div>
+      <div class="field">
+        <label for="vital-pulse" id="vital-pulse-label">Pulse (bpm)</label>
+        <input type="number" id="vital-pulse" min="20" max="250" step="1" placeholder="e.g. 80">
+      </div>
+      <div class="field">
+        <label for="vital-breathing" id="vital-breathing-label">Breathing rate (per min)</label>
+        <input type="number" id="vital-breathing" min="5" max="80" step="1" placeholder="e.g. 16">
+      </div>
+    </div>
+  </details>
+
+  <details class="card" id="risk-factors-section" open>
+    <summary id="risk-factors-summary">Risk factors (optional)</summary>
+    <div class="toggle-row" id="risk-factor-toggles">
+      <button type="button" class="toggle-chip" data-factor="diabetes" aria-pressed="false">Diabetes</button>
+      <button type="button" class="toggle-chip" data-factor="hypertension" aria-pressed="false">Hypertension</button>
+      <button type="button" class="toggle-chip" data-factor="heart_disease" aria-pressed="false">Heart disease</button>
+      <button type="button" class="toggle-chip" data-factor="pregnancy" aria-pressed="false">Pregnancy</button>
+      <button type="button" class="toggle-chip" data-factor="smoking" aria-pressed="false">Smoking</button>
+      <button type="button" class="toggle-chip" data-factor="age_60_plus" aria-pressed="false">Age 60+</button>
+    </div>
+  </details>
+
+  <section class="card">
+    <div class="age-sex-row">
+      <div class="field">
+        <label for="age-input" id="age-label">Age</label>
+        <input type="number" id="age-input" min="0" max="120" step="0.1" value="30">
+      </div>
+      <div class="field">
+        <label for="sex-select" id="sex-label">Sex</label>
+        <select id="sex-select">
+          <option value="M" id="sex-option-m">Male</option>
+          <option value="F" id="sex-option-f">Female</option>
+          <option value="O" id="sex-option-o">Other</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <button type="button" class="assess-btn" id="assess-btn">ASSESS</button>
+
+  <div id="results"></div>
+
+</main>
+
+<div id="history-view" hidden>
+  <div class="history-notice" id="history-notice">Stored on this device only. Never sent anywhere.</div>
+  <div class="history-list" id="history-list"></div>
+  <button type="button" class="clear-history-btn" id="clear-history-btn">Clear all history</button>
+</div>
+
+<div class="sheet-overlay" id="sheet-overlay" hidden>
+  <div class="sheet" id="sheet">
+    <button type="button" class="sheet-close" id="sheet-close" aria-label="Close">✕</button>
+    <div class="sheet-body" id="sheet-body"></div>
+  </div>
+</div>
+
+<footer class="disclaimer" id="disclaimer-text">
+  ⚠ This is not a diagnosis. This is not a medical device. It does not replace a doctor.
+</footer>
+
+<script type="module" src="./js/app.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js');
+    });
+  }
+</script>
+</body>
+</html>

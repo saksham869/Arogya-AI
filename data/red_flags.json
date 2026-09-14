@@ -1,0 +1,185 @@
+[
+  {
+    "id": "RF01",
+    "tier": "EMERGENCY",
+    "all_of": [
+      "chest_pain"
+    ],
+    "any_of": [
+      "breathlessness",
+      "sweating",
+      "vomiting"
+    ],
+    "rationale_en": "Chest pain with these features can indicate a heart attack.",
+    "rationale_hi": "इन लक्षणों के साथ सीने में दर्द दिल के दौरे का संकेत हो सकता है।",
+    "action_en": "Go to the nearest hospital immediately.",
+    "action_hi": "तुरंत नजदीकी अस्पताल जाएं।"
+  },
+  {
+    "id": "RF01b",
+    "tier": "EMERGENCY",
+    "all_of": [
+      "chest_pain"
+    ],
+    "risk_factor_required": "heart_disease",
+    "rationale_en": "Chest pain in someone with heart disease needs immediate attention.",
+    "rationale_hi": "हृदय रोग वाले व्यक्ति में सीने का दर्द गंभीर हो सकता है।",
+    "action_en": "Go to the nearest hospital immediately.",
+    "action_hi": "तुरंत नजदीकी अस्पताल जाएं।"
+  },
+  {
+    "id": "RF02",
+    "tier": "EMERGENCY",
+    "all_of": [
+      "breathlessness"
+    ],
+    "any_of": [
+      "chest_pain",
+      "high_fever"
+    ],
+    "rationale_en": "Severe breathlessness needs urgent medical attention.",
+    "rationale_hi": "सांस लेने में गंभीर कठिनाई के लिए तत्काल चिकित्सा ध्यान जरूरी है।",
+    "action_en": "Go to the nearest hospital immediately.",
+    "action_hi": "तुरंत नजदीकी अस्पताल जाएं।"
+  },
+  {
+    "id": "RF03",
+    "tier": "EMERGENCY",
+    "all_of": [
+      "loss_of_consciousness"
+    ],
+    "rationale_en": "Loss of consciousness needs immediate emergency care.",
+    "rationale_hi": "बेहोशी के लिए तत्काल आपातकालीन देखभाल जरूरी है।",
+    "action_en": "Call an ambulance or go to the nearest hospital immediately.",
+    "action_hi": "एम्बुलेंस बुलाएं या तुरंत नजदीकी अस्पताल जाएं।"
+  },
+  {
+    "id": "RF04",
+    "tier": "EMERGENCY",
+    "all_of": [
+      "weakness_in_limbs"
+    ],
+    "any_of": [
+      "headache",
+      "vomiting",
+      "altered_sensorium"
+    ],
+    "rationale_en": "One-sided weakness with these symptoms can indicate a stroke.",
+    "rationale_hi": "एकतरफा कमजोरी इन लक्षणों के साथ स्ट्रोक का संकेत हो सकती है।",
+    "action_en": "This may be a stroke. Go to the nearest hospital immediately.",
+    "action_hi": "यह स्ट्रोक हो सकता है। तुरंत नजदीकी अस्पताल जाएं।"
+  },
+  {
+    "id": "RF05",
+    "tier": "EMERGENCY",
+    "all_of": [
+      "stiff_neck",
+      "high_fever"
+    ],
+    "rationale_en": "Fever with neck stiffness can indicate meningitis.",
+    "rationale_hi": "गर्दन की अकड़न के साथ बुखार मेनिनजाइटिस का संकेत हो सकता है।",
+    "action_en": "Go to the nearest hospital immediately.",
+    "action_hi": "तुरंत नजदीकी अस्पताल जाएं।"
+  },
+  {
+    "id": "RF06",
+    "tier": "EMERGENCY",
+    "all_of": [
+      "high_fever",
+      "skin_rash"
+    ],
+    "rationale_en": "Fever with rash needs urgent medical evaluation.",
+    "rationale_hi": "दाने के साथ बुखार के लिए तत्काल चिकित्सा मूल्यांकन जरूरी है।",
+    "action_en": "Go to the nearest hospital today.",
+    "action_hi": "आज नजदीकी अस्पताल जाएं।"
+  },
+  {
+    "id": "RF07",
+    "tier": "EMERGENCY",
+    "all_of": [
+      "high_fever"
+    ],
+    "age_max_months": 3,
+    "rationale_en": "Fever in a baby under 3 months needs same-day hospital care.",
+    "rationale_hi": "3 महीने से कम उम्र के शिशु में बुखार के लिए उसी दिन अस्पताल जाना जरूरी है।",
+    "action_en": "Take the baby to hospital today.",
+    "action_hi": "आज बच्चे को अस्पताल ले जाएं।"
+  },
+  {
+    "id": "RF-TEMP01",
+    "tier": "EMERGENCY",
+    "all_of": [
+      "altered_sensorium"
+    ],
+    "vital_temp_above": 39.5,
+    "rationale_en": "Very high fever with confusion is a medical emergency.",
+    "rationale_hi": "भ्रम के साथ बहुत तेज बुखार एक चिकित्सा आपातकाल है।",
+    "action_en": "Go to the nearest hospital immediately.",
+    "action_hi": "तुरंत नजदीकी अस्पताल जाएं।"
+  },
+  {
+    "id": "RF08",
+    "tier": "EMERGENCY",
+    "all_of": [
+      "altered_sensorium"
+    ],
+    "rationale_en": "Confusion or altered consciousness needs urgent evaluation.",
+    "rationale_hi": "भ्रम या चेतना में बदलाव के लिए तत्काल जांच जरूरी है।",
+    "action_en": "Go to the nearest hospital immediately.",
+    "action_hi": "तुरंत नजदीकी अस्पताल जाएं।"
+  },
+  {
+    "id": "RF09",
+    "tier": "EMERGENCY",
+    "all_of": [
+      "bloody_stool"
+    ],
+    "any_of": [
+      "vomiting",
+      "abdominal_pain"
+    ],
+    "rationale_en": "Blood in stool with these symptoms needs urgent attention.",
+    "rationale_hi": "इन लक्षणों के साथ मल में खून के लिए तत्काल ध्यान जरूरी है।",
+    "action_en": "Go to the nearest hospital today.",
+    "action_hi": "आज नजदीकी अस्पताल जाएं।"
+  },
+  {
+    "id": "RF10",
+    "tier": "EMERGENCY",
+    "all_of": [
+      "vomiting"
+    ],
+    "any_of": [
+      "chest_pain",
+      "breathlessness"
+    ],
+    "rationale_en": "Vomiting with chest symptoms needs urgent evaluation.",
+    "rationale_hi": "सीने के लक्षणों के साथ उल्टी के लिए तत्काल जांच जरूरी है।",
+    "action_en": "Go to the nearest hospital immediately.",
+    "action_hi": "तुरंत नजदीकी अस्पताल जाएं।"
+  },
+  {
+    "id": "RF-PULSE01",
+    "tier": "EMERGENCY",
+    "all_of": [
+      "breathlessness"
+    ],
+    "vital_pulse_above": 120,
+    "rationale_en": "Very rapid heartbeat with breathlessness needs immediate care.",
+    "rationale_hi": "सांस की तकलीफ के साथ बहुत तेज दिल की धड़कन के लिए तत्काल देखभाल जरूरी है।",
+    "action_en": "Go to the nearest hospital immediately.",
+    "action_hi": "तुरंत नजदीकी अस्पताल जाएं।"
+  },
+  {
+    "id": "RF-PREG01",
+    "tier": "EMERGENCY",
+    "all_of": [
+      "abdominal_pain"
+    ],
+    "risk_factor_required": "pregnancy",
+    "rationale_en": "Abdominal pain in pregnancy needs same-day medical attention.",
+    "rationale_hi": "गर्भावस्था में पेट दर्द के लिए उसी दिन चिकित्सा ध्यान जरूरी है।",
+    "action_en": "Go to the nearest hospital or maternity centre today.",
+    "action_hi": "आज नजदीकी अस्पताल या प्रसूति केंद्र जाएं।"
+  }
+]
