@@ -596,6 +596,23 @@ function saveHistoryEntry(result, snapshot) {
   localStorage.setItem(HISTORY_KEY, JSON.stringify(trimmed));
 }
 
+// F16: symptoms appearing in 3+ of the active profile's last 5 checks.
+// Scoped to the active profile (not global) -- mixing family members'
+// symptom counts into one trend would be meaningless. Advisory only:
+// never touches the triage tier.
+function computeTrendNotices() {
+  const activeProfileId = getActiveProfileId();
+  const recent = loadHistory().filter(e => e.profile === activeProfileId).slice(0, MAX_HISTORY);
+  if (recent.length < 3) return [];
+  const counts = {};
+  recent.forEach(entry => {
+    entry.symptoms.forEach(s => { counts[s] = (counts[s] || 0) + 1; });
+  });
+  return Object.entries(counts)
+    .filter(([, n]) => n >= 3)
+    .map(([symptom, n]) => ({ symptom, count: n, total: recent.length }));
+}
+
 function tierBadgeClass(tier) {
   if (tier === 'EMERGENCY') return 'emergency';
   if (tier === 'URGENT') return 'urgent';
@@ -711,6 +728,7 @@ document.getElementById('assess-btn').addEventListener('click', async () => {
     sex,
   };
   saveHistoryEntry(result, formSnapshot);
+  const trendNotices = computeTrendNotices();
   const activeProfile = getActiveProfile();
-  renderResult(result, currentLang, resetForm, phcList, formSnapshot, ashaMode, conditionInfo, followups, activeProfile ? activeProfile.name : null, setReminder);
+  renderResult(result, currentLang, resetForm, phcList, formSnapshot, ashaMode, conditionInfo, followups, activeProfile ? activeProfile.name : null, setReminder, trendNotices);
 });

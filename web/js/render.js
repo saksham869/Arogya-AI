@@ -404,7 +404,7 @@ function renderReminderPrompt(container, lang, onSetReminder) {
   container.appendChild(section);
 }
 
-export function renderResult(result, lang, onStartOver, phcList = [], formSnapshot = null, ashaMode = false, conditionInfo = {}, followups = {}, profileName = null, onSetReminder = null) {
+export function renderResult(result, lang, onStartOver, phcList = [], formSnapshot = null, ashaMode = false, conditionInfo = {}, followups = {}, profileName = null, onSetReminder = null, trendNotices = []) {
   const t = STRINGS[lang];
   const container = document.getElementById('results');
   container.innerHTML = '';
@@ -477,6 +477,15 @@ export function renderResult(result, lang, onStartOver, phcList = [], formSnapsh
   if (result.tier === 'EMERGENCY') {
     renderNearestPHC(container, lang, phcList);
   }
+
+  // F16: advisory only -- rendered regardless of tier/source, never
+  // changes result.tier itself (already finalized above).
+  trendNotices.forEach(({ symptom, count, total }) => {
+    const notice = document.createElement('p');
+    notice.className = 'trend-notice';
+    notice.textContent = t.trendNotice(symptom, count, total);
+    container.appendChild(notice);
+  });
 
   // F18: printable card. A previous card (e.g. from a prior language) is
   // removed first since this whole container was just cleared anyway --

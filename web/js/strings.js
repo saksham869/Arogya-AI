@@ -79,6 +79,8 @@ export const STRINGS = {
     repeatThrice: '3×/day',
     setReminderBtn: 'Set reminder',
     reminderSet: 'Reminder set.',
+    trendNotice: (symptom, count, total) =>
+      `You have reported ${symptom} in ${count} of your last ${total} checks. If this persists, please see a doctor.`,
   },
   hi: {
     appTitle: 'ArogyaAI',
@@ -160,5 +162,7 @@ export const STRINGS = {
     repeatThrice: 'दिन में 3 बार',
     setReminderBtn: 'याद दिलाना सेट करें',
     reminderSet: 'याद दिलाना सेट हो गया।',
+    trendNotice: (symptom, count, total) =>
+      `आपने ${symptom} अपनी पिछली ${total} जांचों में से ${count} में बताया है। यदि यह जारी रहे, तो डॉक्टर से मिलें।`,
   },
 };
