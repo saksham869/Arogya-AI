@@ -328,10 +328,17 @@ function renderFollowups(container, lang, result, followups) {
   container.appendChild(section);
 }
 
-export function renderResult(result, lang, onStartOver, phcList = [], formSnapshot = null, ashaMode = false, conditionInfo = {}, followups = {}) {
+export function renderResult(result, lang, onStartOver, phcList = [], formSnapshot = null, ashaMode = false, conditionInfo = {}, followups = {}, profileName = null) {
   const t = STRINGS[lang];
   const container = document.getElementById('results');
   container.innerHTML = '';
+
+  if (profileName) {
+    const forLabel = document.createElement('p');
+    forLabel.className = 'result-for-label';
+    forLabel.textContent = `${t.forProfile}: ${profileName}`;
+    container.appendChild(forLabel);
+  }
 
   const banner = document.createElement('div');
   banner.className = `banner banner-${tierClass(result.tier)}`;

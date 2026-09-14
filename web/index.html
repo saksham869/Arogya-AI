@@ -59,7 +59,7 @@
   .status-dot .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--ok); }
   .status-dot.offline .dot { background: #999; }
 
-  .asha-toggle {
+  .asha-toggle, .profile-btn {
     border: 1px solid rgba(255,255,255,0.6); border-radius: 8px; background: transparent;
     color: var(--accent-ink); padding: 8px 10px; min-height: 40px; font-size: 0.85rem; cursor: pointer;
   }
@@ -233,6 +233,29 @@
   }
   .sheet-body { padding-right: 24px; }
   .sheet-body h3 { margin-top: 0; }
+  .profile-list-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 0; border-bottom: 1px solid var(--line); min-height: 44px;
+  }
+  .profile-list-item .profile-name-btn {
+    background: none; border: none; text-align: left; font-size: 1rem;
+    color: var(--ink); cursor: pointer; flex: 1; min-height: 44px;
+  }
+  .profile-list-item.active .profile-name-btn { font-weight: 700; color: var(--accent); }
+  .profile-delete-btn {
+    background: none; border: none; color: var(--danger); cursor: pointer;
+    min-width: 36px; min-height: 36px; font-size: 1rem;
+  }
+  .profile-form input, .profile-form select {
+    width: 100%; min-height: 44px; margin-bottom: 8px;
+    border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px;
+  }
+  .profile-add-btn, .profile-save-btn {
+    min-height: 44px; width: 100%; border-radius: 8px; border: 1px solid var(--line);
+    background: #fff; cursor: pointer; margin-top: 8px; font-size: 0.95rem;
+  }
+  .profile-save-btn { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .result-for-label { color: var(--muted); font-size: 0.85rem; margin: 0; }
   .sheet-common-symptoms { color: var(--muted); font-size: 0.85rem; }
 
   .diff-top-tappable { cursor: pointer; }
@@ -378,6 +401,7 @@
       <button type="button" data-lang="en" aria-pressed="true">EN</button>
       <button type="button" data-lang="hi" aria-pressed="false">हिं</button>
     </div>
+    <button type="button" class="profile-btn" id="profile-btn">👤 <span id="profile-btn-label">Default</span></button>
     <button type="button" class="asha-toggle" id="asha-toggle" aria-pressed="false">ASHA</button>
     <div class="status-dot" id="status-dot"><span class="dot"></span><span class="status-text" id="status-text">Online</span></div>
   </div>

@@ -5,7 +5,7 @@
 import { predict } from './infer.js';
 import { renderResult } from './render.js';
 import { STRINGS } from './strings.js';
-import { openSheet } from './sheet.js';
+import { openSheet, closeSheet } from './sheet.js';
 
 let symptomsList = [];
 const selectedSymptoms = new Set();
@@ -225,6 +225,7 @@ document.getElementById('lang-toggle').addEventListener('click', (e) => {
   document.documentElement.lang = currentLang;
   applyStrings(currentLang);
   renderGhostChips();
+  updateProfileButtonLabel();
   if (!document.getElementById('history-view').hidden) renderHistory();
 });
 
@@ -306,6 +307,134 @@ ashaToggle.addEventListener('click', () => {
   applyAshaMode();
 });
 
+// --- Family profiles (F7) ---
+const PROFILES_KEY = 'arogya_profiles';
+const ACTIVE_PROFILE_KEY = 'arogya_active_profile';
+const MAX_PROFILES = 4;
+
+function loadProfiles() {
+  try {
+    return JSON.parse(localStorage.getItem(PROFILES_KEY)) || [];
+  } catch {
+    return [];
+  }
+}
+function saveProfiles(profiles) {
+  localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
+}
+function getActiveProfileId() {
+  return localStorage.getItem(ACTIVE_PROFILE_KEY) || null;
+}
+function getActiveProfile() {
+  const id = getActiveProfileId();
+  return id ? loadProfiles().find(p => p.id === id) || null : null;
+}
+function setActiveProfileId(id) {
+  if (id) localStorage.setItem(ACTIVE_PROFILE_KEY, id);
+  else localStorage.removeItem(ACTIVE_PROFILE_KEY);
+  updateProfileButtonLabel();
+}
+
+function updateProfileButtonLabel() {
+  const p = getActiveProfile();
+  document.getElementById('profile-btn-label').textContent = p ? p.name : STRINGS[currentLang].defaultProfile;
+}
+
+function applyProfileDefaults(profile) {
+  document.getElementById('age-input').value = profile.age;
+  document.getElementById('sex-select').value = profile.sex;
+  document.querySelectorAll('#risk-factor-toggles button[data-factor]').forEach(btn => {
+    const on = !!profile.riskFactors[btn.dataset.factor];
+    btn.setAttribute('aria-pressed', String(on));
+    riskFactors[btn.dataset.factor] = on;
+  });
+}
+
+function switchProfile(id) {
+  setActiveProfileId(id);
+  const p = getActiveProfile();
+  if (p) applyProfileDefaults(p);
+  closeSheet();
+  if (!document.getElementById('history-view').hidden) renderHistory();
+}
+
+function deleteProfile(id) {
+  if (!confirm(STRINGS[currentLang].confirmDeleteProfile)) return;
+  saveProfiles(loadProfiles().filter(p => p.id !== id));
+  if (getActiveProfileId() === id) setActiveProfileId(null);
+  renderProfileSheet();
+}
+
+function addProfile(name, age, sex) {
+  const profiles = loadProfiles();
+  if (profiles.length >= MAX_PROFILES) return;
+  const id = `p_${Date.now()}`;
+  profiles.push({ id, name, age, sex, riskFactors: {} });
+  saveProfiles(profiles);
+  switchProfile(id);
+}
+
+function renderProfileSheet() {
+  const profiles = loadProfiles();
+  const activeId = getActiveProfileId();
+  const t = STRINGS[currentLang];
+
+  let html = `<h3>${t.profiles}</h3>`;
+  html += `<div class="profile-list-item${activeId === null ? ' active' : ''}">
+    <button type="button" class="profile-name-btn" data-switch-profile="">${t.defaultProfile}</button>
+  </div>`;
+  profiles.forEach(p => {
+    html += `<div class="profile-list-item${activeId === p.id ? ' active' : ''}">
+      <button type="button" class="profile-name-btn" data-switch-profile="${p.id}">${p.name}</button>
+      <button type="button" class="profile-delete-btn" data-delete-profile="${p.id}" aria-label="Delete">✕</button>
+    </div>`;
+  });
+  if (profiles.length < MAX_PROFILES) {
+    html += `<button type="button" class="profile-add-btn" id="show-add-profile-form">+ ${t.addProfile}</button>
+    <div class="profile-form" id="add-profile-form" hidden>
+      <input type="text" id="new-profile-name" placeholder="${t.name}">
+      <input type="number" id="new-profile-age" placeholder="${t.ageLabel}" min="0" max="120" step="0.1">
+      <select id="new-profile-sex">
+        <option value="M">${t.male}</option>
+        <option value="F">${t.female}</option>
+        <option value="O">${t.other}</option>
+      </select>
+      <button type="button" class="profile-save-btn" id="save-new-profile">${t.save}</button>
+    </div>`;
+  }
+  openSheet(html);
+
+  sheetBody().querySelectorAll('[data-switch-profile]').forEach(btn => {
+    btn.addEventListener('click', () => switchProfile(btn.dataset.switchProfile || null));
+  });
+  sheetBody().querySelectorAll('[data-delete-profile]').forEach(btn => {
+    btn.addEventListener('click', () => deleteProfile(btn.dataset.deleteProfile));
+  });
+  const showFormBtn = sheetBody().querySelector('#show-add-profile-form');
+  if (showFormBtn) {
+    showFormBtn.addEventListener('click', () => {
+      document.getElementById('add-profile-form').hidden = false;
+      showFormBtn.hidden = true;
+    });
+  }
+  const saveBtn = sheetBody().querySelector('#save-new-profile');
+  if (saveBtn) {
+    saveBtn.addEventListener('click', () => {
+      const name = document.getElementById('new-profile-name').value.trim();
+      const age = parseFloat(document.getElementById('new-profile-age').value);
+      const sex = document.getElementById('new-profile-sex').value;
+      if (!name || isNaN(age)) return;
+      addProfile(name, age, sex);
+    });
+  }
+}
+function sheetBody() {
+  return document.getElementById('sheet-body');
+}
+
+document.getElementById('profile-btn').addEventListener('click', renderProfileSheet);
+updateProfileButtonLabel();
+
 // Online/offline indicator
 const statusDot = document.getElementById('status-dot');
 function updateOnlineStatus() {
@@ -368,7 +497,7 @@ function saveHistoryEntry(result, snapshot) {
   const history = loadHistory();
   history.unshift({
     timestamp: new Date().toISOString(),
-    profile: null, // no family-profile system yet (F7, 6-C3) -- wired in then
+    profile: getActiveProfileId(), // null = the default/no-profile bucket
     symptoms: snapshot.symptoms,
     vitals: snapshot.vitals,
     riskFactors: snapshot.riskFactors,
@@ -377,7 +506,15 @@ function saveHistoryEntry(result, snapshot) {
     tier: result.tier,
     topDisease: result.tierSource === 'model' ? result.topClass : null,
   });
-  localStorage.setItem(HISTORY_KEY, JSON.stringify(history.slice(0, MAX_HISTORY)));
+  // F14's own description says "last 5 per profile" (not a single global
+  // cap of 5) -- trim per profile bucket, not the array as a whole, so
+  // adding profiles doesn't starve everyone else's history.
+  const counts = {};
+  const trimmed = history.filter(e => {
+    counts[e.profile] = (counts[e.profile] || 0) + 1;
+    return counts[e.profile] <= MAX_HISTORY;
+  });
+  localStorage.setItem(HISTORY_KEY, JSON.stringify(trimmed));
 }
 
 function tierBadgeClass(tier) {
@@ -389,7 +526,8 @@ function tierBadgeClass(tier) {
 function renderHistory() {
   const list = document.getElementById('history-list');
   list.innerHTML = '';
-  const history = loadHistory();
+  const activeProfileId = getActiveProfileId();
+  const history = loadHistory().filter(e => e.profile === activeProfileId);
   if (history.length === 0) {
     const empty = document.createElement('p');
     empty.className = 'history-empty';
@@ -494,5 +632,6 @@ document.getElementById('assess-btn').addEventListener('click', async () => {
     sex,
   };
   saveHistoryEntry(result, formSnapshot);
-  renderResult(result, currentLang, resetForm, phcList, formSnapshot, ashaMode, conditionInfo, followups);
+  const activeProfile = getActiveProfile();
+  renderResult(result, currentLang, resetForm, phcList, formSnapshot, ashaMode, conditionInfo, followups, activeProfile ? activeProfile.name : null);
 });
