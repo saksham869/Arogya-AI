@@ -27,7 +27,17 @@ function explanationSentence(result, lang) {
   return t.becauseYouReported(naturalJoin(names, t.and));
 }
 
-function renderDifferentialEntry(entry, lang) {
+// AD-4: which symptom drove the top class but not this one, if any.
+function whyNotOther(topClass, otherClass, allShap) {
+  const topTop = allShap[topClass][0];
+  const otherScore = allShap[otherClass].find(d => d.symptomId === topTop.symptomId);
+  if (!otherScore || otherScore.contribution < 0.01) {
+    return topTop.symptomId;
+  }
+  return null;
+}
+
+function renderDifferentialEntry(entry, lang, result) {
   const t = STRINGS[lang];
   const row = document.createElement('div');
   row.className = 'diff-entry';
@@ -54,7 +64,6 @@ function renderDifferentialEntry(entry, lang) {
   row.appendChild(barTrack);
 
   if (!entry.isTop) {
-    // Expander shell only for now -- whyNotOther() wiring + copy is 6-B4 (F10).
     const toggle = document.createElement('button');
     toggle.type = 'button';
     toggle.className = 'why-ranked-lower';
@@ -62,7 +71,17 @@ function renderDifferentialEntry(entry, lang) {
     const detail = document.createElement('div');
     detail.className = 'why-ranked-lower-detail';
     detail.hidden = true;
-    toggle.addEventListener('click', () => { detail.hidden = !detail.hidden; });
+    let computed = false;
+    toggle.addEventListener('click', () => {
+      if (!computed) {
+        const symptomId = whyNotOther(result.topClass, entry.disease, result.allShap);
+        detail.textContent = symptomId
+          ? t.rankedLowerBecause(symptomId)
+          : t.similarPatternTo(result.topClass);
+        computed = true;
+      }
+      detail.hidden = !detail.hidden;
+    });
     row.appendChild(toggle);
     row.appendChild(detail);
   }
@@ -118,7 +137,7 @@ export function renderResult(result, lang, onStartOver) {
       container.appendChild(causesLabel);
 
       result.differential.forEach((entry, i) => {
-        container.appendChild(renderDifferentialEntry({ ...entry, isTop: i === 0 }, lang));
+        container.appendChild(renderDifferentialEntry({ ...entry, isTop: i === 0 }, lang, result));
       });
     }
   }
