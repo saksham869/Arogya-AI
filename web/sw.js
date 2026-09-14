@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v8'; // v8: 6-C1 changes app.js/index.html content
+const CACHE_VERSION = 'v9'; // v9: 6-C2 adds followups.json
 // (from here on, bump on any precached file's content change, not just when
 // the PRECACHE list itself changes -- a cache-first SW otherwise keeps
 // serving stale JS/HTML to anyone who already installed an older version)
@@ -29,8 +29,7 @@ const PRECACHE = [
   './data/symptom_descriptions.json',    // Tier B, 6-B5
   './data/phc_ghaziabad.json',           // Tier B, 6-B6
   './data/condition_info.json',          // Tier B, 6-B9
-  // Add when built:
-  // './data/followups.json',            // Tier C, 6-C2
+  './data/followups.json',               // Tier C, 6-C2
 ];
 
 self.addEventListener('install', (event) => {

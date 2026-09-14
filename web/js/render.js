@@ -271,7 +271,64 @@ const ASHA_TIER_LABELS = {
   ROUTINE: 'घर पर देखभाल करें',
 };
 
-export function renderResult(result, lang, onStartOver, phcList = [], formSnapshot = null, ashaMode = false, conditionInfo = {}) {
+// F9: 2 generic follow-up questions for the top predicted disease. Answers
+// only adjust a displayed confidence-band readout (reusing 6-B7's
+// confidenceBand() helper) -- the model output and the real differential
+// percentages never change, per this feature's own spec.
+function renderFollowups(container, lang, result, followups) {
+  const questions = followups[result.topClass];
+  if (!questions || questions.length === 0) return;
+  const t = STRINGS[lang];
+  const topEntry = result.differential.find(d => d.disease === result.topClass);
+  if (!topEntry) return;
+
+  const section = document.createElement('div');
+  section.className = 'followups-section';
+
+  const deltas = new Array(questions.length).fill(0);
+  const refined = document.createElement('p');
+  refined.className = 'followups-refined';
+  refined.hidden = true;
+
+  function updateRefined() {
+    const total = deltas.reduce((a, b) => a + b, 0);
+    const adjusted = Math.min(1, Math.max(0, topEntry.probability + total));
+    refined.textContent = `${t.refinedBasedOnAnswers}: ${confidenceBand(adjusted, lang)}`;
+    refined.hidden = false;
+  }
+
+  questions.forEach((q, qi) => {
+    const qBlock = document.createElement('div');
+    qBlock.className = 'followup-question';
+    const qText = document.createElement('p');
+    qText.className = 'followup-q-text';
+    qText.textContent = lang === 'hi' ? q.q_hi : q.q_en;
+    qBlock.appendChild(qText);
+
+    const optionsRow = document.createElement('div');
+    optionsRow.className = 'followup-options';
+    q.options.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'followup-option';
+      btn.textContent = lang === 'hi' ? opt.label_hi : opt.label_en;
+      btn.addEventListener('click', () => {
+        optionsRow.querySelectorAll('.followup-option').forEach(b => b.setAttribute('aria-pressed', 'false'));
+        btn.setAttribute('aria-pressed', 'true');
+        deltas[qi] = opt.confidence_delta;
+        updateRefined();
+      });
+      optionsRow.appendChild(btn);
+    });
+    qBlock.appendChild(optionsRow);
+    section.appendChild(qBlock);
+  });
+
+  section.appendChild(refined);
+  container.appendChild(section);
+}
+
+export function renderResult(result, lang, onStartOver, phcList = [], formSnapshot = null, ashaMode = false, conditionInfo = {}, followups = {}) {
   const t = STRINGS[lang];
   const container = document.getElementById('results');
   container.innerHTML = '';
@@ -326,6 +383,8 @@ export function renderResult(result, lang, onStartOver, phcList = [], formSnapsh
         container.appendChild(renderDifferentialEntry({ ...entry, isTop: i === 0 }, lang, result, conditionInfo));
       });
     }
+
+    renderFollowups(container, lang, result, followups);
   }
 
   if (result.tier === 'EMERGENCY') {

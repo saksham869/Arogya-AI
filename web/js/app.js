@@ -42,6 +42,12 @@ async function loadConditionInfo() {
   conditionInfo = await res.json();
 }
 
+let followups = {};
+async function loadFollowups() {
+  const res = await fetch('./data/followups.json');
+  followups = await res.json();
+}
+
 
 const searchInput = document.getElementById('symptom-search');
 const dropdown = document.getElementById('symptom-dropdown');
@@ -317,6 +323,7 @@ loadCooccurrence();
 loadSymptomDescriptions();
 loadPHC();
 loadConditionInfo();
+loadFollowups();
 applyStrings(currentLang);
 updateOnlineStatus();
 
@@ -487,5 +494,5 @@ document.getElementById('assess-btn').addEventListener('click', async () => {
     sex,
   };
   saveHistoryEntry(result, formSnapshot);
-  renderResult(result, currentLang, resetForm, phcList, formSnapshot, ashaMode, conditionInfo);
+  renderResult(result, currentLang, resetForm, phcList, formSnapshot, ashaMode, conditionInfo, followups);
 });

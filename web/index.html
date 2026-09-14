@@ -306,6 +306,22 @@
   }
   .why-ranked-lower-detail { margin-top: 6px; font-size: 0.85rem; color: var(--muted); }
 
+  .followups-section {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 12px; display: flex; flex-direction: column; gap: 12px;
+  }
+  .followup-q-text { font-weight: 600; margin: 0 0 8px; }
+  .followup-options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .followup-option {
+    min-height: 40px; padding: 6px 12px; border-radius: 999px;
+    border: 1px solid var(--line); background: #fff; color: var(--ink);
+    font-size: 0.88rem; cursor: pointer;
+  }
+  .followup-option[aria-pressed="true"] {
+    background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600;
+  }
+  .followups-refined { color: var(--accent); font-weight: 600; margin: 0; }
+
   .phc-section { margin-top: 4px; }
   .phc-section-label { font-weight: 600; margin-bottom: 8px; }
   .phc-list { display: flex; flex-direction: column; gap: 8px; }

@@ -1,0 +1,1806 @@
+{
+  "(vertigo) Paroymsal  Positional Vertigo": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "AIDS": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Acne": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Alcoholic hepatitis": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Allergy": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Arthritis": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Bronchial Asthma": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Cervical spondylosis": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Chicken pox": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Chronic cholestasis": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Common Cold": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Dengue": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Diabetes": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Dimorphic hemmorhoids(piles)": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Drug Reaction": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Fungal infection": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "GERD": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Gastroenteritis": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Heart attack": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Hepatitis B": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Hepatitis C": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Hepatitis D": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Hepatitis E": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Hypertension": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Hyperthyroidism": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Hypoglycemia": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Hypothyroidism": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Impetigo": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Jaundice": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Malaria": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Migraine": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Osteoarthristis": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Paralysis (brain hemorrhage)": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Peptic ulcer diseae": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Pneumonia": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Psoriasis": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Tuberculosis": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Typhoid": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Urinary tract infection": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "Varicose veins": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ],
+  "hepatitis A": [
+    {
+      "q_en": "How long have you had these symptoms?",
+      "q_hi": "ये लक्षण आपको कितने समय से हैं?",
+      "options": [
+        {
+          "label_en": "Less than 1 week",
+          "label_hi": "1 हफ्ते से कम",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "1-4 weeks",
+          "label_hi": "1-4 हफ्ते",
+          "confidence_delta": 0.05
+        },
+        {
+          "label_en": "More than a month",
+          "label_hi": "एक महीने से अधिक",
+          "confidence_delta": 0.1
+        }
+      ]
+    },
+    {
+      "q_en": "Are your symptoms getting better, the same, or worse?",
+      "q_hi": "क्या आपके लक्षण बेहतर हो रहे हैं, वैसे ही हैं, या बिगड़ रहे हैं?",
+      "options": [
+        {
+          "label_en": "Getting better",
+          "label_hi": "बेहतर हो रहे हैं",
+          "confidence_delta": -0.1
+        },
+        {
+          "label_en": "About the same",
+          "label_hi": "वैसे ही हैं",
+          "confidence_delta": 0
+        },
+        {
+          "label_en": "Getting worse",
+          "label_hi": "बिगड़ रहे हैं",
+          "confidence_delta": 0.1
+        }
+      ]
+    }
+  ]
+}

@@ -61,6 +61,7 @@ export const STRINGS = {
     historyEmpty: 'No assessments yet.',
     clearHistory: 'Clear all history',
     confirmClearHistory: 'Clear all assessment history from this device?',
+    refinedBasedOnAnswers: 'Refined based on your answers',
   },
   hi: {
     appTitle: 'ArogyaAI',
@@ -124,5 +125,6 @@ export const STRINGS = {
     historyEmpty: 'अभी तक कोई जांच नहीं हुई।',
     clearHistory: 'सारा इतिहास मिटाएं',
     confirmClearHistory: 'इस डिवाइस से सारा जांच इतिहास मिटाएं?',
+    refinedBasedOnAnswers: 'आपके उत्तरों के आधार पर परिष्कृत',
   },
 };
