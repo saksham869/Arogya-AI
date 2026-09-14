@@ -1,0 +1,13 @@
+id,description,symptoms,age_years,sex,risk_factors,vitals,expected_tier
+V01,"52yo male, chest pain radiating to left arm, sweating","chest_pain|sweating",52,"M","{""heart_disease"":false}","{}",EMERGENCY
+V02,"2-month-old baby with high fever","high_fever",0.17,"F","{}","{}",EMERGENCY
+V03,"35yo with fever and severe neck stiffness","high_fever|stiff_neck",35,"M","{}","{}",EMERGENCY
+V04,"45yo, sudden weakness in right arm and headache","weakness_in_limbs|headache",45,"F","{}","{}",EMERGENCY
+V05,"28yo with skin rash and itching, no fever","skin_rash|itching",28,"M","{}","{}",ROUTINE
+V06,"22yo with common cold symptoms","continuous_sneezing|runny_nose|cough",22,"F","{}","{}",ROUTINE
+V07,"40yo with mild back pain","back_pain",40,"M","{}","{}",ROUTINE
+V08,"31yo with mild stomach ache after eating","stomach_pain",31,"F","{}","{}",ROUTINE
+V09,"55yo diabetic with high fever, chills, vomiting","high_fever|chills|vomiting",55,"M","{""diabetes"":true}","{}",URGENT
+V10,"38yo with cough and breathing difficulty","cough|breathlessness",38,"M","{}","{}",URGENT
+V11,"27yo with 5 days of fatigue and yellow eyes","fatigue|yellowing_of_eyes",27,"F","{}","{}",URGENT
+V12,"29yo with fever, but mild, duration 2 days","high_fever",29,"M","{}","{""temp_c"":37.8}",ROUTINE
