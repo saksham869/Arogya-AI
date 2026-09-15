@@ -5,7 +5,11 @@
 import { predict } from './infer.js';
 import { renderResult } from './render.js';
 import { STRINGS } from './strings.js';
-import { openSheet, closeSheet } from './sheet.js';
+import { openSheet } from './sheet.js';
+import {
+  getActiveProfile, renderProfileHeader, renderProfilesScreen,
+  saveAssessmentFromResult, showToast, initProfileSystem,
+} from './profiles.js';
 
 let symptomsList = [];
 const selectedSymptoms = new Set();
@@ -244,9 +248,7 @@ function applyStrings(lang) {
     btn.textContent = t.riskFactorLabels[btn.dataset.factor];
   });
   document.getElementById('tab-assess-btn').textContent = t.tabAssess;
-  document.getElementById('tab-history-btn').textContent = t.tabHistory;
-  document.getElementById('history-notice').textContent = t.historyNotice;
-  document.getElementById('clear-history-btn').textContent = t.clearHistory;
+  document.getElementById('tab-history-btn').textContent = t.profiles;
 }
 
 document.getElementById('lang-toggle').addEventListener('click', (e) => {
@@ -259,8 +261,8 @@ document.getElementById('lang-toggle').addEventListener('click', (e) => {
   document.documentElement.lang = currentLang;
   applyStrings(currentLang);
   renderGhostChips();
-  updateProfileButtonLabel();
-  if (!document.getElementById('history-view').hidden) renderHistory();
+  renderProfileHeader();
+  if (!document.getElementById('history-view').hidden) renderProfilesScreen();
 });
 
 // Risk factor toggle chips
@@ -341,133 +343,6 @@ ashaToggle.addEventListener('click', () => {
   applyAshaMode();
 });
 
-// --- Family profiles (F7) ---
-const PROFILES_KEY = 'arogya_profiles';
-const ACTIVE_PROFILE_KEY = 'arogya_active_profile';
-const MAX_PROFILES = 4;
-
-function loadProfiles() {
-  try {
-    return JSON.parse(localStorage.getItem(PROFILES_KEY)) || [];
-  } catch {
-    return [];
-  }
-}
-function saveProfiles(profiles) {
-  localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
-}
-function getActiveProfileId() {
-  return localStorage.getItem(ACTIVE_PROFILE_KEY) || null;
-}
-function getActiveProfile() {
-  const id = getActiveProfileId();
-  return id ? loadProfiles().find(p => p.id === id) || null : null;
-}
-function setActiveProfileId(id) {
-  if (id) localStorage.setItem(ACTIVE_PROFILE_KEY, id);
-  else localStorage.removeItem(ACTIVE_PROFILE_KEY);
-  updateProfileButtonLabel();
-}
-
-function updateProfileButtonLabel() {
-  const p = getActiveProfile();
-  document.getElementById('profile-btn-label').textContent = p ? p.name : STRINGS[currentLang].defaultProfile;
-}
-
-function applyProfileDefaults(profile) {
-  document.getElementById('age-input').value = profile.age;
-  document.getElementById('sex-select').value = profile.sex;
-  document.querySelectorAll('#risk-factor-toggles button[data-factor]').forEach(btn => {
-    const on = !!profile.riskFactors[btn.dataset.factor];
-    btn.setAttribute('aria-pressed', String(on));
-    riskFactors[btn.dataset.factor] = on;
-  });
-}
-
-function switchProfile(id) {
-  setActiveProfileId(id);
-  const p = getActiveProfile();
-  if (p) applyProfileDefaults(p);
-  closeSheet();
-  if (!document.getElementById('history-view').hidden) renderHistory();
-}
-
-function deleteProfile(id) {
-  if (!confirm(STRINGS[currentLang].confirmDeleteProfile)) return;
-  saveProfiles(loadProfiles().filter(p => p.id !== id));
-  if (getActiveProfileId() === id) setActiveProfileId(null);
-  renderProfileSheet();
-}
-
-function addProfile(name, age, sex) {
-  const profiles = loadProfiles();
-  if (profiles.length >= MAX_PROFILES) return;
-  const id = `p_${Date.now()}`;
-  profiles.push({ id, name, age, sex, riskFactors: {} });
-  saveProfiles(profiles);
-  switchProfile(id);
-}
-
-function renderProfileSheet() {
-  const profiles = loadProfiles();
-  const activeId = getActiveProfileId();
-  const t = STRINGS[currentLang];
-
-  let html = `<h3>${t.profiles}</h3>`;
-  html += `<div class="profile-list-item${activeId === null ? ' active' : ''}">
-    <button type="button" class="profile-name-btn" data-switch-profile="">${t.defaultProfile}</button>
-  </div>`;
-  profiles.forEach(p => {
-    html += `<div class="profile-list-item${activeId === p.id ? ' active' : ''}">
-      <button type="button" class="profile-name-btn" data-switch-profile="${p.id}">${p.name}</button>
-      <button type="button" class="profile-delete-btn" data-delete-profile="${p.id}" aria-label="Delete">✕</button>
-    </div>`;
-  });
-  if (profiles.length < MAX_PROFILES) {
-    html += `<button type="button" class="profile-add-btn" id="show-add-profile-form">+ ${t.addProfile}</button>
-    <div class="profile-form" id="add-profile-form" hidden>
-      <input type="text" id="new-profile-name" placeholder="${t.name}">
-      <input type="number" id="new-profile-age" placeholder="${t.ageLabel}" min="0" max="120" step="0.1">
-      <select id="new-profile-sex">
-        <option value="M">${t.male}</option>
-        <option value="F">${t.female}</option>
-        <option value="O">${t.other}</option>
-      </select>
-      <button type="button" class="profile-save-btn" id="save-new-profile">${t.save}</button>
-    </div>`;
-  }
-  openSheet(html);
-
-  sheetBody().querySelectorAll('[data-switch-profile]').forEach(btn => {
-    btn.addEventListener('click', () => switchProfile(btn.dataset.switchProfile || null));
-  });
-  sheetBody().querySelectorAll('[data-delete-profile]').forEach(btn => {
-    btn.addEventListener('click', () => deleteProfile(btn.dataset.deleteProfile));
-  });
-  const showFormBtn = sheetBody().querySelector('#show-add-profile-form');
-  if (showFormBtn) {
-    showFormBtn.addEventListener('click', () => {
-      document.getElementById('add-profile-form').hidden = false;
-      showFormBtn.hidden = true;
-    });
-  }
-  const saveBtn = sheetBody().querySelector('#save-new-profile');
-  if (saveBtn) {
-    saveBtn.addEventListener('click', () => {
-      const name = document.getElementById('new-profile-name').value.trim();
-      const age = parseFloat(document.getElementById('new-profile-age').value);
-      const sex = document.getElementById('new-profile-sex').value;
-      if (!name || isNaN(age)) return;
-      addProfile(name, age, sex);
-    });
-  }
-}
-function sheetBody() {
-  return document.getElementById('sheet-body');
-}
-
-document.getElementById('profile-btn').addEventListener('click', renderProfileSheet);
-updateProfileButtonLabel();
 
 // --- Medicine reminders (F15) -- never names a drug (S1); the system has
 // no medication data to name in the first place, so this is structural,
@@ -569,6 +444,7 @@ loadFollowups();
 loadRedFlagRules();
 applyStrings(currentLang);
 updateOnlineStatus();
+initProfileSystem((tab) => switchTab('history'));
 
 function readVitals() {
   const temp = document.getElementById('vital-temp').value;
@@ -595,49 +471,14 @@ function resetForm() {
   });
 }
 
-// --- Assessment history (F14) ---
-const HISTORY_KEY = 'arogya_history';
-const MAX_HISTORY = 5;
-
-function loadHistory() {
-  try {
-    return JSON.parse(localStorage.getItem(HISTORY_KEY)) || [];
-  } catch {
-    return [];
-  }
-}
-
-function saveHistoryEntry(result, snapshot) {
-  const history = loadHistory();
-  history.unshift({
-    timestamp: new Date().toISOString(),
-    profile: getActiveProfileId(), // null = the default/no-profile bucket
-    symptoms: snapshot.symptoms,
-    vitals: snapshot.vitals,
-    riskFactors: snapshot.riskFactors,
-    ageYears: snapshot.ageYears,
-    sex: snapshot.sex,
-    tier: result.tier,
-    topDisease: result.tierSource === 'model' ? result.topClass : null,
-  });
-  // F14's own description says "last 5 per profile" (not a single global
-  // cap of 5) -- trim per profile bucket, not the array as a whole, so
-  // adding profiles doesn't starve everyone else's history.
-  const counts = {};
-  const trimmed = history.filter(e => {
-    counts[e.profile] = (counts[e.profile] || 0) + 1;
-    return counts[e.profile] <= MAX_HISTORY;
-  });
-  localStorage.setItem(HISTORY_KEY, JSON.stringify(trimmed));
-}
-
-// F16: symptoms appearing in 3+ of the active profile's last 5 checks.
-// Scoped to the active profile (not global) -- mixing family members'
-// symptom counts into one trend would be meaningless. Advisory only:
-// never touches the triage tier.
+// F16 (symptom trend tracker) predates this profile-system rewrite and
+// isn't part of the new spec, but nothing asked for it to be removed --
+// re-pointed at the new per-profile assessments array instead of the old
+// flat arogya_history. Same rule: 3+ of the active profile's last 5.
 function computeTrendNotices() {
-  const activeProfileId = getActiveProfileId();
-  const recent = loadHistory().filter(e => e.profile === activeProfileId).slice(0, MAX_HISTORY);
+  const profile = getActiveProfile();
+  if (!profile) return [];
+  const recent = profile.assessments.slice(0, 5);
   if (recent.length < 3) return [];
   const counts = {};
   recent.forEach(entry => {
@@ -648,82 +489,6 @@ function computeTrendNotices() {
     .map(([symptom, n]) => ({ symptom, count: n, total: recent.length }));
 }
 
-function tierBadgeClass(tier) {
-  if (tier === 'EMERGENCY') return 'emergency';
-  if (tier === 'URGENT') return 'urgent';
-  return 'routine';
-}
-
-function renderHistory() {
-  const list = document.getElementById('history-list');
-  list.innerHTML = '';
-  const activeProfileId = getActiveProfileId();
-  const history = loadHistory().filter(e => e.profile === activeProfileId);
-  if (history.length === 0) {
-    const empty = document.createElement('p');
-    empty.className = 'history-empty';
-    empty.textContent = STRINGS[currentLang].historyEmpty;
-    list.appendChild(empty);
-    return;
-  }
-  history.forEach(entry => {
-    const row = document.createElement('div');
-    row.className = 'history-entry';
-    row.addEventListener('click', () => reopenHistoryEntry(entry));
-
-    const top = document.createElement('div');
-    top.className = 'history-entry-top';
-    const date = document.createElement('span');
-    date.className = 'history-date';
-    date.textContent = new Date(entry.timestamp).toLocaleString(currentLang === 'hi' ? 'hi-IN' : 'en-IN');
-    const badge = document.createElement('span');
-    badge.className = `history-tier-badge ${tierBadgeClass(entry.tier)}`;
-    badge.textContent = entry.tier;
-    top.appendChild(date);
-    top.appendChild(badge);
-    row.appendChild(top);
-
-    if (entry.topDisease) {
-      const disease = document.createElement('div');
-      disease.className = 'history-top-disease';
-      disease.textContent = entry.topDisease;
-      row.appendChild(disease);
-    }
-
-    const symptoms = document.createElement('div');
-    symptoms.className = 'history-symptoms';
-    symptoms.textContent = entry.symptoms.join(', ');
-    row.appendChild(symptoms);
-
-    list.appendChild(row);
-  });
-}
-
-function reopenHistoryEntry(entry) {
-  resetForm();
-  entry.symptoms.forEach(s => selectedSymptoms.add(s));
-  renderChips();
-  document.getElementById('age-input').value = entry.ageYears;
-  document.getElementById('sex-select').value = entry.sex;
-  if (entry.vitals.temp_c != null) document.getElementById('vital-temp').value = entry.vitals.temp_c;
-  if (entry.vitals.pulse_bpm != null) document.getElementById('vital-pulse').value = entry.vitals.pulse_bpm;
-  if (entry.vitals.breathing_rpm != null) document.getElementById('vital-breathing').value = entry.vitals.breathing_rpm;
-  Object.entries(entry.riskFactors || {}).forEach(([factor, on]) => {
-    if (!on) return;
-    riskFactors[factor] = true;
-    const btn = document.querySelector(`#risk-factor-toggles button[data-factor="${factor}"]`);
-    if (btn) btn.setAttribute('aria-pressed', 'true');
-  });
-  switchTab('assess');
-}
-
-document.getElementById('clear-history-btn').addEventListener('click', () => {
-  if (confirm(STRINGS[currentLang].confirmClearHistory)) {
-    localStorage.removeItem(HISTORY_KEY);
-    renderHistory();
-  }
-});
-
 function switchTab(tab) {
   const main = document.querySelector('main');
   const historyView = document.getElementById('history-view');
@@ -732,7 +497,7 @@ function switchTab(tab) {
   historyView.hidden = !isHistory;
   document.getElementById('tab-assess-btn').setAttribute('aria-pressed', String(!isHistory));
   document.getElementById('tab-history-btn').setAttribute('aria-pressed', String(isHistory));
-  if (isHistory) renderHistory();
+  if (isHistory) renderProfilesScreen();
 }
 
 document.getElementById('tab-nav').addEventListener('click', (e) => {
@@ -762,7 +527,7 @@ document.getElementById('assess-btn').addEventListener('click', async () => {
     ageYears,
     sex,
   };
-  saveHistoryEntry(result, formSnapshot);
+  await saveAssessmentFromResult(result, formSnapshot, showToast);
   const trendNotices = computeTrendNotices();
   const activeProfile = getActiveProfile();
   renderResult(result, currentLang, resetForm, phcList, formSnapshot, ashaMode, conditionInfo, followups, activeProfile ? activeProfile.name : null, setReminder, trendNotices, openRuleSetViewer);
