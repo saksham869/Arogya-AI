@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ArogyaAI</title>
+<link rel="icon" href="data:,">
 <style>
   :root {
     --bg: #f4f6f5;
@@ -68,12 +69,6 @@
   .status-dot .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--ok); }
   .status-dot.offline .dot { background: #999; }
 
-  .asha-toggle, .profile-btn {
-    border: 1px solid rgba(255,255,255,0.6); border-radius: 8px; background: transparent;
-    color: var(--accent-ink); padding: 8px 10px; min-height: 40px; font-size: 0.85rem; cursor: pointer;
-  }
-  .asha-toggle[aria-pressed="true"] { background: rgba(255,255,255,0.25); font-weight: 700; }
-
   .tab-nav {
     display: flex; max-width: 640px; margin: 12px auto 0; padding: 0 16px; gap: 8px;
   }
@@ -87,37 +82,6 @@
     max-width: 640px; margin: 16px auto 0; padding: 0 16px 24px;
     display: flex; flex-direction: column; gap: 12px;
   }
-  .history-notice { color: var(--muted); font-size: 0.82rem; }
-  .history-list { display: flex; flex-direction: column; gap: 10px; }
-  .history-entry {
-    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
-    padding: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 6px;
-  }
-  .history-entry-top { display: flex; justify-content: space-between; align-items: center; }
-  .history-date { color: var(--muted); font-size: 0.82rem; }
-  .history-tier-badge {
-    font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; color: #fff;
-  }
-  .history-tier-badge.emergency { background: var(--danger); }
-  .history-tier-badge.urgent { background: var(--warn); }
-  .history-tier-badge.routine { background: var(--ok); }
-  .history-top-disease { font-weight: 600; }
-  .history-symptoms { color: var(--muted); font-size: 0.85rem; }
-  .history-empty { color: var(--muted); font-size: 0.9rem; }
-  .clear-history-btn {
-    min-height: 44px; border: 1px solid var(--line); background: #fff;
-    color: var(--danger); border-radius: 8px; font-size: 0.95rem; cursor: pointer;
-  }
-
-  /* F19: ASHA worker mode -- larger everything for low-literacy / low-vision
-     field use, applied on top of whatever language is selected. */
-  body.asha-mode { font-size: 18px; }
-  body.asha-mode button, body.asha-mode input, body.asha-mode select {
-    min-height: 56px; font-size: 1.05rem;
-  }
-  body.asha-mode .assess-btn { min-height: 64px; font-size: 1.3rem; }
-  body.asha-mode .banner-title { font-size: 1.5rem; }
-
   main {
     max-width: 640px;
     margin: 16px auto 0;
@@ -604,7 +568,6 @@
       <button type="button" class="profile-avatar-btn" id="profile-avatar-btn" aria-label="Profile"></button>
       <div class="profile-dropdown" id="profile-dropdown" hidden></div>
     </div>
-    <button type="button" class="asha-toggle" id="asha-toggle" aria-pressed="false">ASHA</button>
     <div class="status-dot" id="status-dot"><span class="dot"></span><span class="status-text" id="status-text">Online</span></div>
   </div>
 </header>

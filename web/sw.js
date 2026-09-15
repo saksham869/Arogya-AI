@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v15'; // v15: full patient profile system rewrite, adds js/profiles.js
+const CACHE_VERSION = 'v16'; // v16: remove ASHA mode, fix DOM/CSS bugs from profile system rewrite
 // (from here on, bump on any precached file's content change, not just when
 // the PRECACHE list itself changes -- a cache-first SW otherwise keeps
 // serving stale JS/HTML to anyone who already installed an older version)
