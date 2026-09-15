@@ -274,14 +274,6 @@ function buildPrintCard(result, lang, phcList, formSnapshot) {
   return card;
 }
 
-// F19: simplified Hindi tier labels, shown regardless of the language
-// toggle whenever ASHA mode is on.
-const ASHA_TIER_LABELS = {
-  EMERGENCY: 'तुरंत अस्पताल जाएं',
-  URGENT: 'आज डॉक्टर को दिखाएं',
-  ROUTINE: 'घर पर देखभाल करें',
-};
-
 // F9: 2 generic follow-up questions for the top predicted disease. Answers
 // only adjust a displayed confidence-band readout (reusing 6-B7's
 // confidenceBand() helper) -- the model output and the real differential
@@ -404,7 +396,7 @@ function renderReminderPrompt(container, lang, onSetReminder) {
   container.appendChild(section);
 }
 
-export function renderResult(result, lang, onStartOver, phcList = [], formSnapshot = null, ashaMode = false, conditionInfo = {}, followups = {}, profileName = null, onSetReminder = null, trendNotices = [], onShowRuleViewer = null) {
+export function renderResult(result, lang, onStartOver, phcList = [], formSnapshot = null, conditionInfo = {}, followups = {}, profileName = null, onSetReminder = null, trendNotices = [], onShowRuleViewer = null) {
   const t = STRINGS[lang];
   const container = document.getElementById('results');
   container.innerHTML = '';
@@ -421,9 +413,7 @@ export function renderResult(result, lang, onStartOver, phcList = [], formSnapsh
 
   const bannerTitle = document.createElement('div');
   bannerTitle.className = 'banner-title';
-  bannerTitle.textContent = ashaMode
-    ? (ASHA_TIER_LABELS[result.tier] || result.tier)
-    : (t.tierBanner[result.tier] || result.tier);
+  bannerTitle.textContent = t.tierBanner[result.tier] || result.tier;
   banner.appendChild(bannerTitle);
 
   if (result.tierSource === 'red_flag') {
@@ -460,9 +450,7 @@ export function renderResult(result, lang, onStartOver, phcList = [], formSnapsh
       causesLabel.textContent = t.possibleCauses;
       container.appendChild(causesLabel);
 
-      // F19: ASHA mode collapses the differential to just the top entry.
-      const shown = ashaMode ? result.differential.slice(0, 1) : result.differential;
-      shown.forEach((entry, i) => {
+      result.differential.forEach((entry, i) => {
         container.appendChild(renderDifferentialEntry({ ...entry, isTop: i === 0 }, lang, result, conditionInfo));
       });
     }
