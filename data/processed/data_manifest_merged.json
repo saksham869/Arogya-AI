@@ -1,0 +1,146 @@
+{
+  "sources": [
+    "data/raw/dataset.csv",
+    "data/raw/dataset_773.csv"
+  ],
+  "sha256_41": "ebbd391c4ba4d64f57a00eb3d0a55f0ca9b920b0c5de6b9af4234e72519c9618",
+  "sha256_773": "8de90603ebada467fc2703db2ee4292856e52d64e94982ef926df22fa0c21320",
+  "generated": "2026-09-16",
+  "rows_from_41_before_dedup": 304,
+  "rows_from_773_before_dedup": 18282,
+  "rows_from_773_raw_candidates": 22831,
+  "rows_from_773_all_zero_dropped": 4549,
+  "drop_all_zero_rows": true,
+  "rows_total_before_dedup": 18586,
+  "rows_after_dedup": 494,
+  "duplicates_removed": 18092,
+  "n_symptoms": 131,
+  "n_diseases": 41,
+  "class_counts": {
+    "(vertigo) Paroymsal  Positional Vertigo": 22,
+    "AIDS": 5,
+    "Acne": 6,
+    "Alcoholic hepatitis": 9,
+    "Allergy": 8,
+    "Arthritis": 13,
+    "Bronchial Asthma": 8,
+    "Cervical spondylosis": 13,
+    "Chicken pox": 10,
+    "Chronic cholestasis": 8,
+    "Common Cold": 24,
+    "Dengue": 10,
+    "Diabetes": 10,
+    "Dimorphic hemmorhoids(piles)": 7,
+    "Drug Reaction": 37,
+    "Fungal infection": 6,
+    "GERD": 10,
+    "Gastroenteritis": 20,
+    "Heart attack": 8,
+    "Hepatitis B": 9,
+    "Hepatitis C": 7,
+    "Hepatitis D": 10,
+    "Hepatitis E": 9,
+    "Hypertension": 7,
+    "Hyperthyroidism": 9,
+    "Hypoglycemia": 16,
+    "Hypothyroidism": 15,
+    "Impetigo": 9,
+    "Jaundice": 9,
+    "Malaria": 9,
+    "Migraine": 25,
+    "Osteoarthristis": 22,
+    "Paralysis (brain hemorrhage)": 20,
+    "Peptic ulcer diseae": 10,
+    "Pneumonia": 16,
+    "Psoriasis": 10,
+    "Tuberculosis": 10,
+    "Typhoid": 9,
+    "Urinary tract infection": 12,
+    "Varicose veins": 8,
+    "hepatitis A": 9
+  },
+  "note": "Only rows whose disease label appears (directly or via the disclosed DISEASE_ALIAS_MAP in merge_773.py) in the original 41-disease set were retained from the 773-disease source. Symptom columns not present by name in the 773-set are 0 for every 773-sourced row (only 22 of 131 symptom columns overlap by name). Rows left entirely zero under that 22-column overlap are dropped (4549 such rows found among the 773-source candidates) -- keeping them was tried first and measurably hurt the model (LR top-1 1.00 -> 0.70), so dropping is now the default. 2 diseases (Chronic cholestasis, Hyperthyroidism) had no usable candidate in the 773-set even under fuzzy name matching (difflib) and received zero extra rows.",
+  "disease_alias_map": {
+    "(vertigo) Paroymsal  Positional Vertigo": [
+      "benign paroxysmal positional vertical (bppv)"
+    ],
+    "AIDS": [
+      "human immunodeficiency virus infection (hiv)"
+    ],
+    "Alcoholic hepatitis": [
+      "alcoholic liver disease"
+    ],
+    "Arthritis": [
+      "rheumatoid arthritis",
+      "septic arthritis",
+      "reactive arthritis",
+      "juvenile rheumatoid arthritis",
+      "arthritis of the hip"
+    ],
+    "Bronchial Asthma": [
+      "asthma"
+    ],
+    "Cervical spondylosis": [
+      "spondylosis"
+    ],
+    "Chronic cholestasis": [],
+    "Dengue": [
+      "dengue fever"
+    ],
+    "Dimorphic hemmorhoids(piles)": [
+      "hemorrhoids"
+    ],
+    "Fungal infection": [
+      "fungal infection of the hair",
+      "fungal infection of the skin"
+    ],
+    "Gastroenteritis": [
+      "infectious gastroenteritis",
+      "noninfectious gastroenteritis"
+    ],
+    "GERD": [
+      "gastroesophageal reflux disease (gerd)"
+    ],
+    "Hepatitis A": [
+      "viral hepatitis"
+    ],
+    "Hepatitis B": [
+      "viral hepatitis"
+    ],
+    "Hepatitis C": [
+      "viral hepatitis"
+    ],
+    "Hepatitis D": [
+      "viral hepatitis"
+    ],
+    "Hepatitis E": [
+      "viral hepatitis"
+    ],
+    "Hypertension": [
+      "high blood pressure"
+    ],
+    "Hyperthyroidism": [],
+    "Jaundice": [
+      "neonatal jaundice"
+    ],
+    "Osteoarthristis": [
+      "osteoarthritis"
+    ],
+    "Paralysis (brain hemorrhage)": [
+      "intracerebral hemorrhage",
+      "intracranial hemorrhage",
+      "subarachnoid hemorrhage",
+      "subdural hemorrhage"
+    ],
+    "Peptic ulcer diseae": [
+      "gastroduodenal ulcer"
+    ],
+    "Typhoid": [
+      "typhoid fever"
+    ]
+  },
+  "unmapped_diseases": [
+    "Chronic cholestasis",
+    "Hyperthyroidism"
+  ]
+}

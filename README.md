@@ -72,6 +72,74 @@ not just smaller than the inflated papers.** Logistic Regression ships
 over Random Forest per AD-1 (both tie on accuracy here; LR is 813× smaller
 once exported); Gradient Boosting is reported only as a baseline.
 
+## Merged corpus (Option 3)
+
+After the initial 41-disease de-duplication finding, we tried merging in
+rows for the same 41 diseases from the dhivyeshrk 773-disease Kaggle
+dataset ("Diseases and Symptoms", ~246,945 rows) to increase training
+data per class. This is a separate, opt-in pipeline path
+(`src/preprocessing/merge_773.py`, `python -m src.models.train --merged`)
+— it does not touch `clean.csv`/`data_manifest.json`, and the original
+304-row model is still what ships.
+
+Two merge runs were tried. The first kept every 773-sourced row,
+including ones with no symptom in the 22-column name-overlap between the
+two datasets' vocabularies (an all-zero vector paired with a real
+disease label). The second — current default — drops those rows, after
+the first run showed they were pure label noise, not signal. A fuzzy
+name-match pass (difflib) was also tried for the 2 diseases with no
+direct candidate (Chronic cholestasis, Hyperthyroidism); it found none
+worth using (closest hits were a different organ-system diagnosis and
+the *opposite* condition, respectively) and neither was added.
+
+| | Original | Merged v1 (zero-kept) | Merged v2 (zero-dropped, current) |
+|---|---|---|---|
+| Source rows (before dedup) | 4,920 | 23,135 combined | 18,586 combined |
+| After de-duplication | 304 | 526 | 494 |
+| Min class count | 5 | 6 | 5 |
+| LR top-1 (mean±sd) | 1.0000±0.0000 | 0.6977±0.0355 | 0.7397±0.0344 |
+| LR Wilson 95% CI | [0.941, 1.000] | [0.675, 0.835] | [0.665, 0.831] |
+| LR F1 macro | 1.0000 | 0.7674 | 0.8065 |
+
+**1.0000 on the original set isn't the bar to clear** — it's a symptom
+of that corpus having zero cross-disease symptom-vector collisions (see
+above), not evidence of a better model. Judged that way, dropping the
+zero rows is a real improvement over the first merge attempt (top-1
+0.70→0.74, F1 macro 0.77→0.81) — consistent with removing label noise
+rather than signal. It is not, however, a clean win over the original:
+two of this run's own remaining choices still inject real noise a
+genuine corpus expansion wouldn't — the 5 Hepatitis classes still share
+one undifferentiated "viral hepatitis" source, and 109 of 131 symptom
+columns are still always 0 for every 773-sourced row (only 22 names
+overlap between the two datasets' vocabularies at all), so a 0.74 here
+isn't a trustworthy generalization estimate either. Root cause of the
+limited improvement: only 22 of 131 symptom column names overlap
+between the two source datasets. 109 columns are always zero in the
+773-disease sourced rows, contributing no training signal. Bridging
+this vocabulary gap via a unified symptom ontology is identified as the
+primary bottleneck for accuracy improvement — see Future Work.
+
+**The merged model is still not used in production.** Both models are
+committed (`models/lr.joblib`, `models/lr_merged.joblib`) for
+inspection; only the original is exported to ONNX and served to the
+browser. Full writeup, the disease alias map, and per-disease row-count
+deltas: `results/metrics_merged.md` and
+`data/processed/data_manifest_merged.json`.
+
+## Future Work
+
+- **Bridge the 773-set's symptom vocabulary gap.** Only 22 of 131
+  symptom columns overlap by exact name with the dhivyeshrk 773-disease
+  dataset; the other 109 are always zero for every row sourced from it.
+  Mapping more of that dataset's 377 columns to real clinical synonyms
+  of the 41-set's 131 (a proper symptom ontology / synonym table, not
+  string matching) would let far more of the 22,831 candidate rows in
+  `data/processed/data_manifest_merged.json` carry real signal instead
+  of near-empty vectors — this is the primary bottleneck standing
+  between the current 0.74 top-1 merged-corpus result and a genuinely
+  larger, trustworthy training set. See "Merged corpus (Option 3)"
+  above and `src/preprocessing/merge_773.py` for the current state.
+
 ## ONNX export
 
 `skl2onnx` with `zipmap=False` (AD-3 — without it, `onnxruntime-web`
