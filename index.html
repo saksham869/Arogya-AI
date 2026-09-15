@@ -18,6 +18,15 @@
     --danger: #c0392b;
     --warn: #b8860b;
     --ok: #1f8a4c;
+    /* Aliases for the patient-profile-system spec's token names, mapped
+       onto the existing palette above rather than re-theming everything
+       already built (--text-1/2/3, --border, --accent-soft weren't part
+       of the original design system). */
+    --text-1: var(--ink);
+    --text-2: var(--muted);
+    --text-3: #8a978f;
+    --border: var(--line);
+    --accent-soft: #e4f2ee;
   }
   * { box-sizing: border-box; }
   /* Any author rule that sets `display` on an element beats the UA
@@ -418,6 +427,168 @@
   @media (min-width: 480px) {
     .vitals-grid { grid-template-columns: 1fr 1fr 1fr; }
   }
+
+  /* ===== Patient profile system ===== */
+
+  .profile-switcher { position: relative; }
+  .profile-avatar-btn {
+    border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    gap: 4px; padding: 0 8px;
+  }
+  .profile-avatar-btn.has-profile {
+    width: auto; min-width: 48px; height: 32px; border-radius: 16px;
+    background: rgba(255,255,255,0.15); color: #fff; font-size: 13px; font-weight: 600;
+  }
+  .profile-avatar-btn.no-profile {
+    width: 44px; height: 32px; background: transparent; color: #fff; opacity: 0.6; font-size: 1.3rem;
+  }
+  .profile-dropdown {
+    position: absolute; top: calc(100% + 8px); right: 0; z-index: 15;
+    background: #fff; border: 1px solid var(--border); border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15); min-width: 200px; overflow: hidden;
+  }
+  .profile-dropdown-row {
+    display: flex; align-items: center; justify-content: space-between;
+    min-height: 44px; padding: 0 14px; border-bottom: 1px solid var(--border);
+    background: none; border-left: none; border-right: none; border-top: none;
+    width: 100%; text-align: left; cursor: pointer; color: var(--text-1); font-size: 0.92rem;
+  }
+  .profile-dropdown-row:last-child { border-bottom: none; }
+  .profile-dropdown-row.manage { color: var(--accent); font-weight: 600; }
+  .profile-dropdown-check { color: var(--accent); font-weight: 700; }
+
+  #profiles-content { max-width: 640px; margin: 16px auto 0; padding: 0 16px 24px; }
+
+  .profile-empty-state {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; height: calc(100vh - 140px); gap: 8px; padding: 0 24px;
+  }
+  .profile-empty-icon {
+    width: 64px; height: 64px; border-radius: 50%; background: var(--accent-soft);
+    color: var(--accent); display: flex; align-items: center; justify-content: center;
+    font-size: 28px; margin-bottom: 8px;
+  }
+  .profile-empty-heading { font-size: 20px; font-weight: 600; color: var(--text-1); margin: 0; }
+  .profile-empty-sub { font-size: 15px; color: var(--text-2); margin: 0 0 8px; }
+  .profile-list-heading-row {
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;
+  }
+  .profile-list-heading-row h2 { font-size: 18px; margin: 0; color: var(--text-1); }
+  .profile-new-btn { background: none; border: none; color: var(--accent); font-weight: 600; font-size: 0.95rem; cursor: pointer; min-height: 44px; }
+
+  .profile-card-list { display: flex; flex-direction: column; gap: 10px; }
+  .profile-card {
+    display: flex; align-items: center; gap: 12px; border: 1px solid var(--border);
+    border-radius: 12px; padding: 16px; cursor: pointer; background: #fff; position: relative;
+  }
+  .profile-card.active { border-left: 4px solid var(--accent); }
+  .profile-card-avatar {
+    width: 48px; height: 48px; border-radius: 50%; background: var(--accent);
+    color: #fff; font-weight: 600; font-size: 20px; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .profile-card-info { flex: 1; min-width: 0; }
+  .profile-card-name { font-size: 15px; font-weight: 600; color: var(--text-1); }
+  .profile-card-meta { font-size: 13px; color: var(--text-2); }
+  .profile-card-last { font-size: 12px; color: var(--text-3); }
+  .profile-card-chevron { color: var(--text-3); font-size: 1.1rem; }
+  .profile-card-delete-btn {
+    min-height: 44px; padding: 0 14px; border-radius: 8px; border: none;
+    background: var(--danger); color: #fff; font-size: 0.85rem; cursor: pointer;
+  }
+
+  .profile-form-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .profile-back-btn { background: none; border: none; font-size: 1.2rem; cursor: pointer; min-width: 44px; min-height: 44px; color: var(--text-1); }
+  .profile-form-header h2 { font-size: 17px; margin: 0; color: var(--text-1); }
+  .profile-form-field { margin-bottom: 14px; }
+  .profile-form-field label { display: block; font-size: 0.85rem; color: var(--text-2); margin-bottom: 6px; }
+  .profile-form-field input {
+    width: 100%; height: 48px; border: 1px solid var(--border); border-radius: 8px; padding: 0 12px; font-size: 1rem;
+  }
+  .segmented-control { display: flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .segmented-control button {
+    flex: 1; height: 44px; border: none; background: #fff; color: var(--text-1); font-size: 0.9rem; cursor: pointer;
+    border-right: 1px solid var(--border);
+  }
+  .segmented-control button:last-child { border-right: none; }
+  .segmented-control button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+  .toggle-row-list { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .toggle-row {
+    display: flex; align-items: center; justify-content: space-between;
+    min-height: 48px; padding: 0 14px; border-bottom: 1px solid var(--border);
+  }
+  .toggle-row:last-child { border-bottom: none; }
+  .toggle-row span { font-size: 0.92rem; color: var(--text-1); }
+  .toggle-switch {
+    width: 44px; height: 26px; border-radius: 13px; border: none; background: var(--border);
+    position: relative; cursor: pointer; flex-shrink: 0;
+  }
+  .toggle-switch::after {
+    content: ''; position: absolute; top: 2px; left: 2px; width: 22px; height: 22px;
+    border-radius: 50%; background: #fff; transition: left 0.15s;
+  }
+  .toggle-switch[aria-pressed="true"] { background: var(--accent); }
+  .toggle-switch[aria-pressed="true"]::after { left: 20px; }
+  .profile-form-save-btn {
+    width: 100%; min-height: 56px; border: none; border-radius: 12px; background: var(--accent);
+    color: var(--accent-ink); font-size: 17px; font-weight: 600; cursor: pointer; margin-top: 8px;
+  }
+
+  .profile-stats-bar {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; border: 1px solid var(--border);
+    border-radius: 12px; margin-bottom: 16px; overflow: hidden;
+  }
+  .profile-stat { text-align: center; padding: 12px 4px; border-right: 1px solid var(--border); }
+  .profile-stat:last-child { border-right: none; }
+  .profile-stat-value { font-size: 22px; font-weight: 700; color: var(--accent); }
+  .profile-stat-label { font-size: 12px; color: var(--text-2); }
+  .assessment-list-entry {
+    display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border);
+    padding: 14px 0; min-height: 48px; cursor: pointer;
+  }
+  .assessment-tier-badge {
+    font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 999px; color: #fff; flex-shrink: 0;
+  }
+  .assessment-tier-badge.emergency { background: var(--danger); }
+  .assessment-tier-badge.urgent { background: var(--warn); }
+  .assessment-tier-badge.routine { background: var(--ok); }
+  .assessment-list-center { flex: 1; min-width: 0; }
+  .assessment-list-disease { font-size: 14px; font-weight: 500; color: var(--text-1); }
+  .assessment-list-date { font-size: 12px; color: var(--text-3); }
+  .assessment-list-explanation {
+    font-size: 13px; color: var(--text-2); max-width: 120px; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis; flex-shrink: 0;
+  }
+  .profile-edit-btn {
+    width: 100%; min-height: 44px; border: 1px solid var(--border); background: #fff;
+    color: var(--text-1); border-radius: 8px; font-size: 0.95rem; cursor: pointer; margin-top: 16px;
+  }
+
+  .sheet-tall { max-height: 90dvh; height: 90dvh; display: flex; flex-direction: column; }
+  .sheet-tall .sheet-body { overflow-y: auto; flex: 1; }
+  .sheet-handle { width: 32px; height: 4px; background: var(--border); border-radius: 2px; margin: 0 auto 16px; }
+  .assessment-detail-timestamp { font-size: 13px; color: var(--text-2); margin: 8px 0 16px; }
+  .assessment-detail-section { margin-bottom: 16px; }
+  .assessment-detail-label { font-size: 12px; color: var(--text-2); margin-bottom: 6px; font-weight: 600; }
+  .readonly-chip {
+    display: inline-flex; background: var(--chip); color: var(--chip-ink); border-radius: 999px;
+    padding: 6px 12px; font-size: 0.85rem; margin: 0 6px 6px 0;
+  }
+  .assessment-map-link { color: var(--accent); font-size: 0.9rem; }
+
+  .assessing-for-chip {
+    display: inline-flex; align-items: center; gap: 6px; background: var(--accent-soft);
+    color: var(--accent); border-radius: 999px; padding: 6px 12px; font-size: 0.85rem;
+    border: none; cursor: pointer; margin-bottom: 10px;
+  }
+
+  .toast {
+    position: fixed; left: 16px; right: 16px; bottom: 16px; max-width: 608px; margin: 0 auto;
+    background: var(--ink); color: #fff; border-radius: 10px; padding: 12px 14px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    font-size: 0.88rem; z-index: 25; box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  }
+  .toast-action { background: none; border: none; color: #8fd9c4; font-weight: 600; cursor: pointer; font-size: 0.88rem; }
 </style>
 </head>
 <body>
@@ -429,7 +600,10 @@
       <button type="button" data-lang="en" aria-pressed="true">EN</button>
       <button type="button" data-lang="hi" aria-pressed="false">हिं</button>
     </div>
-    <button type="button" class="profile-btn" id="profile-btn">👤 <span id="profile-btn-label">Default</span></button>
+    <div class="profile-switcher" id="profile-switcher">
+      <button type="button" class="profile-avatar-btn" id="profile-avatar-btn" aria-label="Profile"></button>
+      <div class="profile-dropdown" id="profile-dropdown" hidden></div>
+    </div>
     <button type="button" class="asha-toggle" id="asha-toggle" aria-pressed="false">ASHA</button>
     <div class="status-dot" id="status-dot"><span class="dot"></span><span class="status-text" id="status-text">Online</span></div>
   </div>
@@ -437,10 +611,12 @@
 
 <nav class="tab-nav" id="tab-nav">
   <button type="button" class="tab-btn" data-tab="assess" aria-pressed="true" id="tab-assess-btn">Assess</button>
-  <button type="button" class="tab-btn" data-tab="history" aria-pressed="false" id="tab-history-btn">History</button>
+  <button type="button" class="tab-btn" data-tab="history" aria-pressed="false" id="tab-history-btn">Profiles</button>
 </nav>
 
 <main>
+
+  <div id="assessing-for-container"></div>
 
   <section class="card">
     <label for="symptom-search" id="symptom-search-label">What are you feeling?</label>
@@ -490,7 +666,7 @@
         <input type="number" id="age-input" min="0" max="120" step="0.1" value="30">
       </div>
       <div class="field">
-        <label for="sex-select" id="sex-label">Sex</label>
+        <label for="sex-select" id="sex-label">Gender</label>
         <select id="sex-select">
           <option value="M" id="sex-option-m">Male</option>
           <option value="F" id="sex-option-f">Female</option>
@@ -507,9 +683,7 @@
 </main>
 
 <div id="history-view" hidden>
-  <div class="history-notice" id="history-notice">Stored on this device only. Never sent anywhere.</div>
-  <div class="history-list" id="history-list"></div>
-  <button type="button" class="clear-history-btn" id="clear-history-btn">Clear all history</button>
+  <div id="profiles-content"></div>
 </div>
 
 <div class="sheet-overlay" id="sheet-overlay" hidden>
@@ -518,6 +692,16 @@
     <div class="sheet-body" id="sheet-body"></div>
   </div>
 </div>
+
+<div class="sheet-overlay" id="assessment-sheet-overlay" hidden>
+  <div class="sheet sheet-tall" id="assessment-sheet">
+    <div class="sheet-handle"></div>
+    <button type="button" class="sheet-close" id="assessment-sheet-close" aria-label="Close">✕</button>
+    <div class="sheet-body" id="assessment-sheet-body"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" hidden></div>
 
 <footer class="disclaimer" id="disclaimer-text">
   ⚠ This is not a diagnosis. This is not a medical device. It does not replace a doctor.

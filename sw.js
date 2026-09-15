@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v14'; // v14: 6-C7 changes app.js/render.js/index.html/strings.js content
+const CACHE_VERSION = 'v15'; // v15: full patient profile system rewrite, adds js/profiles.js
 // (from here on, bump on any precached file's content change, not just when
 // the PRECACHE list itself changes -- a cache-first SW otherwise keeps
 // serving stale JS/HTML to anyone who already installed an older version)
@@ -18,7 +18,7 @@ const CACHE_NAME = `arogya-${CACHE_VERSION}`;
 const PRECACHE = [
   './',
   './index.html',
-  './js/infer.js', './js/render.js', './js/app.js', './js/strings.js', './js/sheet.js',
+  './js/infer.js', './js/render.js', './js/app.js', './js/strings.js', './js/sheet.js', './js/profiles.js',
   './js/vendor/ort.min.js', './js/vendor/ort-wasm-simd.wasm',
   './models/arogya.onnx',
   './data/attributions.json',
