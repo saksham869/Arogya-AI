@@ -2,7 +2,8 @@ import argparse
 import pandas as pd, numpy as np, json, joblib
 from datetime import date
 from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, VotingClassifier
+from xgboost import XGBClassifier
 from sklearn.model_selection import RepeatedStratifiedKFold, cross_validate
 from sklearn.metrics import top_k_accuracy_score
 from statsmodels.stats.proportion import proportion_confint
@@ -52,6 +53,13 @@ cv = RepeatedStratifiedKFold(n_splits=n_splits, n_repeats=10, random_state=42)
 models = {
     'LogisticRegression': LogisticRegression(max_iter=2000, C=1.0, random_state=42, n_jobs=-1),
     'RandomForest': RandomForestClassifier(n_estimators=100, random_state=42, n_jobs=-1),
+    # Soft vote (mean of predict_proba) over RF + XGB. VotingClassifier
+    # label-encodes y before fitting its members, so XGB gets the integer
+    # targets it requires while classes_ stays the disease-name strings.
+    'RF+XGB': VotingClassifier([
+        ('rf', RandomForestClassifier(n_estimators=100, random_state=42, n_jobs=-1)),
+        ('xgb', XGBClassifier(n_estimators=100, random_state=42, n_jobs=-1)),
+    ], voting='soft'),
     'GradientBoosting': GradientBoostingClassifier(n_estimators=100, random_state=42),
 }
 
